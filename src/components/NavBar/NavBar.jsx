@@ -35,12 +35,14 @@ function NavBar() {
               <Link to="/Stat">Statistique</Link>
             </button>
           </div>
+          <hr className="hr1" />
           <div className="flexStart  nav-option">
             <IoPersonOutline />
             <button>
               <Link to="/Profile">Profile</Link>
             </button>
           </div>
+          <hr className="hr2" />
           <div className=" flexStart nav-option2">
             <GoSignOut />
             <button>
