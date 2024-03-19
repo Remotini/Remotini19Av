@@ -4,7 +4,6 @@ import { IoHomeOutline } from "react-icons/io5";
 import { FaChartLine } from "react-icons/fa";
 import { IoPersonOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
-import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <>
@@ -26,25 +25,28 @@ function NavBar() {
           <div className="flexStart  nav-option">
             <IoHomeOutline />
             <button>
-              <Link to="/">Acceuil</Link>
+              <a href="">Acceuil</a>
             </button>
           </div>
-          <div className="flexStart  nav-option">
+
+          <div className="flexStart nav-option">
             <FaChartLine />
             <button>
-              <Link to="/Stat">Statistique</Link>
+              <a href="">Statistique</a>
             </button>
           </div>
+          <hr className="hr1" />
           <div className="flexStart  nav-option">
             <IoPersonOutline />
             <button>
-              <Link to="/Profile">Profile</Link>
+              <a href="">Profile</a>
             </button>
           </div>
-          <div className=" flexStart nav-option2">
+          <hr className="hr2" />
+          <div className="flexStart  nav-option2">
             <GoSignOut />
             <button>
-              <Link to="">Deconnecter</Link>
+              <a href="">Deconnecter</a>
             </button>
           </div>
         </div>
