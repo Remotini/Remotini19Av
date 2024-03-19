@@ -45,10 +45,11 @@
 /* iyed changes css  */
 
 .table-heading{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: relative;
+    
     align-items:center;
     margin-top: 0.5rem;
  
