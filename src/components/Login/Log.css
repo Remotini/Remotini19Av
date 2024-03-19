@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper_log{
     position: relative;
     max-width: 430px;
     width: 100%;
@@ -8,13 +8,13 @@
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
-  .wrapper h2{
+  .wrapper_log h2{
     position: relative;
     font-size: 22px;
     font-weight: 600;
     color: #333;
   }
-  .wrapper h2::before{
+  .wrapper_log h2::before{
     content: '';
     position: absolute;
     left: 0;
@@ -24,14 +24,14 @@
     border-radius: 12px;
     background: #4070f4;
   }
-  .wrapper form{
+  .wrapper_log .f-login{
     margin-top: 30px;
   }
-  .wrapper form .input-box{
+  .wrapper_log .f-login .input-box-login{
     height: 52px;
     margin: 18px 0;
   }
-  form .input-box input{
+  .f-login .input-box-login input{
     height: 100%;
     width: 100%;
     outline: none;
@@ -44,25 +44,25 @@
     border-radius: 6px;
     transition: all 0.3s ease;
   }
-  .input-box input:focus,
-  .input-box input:valid{
+  .input-box-login input:focus,
+  .input-box-login input:valid{
     border-color: #4070f4;
   }
  
-  form h3{
+  .f-login h3{
     color: #707070;
     font-size: 14px;
     font-weight: 500;
     margin-left: 10px;
   }
-  .input-box.button input{
+  .input-box-login.button input{
     color: #fff;
     letter-spacing: 1px;
     border: none;
     background: #4070f4;
     cursor: pointer;
   }
-  .input-box.button input:hover{
+  .input-box-login.button input:hover{
     background: #0e4bf1;
   }
 

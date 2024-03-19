@@ -44,7 +44,7 @@ function NavBar() {
           <div className=" flexStart nav-option2">
             <GoSignOut />
             <button>
-              <Link to="">Deconnecter</Link>
+              <Link to="/Login">Deconnecter</Link>
             </button>
           </div>
         </div>

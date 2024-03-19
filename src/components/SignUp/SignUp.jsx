@@ -1,5 +1,6 @@
 import React from "react";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 function SignUpp() {
   return (
     <div className="sign-container">
@@ -66,7 +67,7 @@ function SignUpp() {
           </div>
           <div class="text">
             <h3>
-              Vous avez un compte déja? <a href="#">Login now</a>
+              Vous avez un compte déja? <Link to="/Login">Login now</Link>
             </h3>
           </div>
         </form>
