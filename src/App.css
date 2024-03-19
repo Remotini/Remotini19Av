@@ -1,0 +1,38 @@
+.App {
+  position: absolute;
+  top: 0;
+  height: 264px;
+  min-height: 250px;
+  width: 100%;
+  background: var(--blue);
+  z-index: -1;
+}
+
+.Siderbar {
+  background-color: white;
+  padding: 100px;
+  position: relative;
+  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+  height: 90vh;
+  width: 10rem;
+  border: 2px solid transparent;
+}
+.Table {
+  
+  width: 70rem;
+  margin: auto;
+  height: 30rem;
+  text-align: center;
+  background-color: hsl(0, 0%, 95%);
+  min-height: 10rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+}
+.center{
+  display: flex;
+}
+@media (max-height: 550px) {
+  .njareb {
+    top: 15vh;
+  }
+}
