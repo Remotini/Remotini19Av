@@ -18,18 +18,31 @@
   border: 2px solid transparent;
 }
 .Table {
-  
   width: 70rem;
-  margin: auto;
-  height: 30rem;
+  height: 100vh;
   text-align: center;
-  background-color: hsl(0, 0%, 95%);
+  /* background-color: hsl(0, 0%, 95%);  deja fel SignUp.css */
   min-height: 10rem;
   border-radius: 10px;
-  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+  /* box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1); */
+  
 }
 .center{
   display: flex;
+}
+.flex-two-table{
+  display: flex;
+}
+.data-Table{
+    width: 70rem;
+    margin: auto;
+    height: 30rem;
+    text-align: center;
+    background-color: hsl(0, 0%, 95%);
+    min-height: 10rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+ 
 }
 @media (max-height: 550px) {
   .njareb {

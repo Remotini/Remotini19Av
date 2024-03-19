@@ -5,10 +5,11 @@ import SignUpp from "../components/SignUp/SignUp";
 function SignUp() {
   return (
     <>
-      <div className="App" />
-      <Header />
-      <div className="Table">
-        <SignUpp />
+      <div className="flex-two-table">
+        <div className="left-design"></div>
+        <div className="Table">
+          <SignUpp />
+        </div>
       </div>
     </>
   );

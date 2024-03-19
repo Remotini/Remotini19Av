@@ -1,24 +1,12 @@
-.sign-container{
-    height: 90%;
-    width: 50rem;
-    margin-top: 1rem;
-    margin: 1rem auto;
-}
-.left-design{
-    width: 30%;
-    height: 100vh;
-    background-color: var(--blue);
-}
-
-/*ready */
 .wrapper{
     position: relative;
+    max-width: 430px;
     width: 100%;
-    background-color: hsla(0, 0%, 88%);
+    margin: 4rem auto;
+    background: #fff;
     padding: 34px;
     border-radius: 6px;
- 
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2); 
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
   .wrapper h2{
     position: relative;
@@ -38,18 +26,14 @@
   }
   .wrapper form{
     margin-top: 30px;
-
-   
   }
   .wrapper form .input-box{
     height: 52px;
     margin: 18px 0;
-  
-    display: flex;
   }
   form .input-box input{
     height: 100%;
-    width: 18rem;
+    width: 100%;
     outline: none;
     padding: 0 15px;
     font-size: 17px;
@@ -64,10 +48,7 @@
   .input-box input:valid{
     border-color: #4070f4;
   }
-  form .policy{
-    display: flex;
-    align-items: center;
-  }
+ 
   form h3{
     color: #707070;
     font-size: 14px;
@@ -84,31 +65,4 @@
   .input-box.button input:hover{
     background: #0e4bf1;
   }
-  form .text h3{
-   color: #333;
-   width: 100%;
-   text-align: center;
-  }
-  form .text h3 a{
-    color: #4070f4;
-    text-decoration: none;
-  }
-  form .text h3 a:hover{
-    text-decoration: underline;
-  }
-  
-  .input-box.button {
- 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-.align-inputs-evenly{
-    display: flex;
-    justify-content: space-evenly;
-}
-p{
-    text-align: left;
-   margin-left:0.7rem ;
 
-}
