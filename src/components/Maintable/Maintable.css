@@ -1,49 +1,15 @@
 .description{
     position: relative;
     text-align: left;
-    top: 1rem;
     left: 1rem;
     font-size: 1.6rem;
 }
 
-.background-color {
-  background: #E8E8E8;
-  border-radius: 1rem;
-  width: 300px;
-  height: 55px;
-  left: 35rem;
-  position: absolute;
-  display: flex;
-  top: 1rem;
-}
 
-.right-m {
-  flex: 1;
-  position: relative;
-}
 
-.plus-icon{
-    display: flex;
-    position: absolute;
-    left: 56rem;
-    border-radius: 50%;
-    background-color: #838383;
-    padding: 0.75rem;
-    bottom: 0.3rem;
-    color: #E8E8E8;
-    font-size: 1rem;
-    opacity: 60%;
-}
 
-.dots>img{
-    position: relative;
-    left: 29.5rem;
-    height: 3rem;
-    opacity: 50%;
-    bottom: -0.25rem;
-}
 
-.bar{
+/* .bar{
     position: absolute;
     width: 100%;
     height: 58px;
@@ -74,4 +40,78 @@
     position: absolute;
     right: 7rem;
     top: 1.25rem;
+} */
+
+/* iyed changes css  */
+
+.table-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    align-items:center;
+    margin-top: 0.5rem;
+ 
+    min-width: 600px;
+    
+    
+}
+.plus-icon{
+    border-radius: 50%;
+    background-color: #838383;
+    height: 30px;
+    width: 30px;
+    color: #E8E8E8;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+   
+}
+.search-input {
+    background-color: var(#E8E8E8);
+    border-radius: 1rem;
+    width: 300px;
+    height: 40px;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+
+  }
+.right-m{
+    width: 25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.dots{
+   
+     display: flex;
+     justify-content: end;
+     margin-right: 1rem;
+     
+ 
+}
+ 
+.tableaux-rapport{
+    border: 1px solid;
+    width: 90%;
+    margin: auto;
+    border-collapse:collapse;
+    margin-top: 1.2rem;
+    
+}
+.tableaux-rapport th{
+    border: 1px solid;
+    width: 14rem;
+    height: 3rem;
+}
+.tableaux-rapport td{
+    border: 1px solid;
+    padding: 2rem;
+}
+.table{
+    overflow: auto;
+    
 }

@@ -6,6 +6,7 @@
   width: 100%;
   background: var(--blue);
   z-index: -1;
+  min-width: 1300px;
 }
 
 .Siderbar {
@@ -40,6 +41,7 @@
     text-align: center;
     background-color: hsl(0, 0%, 95%);
     min-height: 10rem;
+    overflow: auto;
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
  

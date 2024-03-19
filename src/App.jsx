@@ -9,10 +9,11 @@ import Stat from "./pages/Stat";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Home />} />
       <Route path="Stat" element={<Stat />} />
       <Route path="Profile" element={<Profile />} />
       <Route path="Login" element={<Login />} />
