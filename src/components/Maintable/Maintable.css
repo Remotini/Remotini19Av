@@ -45,15 +45,16 @@
 /* iyed changes css  */
 
 .table-heading{
-    position: relative;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
     align-items:center;
-    margin-top: 0.5rem;
- 
+    
     min-width: 600px;
+    position: sticky;
+    top: 0;
+    margin-top: 0.5rem;
     
     
 }
@@ -77,6 +78,7 @@
     height: 40px;
     font-size: 1.2rem;
     padding-left: 1rem;
+    margin-top: 0.2rem;
 
   }
 .right-m{
@@ -111,8 +113,4 @@
 .tableaux-rapport td{
     border: 1px solid;
     padding: 2rem;
-}
-.table{
-    overflow: auto;
-    
 }

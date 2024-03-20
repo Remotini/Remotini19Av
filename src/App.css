@@ -7,6 +7,7 @@
   background: var(--blue);
   z-index: -1;
   min-width: 1300px;
+ 
 }
 
 .Siderbar {
@@ -14,7 +15,7 @@
   padding: 100px;
   position: relative;
   box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-  height: 90vh;
+  min-height: 90vh;
   width: 10rem;
   border: 2px solid transparent;
 }
@@ -30,22 +31,53 @@
 }
 .center{
   display: flex;
+  gap: 2rem;
+ 
 }
 .flex-two-table{
   display: flex;
 }
 .data-Table{
     width: 70rem;
-    margin: auto;
     height: 30rem;
     text-align: center;
     background-color: hsl(0, 0%, 95%);
+    max-width: 60rem;
+    min-width: 60rem;
+    margin: 20px auto;
     min-height: 10rem;
     overflow: auto;
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
  
 }
+
+/* fonts  */
+.hind-vadodara-light {
+  font-family: "Hind Vadodara", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.hind-vadodara-regular {
+  font-family: "Hind Vadodara", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hind-vadodara-medium {
+  font-family: "Hind Vadodara", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hind-vadodara-semibold {
+  font-family: "Hind Vadodara", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
 @media (max-height: 550px) {
   .njareb {
     top: 15vh;
