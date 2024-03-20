@@ -17,7 +17,9 @@ function Home() {
           <Maintable>/</Maintable>
         </div>
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }

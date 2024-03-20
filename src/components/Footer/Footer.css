@@ -6,3 +6,10 @@
     z-index: 100;
     color: white;
 }    
+
+@media (min-height: 740px) {
+    .footer{
+        position: absolute;
+        width: 100%;
+    }
+}

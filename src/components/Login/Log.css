@@ -66,3 +66,8 @@
     background: #0e4bf1;
   }
 
+@media (max-width:727px) {
+    .wrapper_log{
+        max-width: 350px;
+    }
+}

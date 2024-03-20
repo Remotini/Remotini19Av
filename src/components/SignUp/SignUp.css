@@ -1,12 +1,12 @@
 .sign-container{
-    height: 90%;
+    position: relative;
     width: 50rem;
     margin-top: 1rem;
     margin: 1rem auto;
 }
 .left-design{
     width: 30%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--blue);
 }
 
@@ -112,3 +112,30 @@ p{
    margin-left:0.7rem ;
 
 }
+
+@media (max-width:727px) {
+    .sign-container{
+        width: 100%;
+    }
+    .align-inputs-evenly{
+      display: block;
+    }
+    .left-input{
+        width: 100%;
+        display: grid;
+        justify-content: center;
+    }
+    .right-input{
+      width: 100%;
+    
+      display: grid;
+      justify-content: center;
+  }
+    
+}
+/* @media (max-height:673px) {
+    .left-design{
+        To do whenever its is filled
+    }
+}
+   */

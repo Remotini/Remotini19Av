@@ -6,7 +6,7 @@
   width: 100%;
   background: var(--blue);
   z-index: -1;
-  min-width: 1300px;
+ 
  
 }
 
@@ -21,34 +21,30 @@
 }
 .Table {
   width: 70rem;
-  height: 100vh;
   text-align: center;
   /* background-color: hsl(0, 0%, 95%);  deja fel SignUp.css */
-  min-height: 10rem;
   border-radius: 10px;
   /* box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1); */
-  
 }
 .center{
   display: flex;
-  gap: 2rem;
+  
  
 }
 .flex-two-table{
   display: flex;
+ 
 }
 .data-Table{
     width: 70rem;
     height: 30rem;
     text-align: center;
     background-color: hsl(0, 0%, 95%);
-    max-width: 60rem;
-    min-width: 60rem;
-    margin: 20px auto;
-    min-height: 10rem;
+    margin: 4.5rem auto;
     overflow: auto;
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+    
  
 }
 
@@ -78,8 +74,24 @@
 }
 
 
-@media (max-height: 550px) {
-  .njareb {
-    top: 15vh;
+
+@media (max-width: 1344px) {
+  .Siderbar{
+    display: none;
   }
+}
+@media (max-width:612px) {
+  .data-Table{
+    min-width: 612px;
+  }
+}
+
+@media (max-width:1300px) {
+  .App {
+    height: 264px;
+    min-height: 250px;
+    z-index: -1;
+    min-width: 616px;
+  }
+  
 }
