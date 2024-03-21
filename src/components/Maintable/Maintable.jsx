@@ -3,11 +3,6 @@ import "./Maintable.css";
 import { data } from "./data";
 function Maintable() {
   const [tableData, setTableData] = useState(data);
-  const fetching = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((data) => setTableData(data));
-  };
   return (
     <div className="table">
       <div className="table-heading">
