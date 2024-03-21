@@ -6,19 +6,10 @@
   width: 100%;
   background: var(--blue);
   z-index: -1;
- 
- 
 }
-
-.Siderbar {
-  background-color: white;
-  padding: 100px;
+ .home-wrapper{
   position: relative;
-  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-  min-height: 90vh;
-  width: 10rem;
-  border: 2px solid transparent;
-}
+ }
 .Table {
   width: 70rem;
   text-align: center;
@@ -28,8 +19,6 @@
 }
 .center{
   display: flex;
-  
- 
 }
 .flex-two-table{
   display: flex;
@@ -37,15 +26,14 @@
 }
 .data-Table{
     width: 70rem;
-    height: 30rem;
+    height: 40rem;
     text-align: center;
     background-color: hsl(0, 0%, 95%);
     margin: 4.5rem auto;
     overflow: auto;
     border-radius: 10px;
+    padding-bottom: 20px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-    
- 
 }
 
 /* fonts  */
@@ -74,24 +62,18 @@
 }
 
 
-
-@media (max-width: 1344px) {
-  .Siderbar{
-    display: none;
-  }
-}
+ 
 @media (max-width:612px) {
-  .data-Table{
-    min-width: 612px;
-  }
+ 
+   
 }
 
 @media (max-width:1300px) {
-  .App {
+  /* .App {
     height: 264px;
     min-height: 250px;
     z-index: -1;
     min-width: 616px;
-  }
+  } */
   
 }

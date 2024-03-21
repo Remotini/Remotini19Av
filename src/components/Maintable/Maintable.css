@@ -49,7 +49,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items:center;
-    min-width: 600px;
     position: sticky;
     top: 0;
     margin-top: 0.5rem;
@@ -88,35 +87,58 @@
     
 }
 .dots{
-   
      display: flex;
      justify-content: end;
      margin-right: 1rem;
-     
- 
 }
  
 .tableaux-rapport{
-    border: 1px solid;
-    width: 90%;
     margin: auto;
     border-collapse:collapse;
     margin-top: 1.2rem;
+    width: 90%;
+     
     
 }
 .tableaux-rapport th{
-    border: 1px solid;
+    
     width: 14rem;
     height: 3rem;
+    position: sticky;
+    top: 3.8rem;
+    background-color: #E8E8E8;
+    border: 2px solid black
+    
 }
 .tableaux-rapport td{
     border: 1px solid;
     padding: 2rem;
 }
+ 
 @media (min-height: 740px) {
     .tableaux-rapport td  {
-        background-color: red;
+        /* background-color: red; */
         min-height: 740px;
     }
     
+}
+@media (max-width:560px) {
+    .description{
+        display: none;
+    }
+    .search-input{
+        width:100%;
+    }
+    .table-heading{
+        min-width: 100%;
+         
+        justify-content: space-around;
+    }
+    .right-m{
+        gap: 1rem;
+    }
+    .plus-icon{
+        height: 24px;
+        width: 30px;
+    }
 }

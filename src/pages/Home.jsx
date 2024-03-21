@@ -10,14 +10,14 @@ function Home() {
       <div className="App" />
       <Header />
       <div className="center">
-        <div className="Siderbar">
+        <div>
           <NavBar />
         </div>
         <div className="data-Table">
           <Maintable>/</Maintable>
         </div>
       </div>
-      <div>
+      <div className="ft">
         <Footer />
       </div>
     </>
