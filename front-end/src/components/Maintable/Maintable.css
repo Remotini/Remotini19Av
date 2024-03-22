@@ -1,22 +1,30 @@
 .table{
   position: relative;
-    background-color: wheat;
+     
     overflow: auto;
-    height: 60vh;
+    height:90%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
 .tableaux-rapport{
-    height: 60vh;
+  background-color: rgb(255, 242, 219);
     width: 100%;
     border-collapse: collapse;
 }
 .wrapperTable{
     margin: 0rem auto;
     width: 1150px;
+   
+  
     overflow: hidden;
+    margin-bottom: 2rem;
     
+}
+.table::-webkit-scrollbar {
+  display: none;
 }
 .tableaux-rapport .button-container {
     display: flex;
@@ -143,4 +151,7 @@ button {
     color: white;
     font-size: 2rem;
     padding: 0.3rem 0.5rem;
+  }
+  @media screen and(min-height:500px ) {
+    
   }

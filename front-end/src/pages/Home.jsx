@@ -7,16 +7,18 @@ import Footer from "../components/Footer/Footer";
 function Home() {
   return (
     <>
-      <div className="App" />
-      <Header />
-      <div className="center">
-        <div>
-          <NavBar />
+      <div className="All">
+        <div className="App" />
+        <Header />
+        <div className="center">
+          <div className="the-nav">
+            <NavBar />
+          </div>
+          <Maintable>/</Maintable>
         </div>
-        <Maintable>/</Maintable>
-      </div>
-      <div className="ft">
-        <Footer />
+        <div className="ft">
+          <Footer />
+        </div>
       </div>
     </>
   );

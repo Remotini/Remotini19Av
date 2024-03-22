@@ -23,11 +23,7 @@ function NavBar() {
         <span className="line"></span>
       </div>
 
-      <div
-        className={`nav-wrapper ${
-          isActiveHamburger ? "active" : "nav-wrapper-inactive"
-        }`}
-      >
+      <div className={`nav-wrapper ${isActiveHamburger ? "active" : ""}`}>
         <div className="userdata">
           <div className="img-wrapp">
             {/* el taswira bech tji source mel bara  */}
@@ -80,8 +76,8 @@ function NavBar() {
             <Link to="/Login">Deconnecter</Link>
           </button>
         </div>
+        <hr className="hr1" />
       </div>
-      <hr className="hr1" />
     </>
   );
 }

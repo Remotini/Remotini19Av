@@ -17,11 +17,7 @@
   border-radius: 10px;
   /* box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1); */
 }
-.center{
-  display: flex;
-  height: 100vh;
-  
-}
+
 .flex-two-table{
   display: flex;
  
@@ -37,7 +33,7 @@
     padding-bottom: 20px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
 }
-
+ 
 /* fonts  */
 .hind-vadodara-light {
   font-family: "Hind Vadodara", sans-serif;
@@ -65,11 +61,21 @@
 
 
  
-@media (max-height:450px) {
+@media (max-height:500px) {
   .center{
-    background-color: red;
+    min-height: 500px;
+  
   }
+
    
 }
  
- 
+ .center{
+  display: flex;
+  height: 100vh;
+  position: relative;
+   
+}
+.the-nav{
+  /* background-color: white; */
+}
