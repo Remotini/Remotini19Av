@@ -20,7 +20,7 @@
     width: 1150px;
     margin-bottom: 5rem;
     overflow-x: auto;
-   
+   overflow-y: hidden; /*to make the wrapper not scrollable on the y axis */
     
   
     
