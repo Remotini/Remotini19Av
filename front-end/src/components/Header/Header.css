@@ -48,37 +48,9 @@
 .icon-container>:nth-child(2):hover{
   scale: 1.2;
 }
-.logo{
-  display: flex;
-  justify-content: space-between;
-  border: 1rem;
-  border-color:red ;
-  width: 2rem;
-  height: 2rem;
-  
-}
-.logo>img{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: -1rem;
-  left: -0.75rem;
-  height: 110px;
-}
+/*  */
 
-.Logo{
-  color: #DDF2FD;
-  font-size: 1.3rem;
-  font-family: "Roboto Slab";
-  font-weight: 800;
-  display: flex;
-  position: absolute;
-  width: 240px;
-  height: 120px;
-  justify-content: center;
-  left: -1.5rem;
-  top: 2rem;
-}
+
 
 /* the notfication card */
 
@@ -115,4 +87,24 @@
   opacity: 0;
   transform: translateY(-10px);
   height: 4rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  width: 7rem;
+  position: relative;
+  
+  
+}
+.icon1:hover {
+  color: gray;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.icon2:hover {
+  color: gray;
+  opacity: 0.8;
+  cursor: pointer;
 }

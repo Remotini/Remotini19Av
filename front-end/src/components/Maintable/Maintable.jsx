@@ -4,14 +4,16 @@ import { data } from "./data";
 function Maintable() {
   const [tableData, setTableData] = useState(data);
   return (
-    <div className="table">
-      <div className="table-heading">
-        <div className="description">Tâches</div>
-        <div className="right-m">
+    <div className="wrapperTable">
+      <div className="rapport-desc">Rapport des taches</div>
+      <p>aa</p>
+      <div className="table-head">
+        <div className="left">Taches</div>
+        <div className="search">
           <input
             type="search"
             className="search-input"
-            placeholder="Type here..."
+            placeholder="Rechercher..."
           ></input>
           <span className="plus-icon">+</span>
           <svg
@@ -26,25 +28,53 @@ function Maintable() {
           </svg>
         </div>
       </div>
-      {/* table can be a seperate component if needed */}
-      <table className="tableaux-rapport">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Age</th>
+
+      <div className="table">
+        {/* table can be a seperate component if needed */}
+
+        <table className="tableaux-rapport">
+          <tr className="elhead">
+            <th> Nom</th>
+            <th>Projet</th>
+            <th>Service</th>
+            <th>Date de publication</th>
+            <th>Date fin réalisation</th>
+            <th>Status</th>
+            <th>Assigné(e)</th>
           </tr>
-        </thead>
-        <tbody>
-          {data.map((user, index) => (
-            <tr key={index}>
-              <td>{user.name}</td>
-              <td>{user.familyName}</td>
-              <td>{user.age}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {data.map((task, index) => (
+              <tr key={index}>
+                <td>{task.taskName}</td>
+                <td>{task.projectName}</td>
+                <td>{task.service}</td>
+                <td>{task.publicationDate}</td>
+                <td>{task.deadline}</td>
+                <td>
+                  <div className="button-container">
+                    <button
+                      style={{
+                        backgroundColor:
+                          task.status === "en cours"
+                            ? "#d8b339"
+                            : task.status === "validé"
+                            ? "#00a36d"
+                            : task.status === "refusé"
+                            ? "#db3434"
+                            : "transparent",
+                      }}
+                    >
+                      {task.status}
+                    </button>
+                  </div>
+                </td>
+
+                <td>{task.comment}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -49,20 +49,31 @@ function NavBar() {
             <button>
               <Link to="/">Acceuil</Link>
             </button>
+            <div className="arrow1">
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
+            </div>
           </div>
           <div className="flexStart  nav-option">
             <FaChartLine />
             <button>
               <Link to="/Stat">Statistique</Link>
             </button>
+            <div className="arrow2">
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
+            </div>
           </div>
+
           <div className="flexStart  nav-option">
             <IoPersonOutline />
             <button>
               <Link to="/Profile">Profile</Link>
             </button>
+            <div className="arrow3">
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
+            </div>
           </div>
         </div>
+        <hr className="hr2" />
         <div className=" flexStart nav-option2 ">
           <GoSignOut />
           <button>
@@ -70,6 +81,7 @@ function NavBar() {
           </button>
         </div>
       </div>
+      <hr className="hr1" />
     </>
   );
 }

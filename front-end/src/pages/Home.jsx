@@ -13,9 +13,7 @@ function Home() {
         <div>
           <NavBar />
         </div>
-        <div className="data-Table">
-          <Maintable>/</Maintable>
-        </div>
+        <Maintable>/</Maintable>
       </div>
       <div className="ft">
         <Footer />

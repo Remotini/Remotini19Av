@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import logo from "../../../src/assets/newlogo.png";
 function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [mode, setMode] = useState("inactive");
@@ -11,18 +12,16 @@ function Header() {
   };
   return (
     <div className=" flexCenter h-wrapper">
-      <span className="logo">
-        <img src="" alt="" />
-        <span className=" Logo">emotini</span>
-      </span>
+      <img src={logo} alt="no logo" className="logo" />
       <div className=" icon-container">
         <IoIosNotificationsOutline
+          className="icon1"
           // on the onclick make a function that will open the notification page
           onClick={() => {
             handleClick();
           }}
         />
-        <IoSettingsOutline />
+        <IoSettingsOutline className="icon2" />
         <div className="notification-box">
           {isVisible && (
             <div className={`notification ${mode}`}>

@@ -19,6 +19,8 @@
 }
 .center{
   display: flex;
+  height: 100vh;
+  
 }
 .flex-two-table{
   display: flex;
@@ -63,17 +65,11 @@
 
 
  
-@media (max-width:612px) {
- 
+@media (max-height:450px) {
+  .center{
+    background-color: red;
+  }
    
 }
-
-@media (max-width:1300px) {
-  /* .App {
-    height: 264px;
-    min-height: 250px;
-    z-index: -1;
-    min-width: 616px;
-  } */
-  
-}
+ 
+ 

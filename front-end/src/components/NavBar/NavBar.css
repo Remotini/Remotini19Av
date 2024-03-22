@@ -15,22 +15,6 @@
   gap: 1rem;
   width: 100%;
 }
-/* .menu-wrapper > hr {
-  border: 1px solid var(--blue);
-  width: 6rem;
-  opacity: 0.5;
-} */
-/* .hr1 {
-  position: absolute;
-  top: 8rem;
-  right: 8rem;
-}
-.hr2 {
-  position: absolute;
-  top: 10.5rem;
-  right: 8rem;
-} */
-
 .menu-wrapper>div:nth-child(-n+3){
   margin-bottom: 50px;
   font-size: 2rem;
@@ -43,21 +27,16 @@
 }
 
 .nav-option2 {
-  /* position: absolute;
-  bottom: 1rem;
-  border: none;
-  background-color: white;
-  padding: 10px;
-  right: 8rem;
-  margin-bottom: 15px; */
-  /* position: relative;
-  top: 100%; */
+
   
   width: 100%;
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  position: absolute;
+  bottom: 0rem;
+  
 
 }
 .nav-option2 > button {
@@ -78,16 +57,10 @@
   border: none;
   background-color: white;
   font-size: 1rem;
+  opacity: 0.5;
   cursor: pointer;
 }
-/* .nav-option > :nth-child(1) {
-  margin-right: 10px;
-}
-.nav-option > button {
-  border: none;
-  background: white;
-  padding: 0;
-} */
+
 .name {
   display: flex;
   gap: 0.5rem;
@@ -139,37 +112,12 @@ transition: all 0.3s ease-in-out;
 .hamburger-active .line:nth-child(3) {
   transform: translateY(-5px)  ;
 }
-/* .menubar{
-  position: absolute;
-  top: 0;
-  left: -150%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 60%;
-  height: 100vh;
-  border: 1px solid ;
-  padding: 20% 0;
-  background-color: rgba(255,255,255);
-  transition: all .5s ease-in;
-  z-index: 2;
-} */
+
 .menu-wrapper {
   position: relative;
   top: 0rem;
   width: 100%;
-  height: 90vh;
   transition: all .5s ease-in;
-  /* top: 5rem;
-  left: 0;
-  width: 16rem;
-  color: var(--blue);
-  min-height: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 1.5rem;
-  font-size: 25px; */
 }
 
 .nav-wrapper{
@@ -177,14 +125,32 @@ transition: all 0.3s ease-in-out;
   position: relative;
   box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
   width: 17rem;
-  border: 5px solid;
+  border: 2px solid;
   transition: transform 0.4s ease-out; 
+  height: 100%;
+  margin-left:0 ;
+ 
 }
 
 .nav-wrapper.active{
-  transform: translateX(10px);
+  transform: translateX(0px);
+   
 }
-
+  hr {
+  border: 1px solid var(--blue);
+  width: 11rem;
+  opacity: 0.4;
+}
+.hr1 {
+  position: relative;
+  top: -38rem;
+  right: -1.2rem
+}
+.hr2 {
+  position: absolute;
+  top: 20rem;
+  right: 4.8rem;
+}
 @media screen and (max-width:1400px) {
   
   .hamburger{
@@ -195,11 +161,24 @@ transition: all 0.3s ease-in-out;
   .nav-wrapper{
     transform: translateX(-280px);
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     border-radius: 100px;
+   
   }
   .menu-wrapper{
     max-height: 220px;
   }
-
+  .nav-wrapper.active{
+  
+    margin-left: 5px;
+  }
+  hr{
+    display: none;
+  }
 }
+
+.nav-option > button:hover {
+  opacity: 1;
+}
+
+
