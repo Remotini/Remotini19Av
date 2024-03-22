@@ -72,10 +72,9 @@
  
  .center{
   display: flex;
-  height: 100vh;
+  height: 100%;
   position: relative;
+  /* overflow: auto; */
+  
    
-}
-.the-nav{
-  /* background-color: white; */
 }
