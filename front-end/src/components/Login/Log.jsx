@@ -1,20 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Log.css";
 import { Link } from "react-router-dom";
+import { useLogIn } from "../../hooks/useLogIn";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
 function Log() {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const { handleLogIn, error, isLoading } = useLogIn();
+  const { user } = useAuthContext();
+  const history = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogIn(email, password);
+  };
+  useEffect(() => {
+    if (user) {
+      window.location.href = "/";
+    }
+  }, [user]);
+
   return (
     <div class="wrapper_log">
       <h2>Se Connecter</h2>
-      <form action="#" className="f-login">
+      <form action="#" className="f-login" onSubmit={handleSubmit}>
         <div class="input-box-login">
-          <input type="text" placeholder="Enter your email" required />
+          <input
+            type="email"
+            placeholder="Entrer votre email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
         </div>
         <div class="input-box-login">
-          <input type="password" placeholder="Create password" required />
+          <input
+            type="password"
+            placeholder="Entrer Votre mot de passe"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
         </div>
 
         <div class="input-box-login button">
-          <input type="Submit" value="Register Now" />
+          <button disabled={isLoading}>Login</button>
         </div>
         <div class="text">
           <h3>
@@ -22,6 +52,7 @@ function Log() {
           </h3>
         </div>
       </form>
+      {error && <div className="error-msg">{error}</div>}
     </div>
   );
 }

@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./NavBar.css";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaChartLine } from "react-icons/fa";
 import { IoPersonOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { useLogout } from "../../hooks/useLogOut";
+import { AuthContext } from "../../context/AuthContext";
 function NavBar() {
   const [isActiveHamburger, setisActiveHamburger] = useState(false);
+  const { logout } = useLogout();
+  const { user } = useContext(AuthContext);
   //generate handle function
   const handleHamburger = () => {
     setisActiveHamburger(!isActiveHamburger);
     console.log(isActiveHamburger);
+  };
+  const handleClick = () => {
+    logout();
   };
   return (
     <>
@@ -33,7 +40,8 @@ function NavBar() {
           <div className="name-wrapp">
             <span className="name primaryText">
               {/* name et Family name java elements */}
-              <span>iyed </span> <span>grassi </span>
+              {/* <span>iyed </span> <span>grassi </span> */}
+              <span>{user ? user.email : ""}</span>
             </span>
             <span className="secondaryText">description </span>
           </div>
@@ -72,7 +80,7 @@ function NavBar() {
         <hr className="hr2" />
         <div className=" flexStart nav-option2 ">
           <GoSignOut />
-          <button>
+          <button onClick={handleClick}>
             <Link to="/Login">Deconnecter</Link>
           </button>
         </div>

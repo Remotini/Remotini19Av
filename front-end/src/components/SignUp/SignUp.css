@@ -133,6 +133,20 @@ p{
   }
     
 }
+
+.error{
+    color: rgb(255, 0, 0);
+    background-color: hsl(0, 100%, 50%,0.25);
+   
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    width: 225px;
+    border: 2px solid rgb(177, 9, 9);
+}
 /* @media (max-height:673px) {
     .left-design{
         To do whenever its is filled

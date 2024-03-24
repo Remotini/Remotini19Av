@@ -71,3 +71,17 @@
         max-width: 350px;
     }
 }
+
+.error-msg{
+  color: rgb(255, 0, 0);
+  background-color: hsl(0, 100%, 50%,0.25);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  width: 225px;
+  margin: 1.2rem auto -0.5rem auto;
+  border: 2px solid rgb(177, 9, 9);
+}

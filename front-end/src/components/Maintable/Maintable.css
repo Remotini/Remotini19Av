@@ -1,8 +1,6 @@
 .table{
-   
-   overflow: auto;
-  height: 500px;
-  
+    overflow: auto;
+    height: 60%;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-bottom-left-radius: 10px;
@@ -10,9 +8,8 @@
 }
 
 .tableaux-rapport{
-  background-color: rgb(255, 242, 219);
+    background-color: rgb(255, 242, 219);
     width: 100%;
-    
     border-collapse: collapse;
 }
 .wrapperTable{
@@ -20,7 +17,8 @@
     width: 1150px;
     margin-bottom: 5rem;
     overflow-x: auto;
-   overflow-y: hidden; /*to make the wrapper not scrollable on the y axis */
+    overflow-y: hidden;
+   
     
   
     
@@ -52,13 +50,16 @@
  
   .tableaux-rapport .elhead {
   
-    position: static;
+    
+      position: sticky;
+      top: 0rem;
+      background-color: hsl(0, 0%, 80%);
     
     color: black;
-    
     z-index: 2;
+    opacity:1;
     text-align: center;
-    height: 5rem;
+    height: 4rem;
  
   /* opacity: 0.8; */
   
@@ -66,15 +67,18 @@
 }
  .elhead th{
   border: 2px solid white;
+  
  }
 .tableaux-rapport td,
 button {
   border: 1px solid #ddd;
   height: 2.5rem;
   width: 6.5rem;
+  
 }
 .tableaux-rapport td {
   color: #3e4676;
+  z-index: -1;
 }
 .tableaux-rapport td{
     border: 2px solid white;
@@ -96,6 +100,7 @@ button {
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    
     
     
   }
@@ -166,3 +171,5 @@ button {
       justify-content: center;
     }
   }
+
+ 

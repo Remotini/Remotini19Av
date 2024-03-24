@@ -8,7 +8,12 @@ function Maintable() {
       <div className="rapport-desc">Rapport des taches</div>
       <p>aa</p>
       <div className="table-head">
-        <div className="left">Taches</div>
+        {/* <div className="left">Taches</div> */}
+        <select name="" id="">
+          <option value="">Toutes les tâches</option>
+          <option value="">Tâches en cours</option>
+          <option value="">Tâches finies</option>
+        </select>
         <div className="search">
           <input
             type="search"
