@@ -8,7 +8,7 @@ const userRoutes = require("./routes/user");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173/", //allow only requests from this origin (frontend in our case)
+    origin: "http://localhost:5173", //allow only requests from this origin (frontend in our case)
     credentials: true, //allow the response to include the HTTP only cookie from the server
   })
 );
