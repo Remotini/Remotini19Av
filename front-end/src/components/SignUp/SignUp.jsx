@@ -15,7 +15,7 @@ function SignUpp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(nom, prenom, email, cin, password, confPass, equipe);
-    window.location.href = "/Login";
+    if (error) return;
   };
   return (
     <div className="sign-container">

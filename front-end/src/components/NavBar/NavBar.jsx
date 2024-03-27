@@ -77,6 +77,7 @@ function NavBar() {
             </div>
           </div>
         </div>
+
         <hr className="hr2" />
         <div className=" flexStart nav-option2 ">
           <GoSignOut />

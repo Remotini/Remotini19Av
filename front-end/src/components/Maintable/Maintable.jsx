@@ -39,20 +39,18 @@ function Maintable() {
 
         <table className="tableaux-rapport">
           <tr className="elhead">
-            <th> Nom</th>
-            <th>Projet</th>
-            <th>Service</th>
+            <th> Projet</th>
+            <th>Nom</th>
             <th>Date de publication</th>
             <th>Date fin réalisation</th>
             <th>Status</th>
-            <th>Assigné(e)</th>
           </tr>
           <tbody>
             {data.map((task, index) => (
               <tr key={index}>
                 <td>{task.taskName}</td>
                 <td>{task.projectName}</td>
-                <td>{task.service}</td>
+
                 <td>{task.publicationDate}</td>
                 <td>{task.deadline}</td>
                 <td>
@@ -73,8 +71,6 @@ function Maintable() {
                     </button>
                   </div>
                 </td>
-
-                <td>{task.comment}</td>
               </tr>
             ))}
           </tbody>

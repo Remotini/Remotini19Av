@@ -39,6 +39,10 @@ const userSchema = new Schema({
 //static login method
 
 //static login method
+//static login method why we used this ?
+//because we don't want to create an instance of the user model and
+//call the login method on it , we just want to call it like UserModel.login(email,password)
+//it's more convenient and it's a common practice in nodejs
 userSchema.statics.login = async function (email, password) {
   if (!email || !password)
     throw Error("email et mot de passe sont obligatoires");

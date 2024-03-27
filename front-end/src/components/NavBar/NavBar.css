@@ -140,7 +140,7 @@ transition: all 0.3s ease-in-out;
   transform: translateX(0px);
    
 }
-  hr {
+  .nav-wrapper hr {
   border: 1px solid var(--blue);
   width: 11rem;
   opacity: 0.4;
@@ -185,7 +185,7 @@ transition: all 0.3s ease-in-out;
   .nav-wrapper.active{
     margin-left: 5px;
   }
-  hr{
+  .nav-wrapper hr{
     display: none;
   }
   .nav-option2{
