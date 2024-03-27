@@ -1,4 +1,4 @@
-.table{
+.rap-table{
     overflow: auto;
     height: 70%;
     -ms-overflow-style: none;
@@ -7,28 +7,29 @@
     border-bottom-right-radius: 10px;
 }
 
-.tableaux-rapport{
+.rap-tableaux-rapport{
     background-color: rgb(255, 242, 219);
     width: 100%;
     border-collapse: collapse;
 }
-.wrapperTable{
+.rap-wrapperTable{
     margin: 0rem auto;
     width: 1150px;
     margin-bottom: 5rem;
     overflow-x: auto;
     overflow-y: hidden;
+    
 }
-.table::-webkit-scrollbar {
+.rap-table::-webkit-scrollbar {
   display: none;
 }
-.tableaux-rapport .button-container {
+.rap-tableaux-rapport .rap-button-container {
     display: flex;
     align-items: center; /* Align items vertically */
     justify-content: center;
     height: 100%; /* Occupy full height of the table cell */
   }
-  .tableaux-rapport button {
+  .rap-tableaux-rapport button {
     justify-content: center;
     align-items: center;
     color: #ffffff;
@@ -37,14 +38,14 @@
     position: relative;
     background: var(--background);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.rap-2s;
     font-size: 17px;
-    padding: 0.1rem 1rem;
+    padding: 0.rap-1rem 1rem;
     border-radius: 50px;
-    opacity: 0.8;
+    opacity: 0.rap-8;
   }
  
-  .tableaux-rapport .elhead {
+  .rap-tableaux-rapport .rap-elhead {
   
     
       position: sticky;
@@ -57,43 +58,44 @@
     text-align: center;
     height: 4rem;
  
-  /* opacity: 0.8; */
+  /* opacity: 0.rap-8; */
   
   /* color: #d8b339; */
 }
- .elhead th{
+ .rap-elhead th{
   border: 2px solid white;
   
  }
-.tableaux-rapport td,
+.rap-tableaux-rapport td,
 button {
   border: 1px solid #ddd;
-  height: 2.5rem;
-  width: 6.5rem;
+  height: 2.rap-5rem;
+  width: 6.rap-5rem;
+  cursor: pointer;
   
 }
-.tableaux-rapport td {
+.rap-tableaux-rapport td {
   color: #3e4676;
   z-index: -1;
   height: 60px;
 }
-.tableaux-rapport td{
+.rap-tableaux-rapport td{
     border: 2px solid white;
 }
 
-.tableaux-rapport tr:nth-child(even) {
+.rap-tableaux-rapport tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-  .tableaux-rapport tr:hover {
+  .rap-tableaux-rapport tr:hover {
     background-color: #ddd;
   }
    
 
-  .table-head{
+  .rap-table-head{
     background-color:white;
     height: 4rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -102,17 +104,17 @@ button {
     
   }
 
-  .search-input {
+  .rap-search-input {
     background-color: var(#e8e8e8);
     border-radius: 1rem;
     width: 300px;
     height: 40px;
-    font-size: 1.2rem;
+    font-size: 1.rap-2rem;
     padding-left: 1rem;
-    margin-top: 0.2rem;
-    opacity: 0.7;
+    margin-top: 0.rap-2rem;
+    opacity: 0.rap-7;
   }
-  .plus-icon {
+  .rap-plus-icon {
     border-radius: 50%;
     background-color: #838383;
     height: 30px;
@@ -122,51 +124,54 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
+    opacity: 0.rap-7;
   }
-  .search{
+  .rap-search{
     width: 25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   }
-  .dots {
+  .rap-dots {
     display: flex;
     justify-content: end;
     margin-right: 1rem;
   }
-  .plus-icon:hover {
+  .rap-plus-icon:hover {
     opacity: 1;
   }
-  .right-m > svg {
-    opacity: 0.7;
+  .rap-right-m > svg {
+    opacity: 0.rap-7;
   }
-  .right-m > svg:hover {
+  .rap-right-m > svg:hover {
     opacity: 1;
   }
   
-  .left{
+  .rap-left{
         position: relative;
         text-align: left;
         left: 1rem;
-        font-size: 1.6rem;
+        font-size: 1.rap-6rem;
 
   }
-  .rapport-desc{
+  .rap-rapport-desc{
     color: white;
     font-size: 2rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.rap-3rem 0.rap-5rem;
   }
   @media screen and(min-height:500px ) {
     
   }
   @media screen and (max-width:530px) {
-    .left{
+    .rap-left{
       display: none;
     }
-    .table-head{
+    .rap-table-head{
       justify-content: center;
     }
   }
-
+  .rap-tableaux-rapport td:hover{
+    border-bottom: 2px solid;
+ 
+  }
  

@@ -297,7 +297,7 @@ export const data = [
     comment: "Problèmes de compatibilité détectés, en attente de résolution.",
   },
   {
-    projectName: "Plateforme de Commerce Électronique",
+    projectName: "Omouri",
     taskName: "Créer une documentation pour l'API",
     publicationDate: "2024-03-08",
     deadline: "2024-03-18",

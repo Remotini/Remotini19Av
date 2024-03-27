@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
-
 function SignUpp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +15,7 @@ function SignUpp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(nom, prenom, email, cin, password, confPass, equipe);
+    if (error) return;
   };
   return (
     <div className="sign-container">

@@ -1,0 +1,42 @@
+.profile {
+  overflow: hidden;
+  display: flex;
+  border: 2px solid transparent;
+  justify-content: space-around;
+   width: 90%;
+   
+}
+.scrollable{
+  overflow: auto;
+  height: clamp(450px, 95vh, 1000px);
+ 
+ 
+  width: clamp(400px, 95vh, 1000px);
+  margin-bottom: 2rem;
+  
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  color: rgb(62, 70, 118);
+  background: white;
+  line-height: 3.75rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  height:clamp(20rem, 20%, 30rem);
+}
+
+.br {
+  color: black;
+}
+
+.list-settings {
+  cursor: pointer;
+}
+
+@media screen and (max-width:980px){
+  .settings{
+    display: none;
+  }
+}

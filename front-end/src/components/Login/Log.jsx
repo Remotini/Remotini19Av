@@ -14,11 +14,6 @@ function Log() {
     e.preventDefault();
     await handleLogIn(email, password);
   };
-  useEffect(() => {
-    if (user) {
-      window.location.href = "/";
-    }
-  }, [user]);
 
   return (
     <div class="wrapper_log">
