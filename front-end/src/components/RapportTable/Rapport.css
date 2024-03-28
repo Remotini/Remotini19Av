@@ -77,10 +77,12 @@ button {
 .rap-tableaux-rapport td {
   color: #3e4676;
   z-index: -1;
-  height: 60px;
+  height: 80px;
+  padding:0 10px;
 }
 .rap-tableaux-rapport td{
     border: 2px solid white;
+    text-align: center;
 }
 
 .rap-tableaux-rapport tr:nth-child(even) {
@@ -88,6 +90,7 @@ button {
   }
   .rap-tableaux-rapport tr:hover {
     background-color: #ddd;
+    border-bottom: 3px solid black;
   }
    
 
@@ -170,8 +173,7 @@ button {
       justify-content: center;
     }
   }
-  .rap-tableaux-rapport td:hover{
-    border-bottom: 2px solid;
  
+  .disabled{
+    display: none;
   }
- 

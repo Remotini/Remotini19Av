@@ -54,7 +54,9 @@ function NavBar() {
               <Link to="/">Acceuil</Link>
             </button>
             <div className="arrow1">
-              <span class="material-symbols-outlined">arrow_forward_ios</span>
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
             </div>
           </div>
           <div className="flexStart  nav-option">
@@ -63,7 +65,9 @@ function NavBar() {
               <Link to="/Stat">Statistique</Link>
             </button>
             <div className="arrow2">
-              <span class="material-symbols-outlined">arrow_forward_ios</span>
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
             </div>
           </div>
 
@@ -73,7 +77,9 @@ function NavBar() {
               <Link to="/Profile">Profile</Link>
             </button>
             <div className="arrow3">
-              <span class="material-symbols-outlined">arrow_forward_ios</span>
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
             </div>
           </div>
         </div>

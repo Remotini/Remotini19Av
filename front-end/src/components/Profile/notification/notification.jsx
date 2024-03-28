@@ -11,9 +11,9 @@ const Notifications = () => {
             Désactiver toutes les notifications
           </label>
           <div className="mute-notif-input">
-            <label class="switch">
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider round"></span>
+              <span className="slider round"></span>
             </label>
           </div>
         </div>
@@ -25,16 +25,16 @@ const Notifications = () => {
           <div className="options">
             <div className="comment-option">
               <label className="comment-option-label">Commentaire</label>
-              <label class="switch">
+              <label className="switch">
                 <input type="checkbox" />
-                <span class="slider round"></span>
+                <span className="slider round"></span>
               </label>
             </div>
             <div className="statut-option">
               <label className="statut-option-label">Statut</label>
-              <label class="switch">
+              <label className="switch">
                 <input type="checkbox" />
-                <span class="slider round"></span>
+                <span className="slider round"></span>
               </label>
             </div>
           </div>

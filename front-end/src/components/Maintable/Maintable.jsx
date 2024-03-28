@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./Maintable.css";
 import { data } from "./data";
-function Maintable() {
-  const [tableData, setTableData] = useState(data);
+import axios from "axios";
+function Maintable(props) {
+  const { rapport_nom, rapport_id, back_button, state } = props;
+  console.log(state);
+  const [Tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await axios.get(
+        `http://localhost:5001/api/reports/${props.rapport_id}`
+      );
+      if (response) {
+        console.log(response.data.tasks);
+        setTasks(response.data.tasks);
+      } else {
+        console.log("error");
+      }
+    };
+    fetchTasks();
+  }, []);
   return (
     <div className="wrapperTable">
-      <div className="rapport-desc">Rapport des taches</div>
-      <p>aa</p>
+      <div className="rapport-desc">Rapport des taches : </div>
+      <p>{rapport_nom}</p>
+
       <div className="table-head">
         {/* <div className="left">Taches</div> */}
         <select name="" id="">
@@ -38,21 +56,24 @@ function Maintable() {
         {/* table can be a seperate component if needed */}
 
         <table className="tableaux-rapport">
-          <tr className="elhead">
-            <th> Projet</th>
-            <th>Nom</th>
-            <th>Date de publication</th>
-            <th>Date fin réalisation</th>
-            <th>Status</th>
-          </tr>
-          <tbody>
-            {data.map((task, index) => (
-              <tr key={index}>
-                <td>{task.taskName}</td>
-                <td>{task.projectName}</td>
+          <thead>
+            <tr className="elhead">
+              <th> Projet</th>
+              <th>Nom</th>
+              <th>Date de publication</th>
+              <th>Date fin réalisation</th>
+              <th>Status</th>
+            </tr>
+          </thead>
 
-                <td>{task.publicationDate}</td>
-                <td>{task.deadline}</td>
+          <tbody>
+            {Tasks.map((task, index) => (
+              <tr key={index}>
+                <td>{rapport_nom}</td>
+                <td>{task.nom}</td>
+                <td>{task.datePub}</td>
+                <td>{task.dateComp ? "yes " : "non"}</td>
+                {/* //change to date later */}
                 <td>
                   <div className="button-container">
                     <button
@@ -76,6 +97,9 @@ function Maintable() {
           </tbody>
         </table>
       </div>
+      <p style={{ cursor: "pointer" }} onClick={() => back_button(!state)}>
+        click me to return{" "}
+      </p>
     </div>
   );
 }

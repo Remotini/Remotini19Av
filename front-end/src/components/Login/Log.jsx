@@ -16,10 +16,10 @@ function Log() {
   };
 
   return (
-    <div class="wrapper_log">
+    <div className="wrapper_log">
       <h2>Se Connecter</h2>
       <form action="#" className="f-login" onSubmit={handleSubmit}>
-        <div class="input-box-login">
+        <div className="input-box-login">
           <input
             type="email"
             placeholder="Entrer votre email"
@@ -28,7 +28,7 @@ function Log() {
             value={email}
           />
         </div>
-        <div class="input-box-login">
+        <div className="input-box-login">
           <input
             type="password"
             placeholder="Entrer Votre mot de passe"
@@ -38,10 +38,10 @@ function Log() {
           />
         </div>
 
-        <div class="input-box-login button">
+        <div className="input-box-login button">
           <button disabled={isLoading}>Login</button>
         </div>
-        <div class="text">
+        <div className="text">
           <h3>
             Vouns n'avez pas de compte ? <Link to="/SignUp">Sing Up</Link>
           </h3>

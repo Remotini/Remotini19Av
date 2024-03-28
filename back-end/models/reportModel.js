@@ -1,21 +1,32 @@
 const mongoose = require("mongoose");
 
-const reportSchema = new mongoose.Schema({
-  // Define your report model fields here
-  // For example:
-  title: {
-    type: String,
-    required: true,
+const Schema = mongoose.Schema;
+
+const reportSchema = new Schema(
+  {
+    // Define your report model fields here
+    // For example:
+    nom: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    tasks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Task",
+      },
+    ],
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 const Report = mongoose.model("Report", reportSchema);
 
