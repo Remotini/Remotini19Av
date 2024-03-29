@@ -1,11 +1,12 @@
 .table{
     overflow: auto;
     height: 70%;
-    background-color: white;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    background-color: white;
+
 }
 
 .tableaux-rapport{
@@ -16,6 +17,7 @@
 .wrapperTable{
     margin: 0rem auto;
     width: 1150px;
+    position: relative;
     margin-bottom: 5rem;
     overflow-x: auto;
     overflow-y: hidden;
@@ -125,11 +127,24 @@ button {
     justify-content: center;
     opacity: 0.7;
   }
+  .ajoutstyle{
+    position: absolute;
+    top: 2.6rem;
+    right: 0;
+    font-size: 1.0rem;
+    z-index: 500;
+    background-color: gray;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 10px;
+  }
+ 
   .search{
     width: 25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   }
   .dots {
     display: flex;
@@ -169,5 +184,21 @@ button {
       justify-content: center;
     }
   }
+.back-button{
+  position: absolute;
+  bottom:  3rem;
+  cursor: pointer;
+  z-index: 500;
 
- 
+  padding: 0.5rem;
+  color: #3e4676;
+  border-radius: 10px;
+}
+.back-button:hover{
+  opacity: 0.8;
+
+}
+
+.back-button>span{
+  font-size: 4rem;
+}

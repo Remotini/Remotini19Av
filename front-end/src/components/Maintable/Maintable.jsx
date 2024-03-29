@@ -3,9 +3,10 @@ import "./Maintable.css";
 import { data } from "./data";
 import axios from "axios";
 function Maintable(props) {
-  const { rapport_nom, rapport_id, back_button, state } = props;
+  const { rapport_nom, rapport_id, back_button, state, setAddTask } = props;
   console.log(state);
   const [Tasks, setTasks] = useState([]);
+  const [hoverPlus, setHoverPlus] = useState(false);
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -38,7 +39,24 @@ function Maintable(props) {
             className="search-input"
             placeholder="Rechercher..."
           ></input>
-          <span className="plus-icon">+</span>
+          <span
+            className="rap-plus-icon"
+            onClick={() => setAddTask(true)}
+            onMouseEnter={() => setHoverPlus(true)}
+            onMouseLeave={() => setHoverPlus(false)}
+          >
+            <svg
+              className="material-symbols-outlined"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="#fff"
+            >
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
+          </span>
+          {hoverPlus && <span className="ajoutstyle">Ajouter une tache</span>}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
@@ -97,9 +115,9 @@ function Maintable(props) {
           </tbody>
         </table>
       </div>
-      <p style={{ cursor: "pointer" }} onClick={() => back_button(!state)}>
-        click me to return{" "}
-      </p>
+      <div className="back-button" onClick={() => back_button(!state)}>
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </div>
     </div>
   );
 }

@@ -43,7 +43,7 @@ function NavBar() {
               {/* <span>iyed </span> <span>grassi </span> */}
               <span>{user ? user.email : ""}</span>
             </span>
-            <span className="secondaryText">description </span>
+            <span className="secondaryText">description Dabboucha </span>
           </div>
         </div>
 
