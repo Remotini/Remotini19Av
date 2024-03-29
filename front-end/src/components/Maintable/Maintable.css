@@ -1,7 +1,6 @@
 .table{
     overflow: auto;
     height: 70%;
-    background-color: white;
     -ms-overflow-style: none;
     scrollbar-width: none;
     border-bottom-left-radius: 10px;
