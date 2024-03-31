@@ -4,6 +4,39 @@ import { FaUpload } from "react-icons/fa";
 
 const AddTaks = ({ addTask, setAddTask }) => {
   const date = new Date();
+  const [newTask, setNewTask] = useState({
+    nom: "",
+    date: "",
+    description: "",
+  });
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5001/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setRapports((prevRapports) => [...prevRapports, data]);
+        setNewTask({
+          nom: "",
+          date: "",
+          description: "",
+        });
+        setAddTask(false);
+      } else {
+        console.log("Failed to add task");
+      }
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+  };
+
+
   return (
     <div className="add-task-container">
       <form className="form">
