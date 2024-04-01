@@ -6,6 +6,8 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: white;
+    border: 5px solid;
+    position: relative;
 
 }
 
@@ -21,6 +23,8 @@
     margin-bottom: 5rem;
     overflow-x: auto;
     overflow-y: hidden;
+   
+ 
 }
 .table::-webkit-scrollbar {
   display: none;
@@ -185,10 +189,10 @@ button {
     }
   }
 .back-button{
-  position: absolute;
-  bottom:  3rem;
+ 
+   
   cursor: pointer;
-  z-index: 500;
+  
 
   padding: 0.5rem;
   color: #3e4676;

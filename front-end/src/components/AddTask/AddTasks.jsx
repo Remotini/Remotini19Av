@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddTask.css";
 import { FaUpload } from "react-icons/fa";
 
-const AddTaks = ({ addTask, setAddTask }) => {
+const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
   const date = new Date();
+  console.log("hedha how lm3alem", getrapportId);
   const [newTask, setNewTask] = useState({
     nom: "",
-    date: "",
+    date: new Date(),
     description: "",
+    rapport_id: getrapportId,
   });
+
   const handleAddTask = async (e) => {
     e.preventDefault();
+
     try {
       const response = await fetch("http://localhost:5001/api/tasks", {
         method: "POST",
@@ -21,13 +25,17 @@ const AddTaks = ({ addTask, setAddTask }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        setRapports((prevRapports) => [...prevRapports, data]);
+        // setRapports((prevRapports) => [...prevRapports, data]);
+        console.log("Task added successfully:", data);
+        setUpdatedTask(true);
         setNewTask({
           nom: "",
           date: "",
           description: "",
+          rapport_id: "",
         });
         setAddTask(false);
+        // setAddTask(false);
       } else {
         console.log("Failed to add task");
       }
@@ -36,10 +44,9 @@ const AddTaks = ({ addTask, setAddTask }) => {
     }
   };
 
-
   return (
     <div className="add-task-container">
-      <form className="form">
+      <form className="form" onSubmit={handleAddTask}>
         <div className="heading">
           <p className="title">Ajouter une tâche </p>
           <button className="Btnn" onClick={() => setAddTask(false)}>
@@ -60,7 +67,13 @@ const AddTaks = ({ addTask, setAddTask }) => {
         <div className="header-tache">
           <label htmlFor="firstname" className="label-tache">
             <span>Nom tache</span>
-            <input required type="text" className="input" id="firstname" />
+            <input
+              required
+              type="text"
+              className="input"
+              id="firstname"
+              onChange={(e) => setNewTask({ ...newTask, nom: e.target.value })}
+            />
           </label>
           <label htmlFor="project" className="label-projet">
             <span>Nom du projet</span>
@@ -94,6 +107,9 @@ const AddTaks = ({ addTask, setAddTask }) => {
             className="input"
             id="description"
             placeholder="Ajouter une description"
+            onChange={(e) =>
+              setNewTask({ ...newTask, description: e.target.value })
+            }
           ></textarea>
         </label>
 
@@ -108,7 +124,9 @@ const AddTaks = ({ addTask, setAddTask }) => {
             readOnly
           />
         </label>
-        <button className="submit">Ajouter</button>
+        <button className="submit" type="submit">
+          Ajouter
+        </button>
       </form>
     </div>
   );

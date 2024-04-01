@@ -4,7 +4,15 @@ import Maintable from "../Maintable/Maintable";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
-function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport }) {
+function Rapport({
+  addTask,
+  setAddTask,
+  editReport,
+  setEditReport,
+  setRapport,
+  getRapportId,
+  updatedTask,
+}) {
   const [clickedTask, setClickedTask] = useState(false);
   const [rapports, setRapports] = useState([]);
   const [rapportId, setRapportId] = useState(null);
@@ -29,7 +37,10 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
         createdAt: date.toLocaleDateString(),
         updatedAt: "",
       };
-      const response = await axios.post("http://localhost:5001/api/reports", newReport);
+      const response = await axios.post(
+        "http://localhost:5001/api/reports",
+        newReport
+      );
       if (response.data.report) {
         console.log("Report added successfully:", response.data.report);
         setRapports([...rapports, response.data.report]);
@@ -47,27 +58,23 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
     } catch (error) {
       console.error("Error adding report:", error);
     }
-  }
+  };
 
-   
-
-
-    // const newReport = {
-    //   nom: report.nom,
-    //   description: report.description,
-    //   createdAt: date.toLocaleDateString(),
-    //   updatedAt: "", 
-    // };
-    // setRapports([...rapports, newReport]);
-    // setAddReport(false);
-    // setReport({
-    //   nom: "",
-    //   date: "",
-    //   description: "",
-    //   createdAt: "",
-    //   updatedAt: "",
-    // });
- 
+  // const newReport = {
+  //   nom: report.nom,
+  //   description: report.description,
+  //   createdAt: date.toLocaleDateString(),
+  //   updatedAt: "",
+  // };
+  // setRapports([...rapports, newReport]);
+  // setAddReport(false);
+  // setReport({
+  //   nom: "",
+  //   date: "",
+  //   description: "",
+  //   createdAt: "",
+  //   updatedAt: "",
+  // });
 
   const handleTaskRapport = (rap) => {
     setRapportId(rap._id);
@@ -103,6 +110,7 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
 
   useEffect(() => {
     if (rapportId) {
+      getRapportId(rapportId);
       setClickedTask(true);
     }
   }, [rapportId]);
@@ -122,21 +130,23 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
               <span
                 className="rap-plus-icon"
                 onClick={() => setAddReport(true)}
-                onMouseEnter={() => setHoverPlus(true) }
+                onMouseEnter={() => setHoverPlus(true)}
                 onMouseLeave={() => setHoverPlus(false)}
               >
-                <svg className="material-symbols-outlined"
+                <svg
+                  className="material-symbols-outlined"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="24"
                   height="24"
                   fill="#fff"
                 >
-                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-                  />
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                 </svg>
               </span>
-              {hoverPlus && <span className="ajoutstyle">Ajouter un rapport</span>}
+              {hoverPlus && (
+                <span className="ajoutstyle">Ajouter un rapport</span>
+              )}
             </div>
           </div>
 
@@ -215,7 +225,6 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
                     className={
                       disabledRows.includes(rapport._id) ? "disabled" : ""
                     }
-                
                   >
                     <td onClick={() => handleTaskRapport(rapport)}>
                       {rapport.nom}
@@ -264,6 +273,7 @@ function Rapport({ addTask, setAddTask, editReport, setEditReport, setRapport })
           back_button={setClickedTask}
           state={clickedTask}
           setAddTask={setAddTask}
+          updatedTask={updatedTask}
         />
       )}
     </>

@@ -49,7 +49,7 @@ function NavBar() {
 
         <div className=" menu-wrapper">
           <div className="flexStart  nav-option">
-          <span class="material-symbols-outlined">home</span>
+            <span className="material-symbols-outlined">home</span>
             <button>
               <Link to="/">Acceuil</Link>
             </button>
@@ -60,7 +60,7 @@ function NavBar() {
             </div>
           </div>
           <div className="flexStart  nav-option">
-          <span class="material-symbols-outlined">show_chart</span>
+            <span className="material-symbols-outlined">show_chart</span>
             <button>
               <Link to="/Stat">Statistique</Link>
             </button>
@@ -70,9 +70,9 @@ function NavBar() {
               </span>
             </div>
           </div>
-          
+
           <div className="flexStart  nav-option">
-            <span class="material-symbols-outlined">person</span>
+            <span className="material-symbols-outlined">person</span>
             <button>
               <Link to="/Profile">Profile</Link>
             </button>

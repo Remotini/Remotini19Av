@@ -22,6 +22,10 @@ const taskSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  description: {
+    type: String,
+    default: "nothing",
+  },
   createdAt: {
     type: Date,
     default: Date.now,
