@@ -35,6 +35,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  reports: [ 
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Report",
+    },
+  ],
+  role: {
+    type: String,
+    default: "TT",
+  },
 });
 //static login method
 

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Rapport.css";
 import Maintable from "../Maintable/Maintable";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
 
 function Rapport({
   addTask,
@@ -35,7 +36,7 @@ function Rapport({
     updatedAt: "",
   });
   const date = new Date();
-
+  const { user } = useContext(AuthContext);
   const handleAddReport = async () => {
     try {
       const newReport = {
@@ -85,9 +86,11 @@ function Rapport({
     // Fetch data from the backend
     const fetchReports = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/reports");
-        if (response.data.reports) {
-          setRapports(response.data.reports);
+        console.log("user", user);
+        const response = await axios.get(`http://localhost:5001/api/reports/user/${user.id}`);
+        if (response.data.userReports) {
+          setRapports(response.data.userReports);
+          console.log("Reports fetched successfully:", response.data.userReports);
         } else {
           console.log("Error fetching reports");
         }

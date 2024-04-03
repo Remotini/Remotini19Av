@@ -24,7 +24,12 @@ const reportSchema = new Schema(
         ref: "Task",
       },
     ],
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
+
   { timestamps: true }
 );
 

@@ -1,7 +1,23 @@
 const Report = require("../models/reportModel");
 const mongoose = require("mongoose");
 const Task = require("../models/taskModel");
+const User = require("../models/userModel");
 
+//get Reports for User
+
+const getReportsForUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById({_id:id}).populate("reports");
+    if (!user) {
+      return res.status(404).send("No user with that id");
+      
+    }
+    res.status(200).json({ userReports: user.reports});
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 //get tasks by id of the project
 const getTasksForReport = async (req, res) => {
   const { id } = req.params;
@@ -40,6 +56,26 @@ const createReport = async (req, res) => {
   }
 };
 
+//create new report for user
+const createReportForUser = async (req, res) => {
+  const { id } = req.params;
+  const { nom, description } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("No user with that id");
+  try {
+    const user = await User.findById({ _id: id });
+    if (!user) {
+      return res.status(404).send("No user with that id");
+    }
+    const report = await Report.create({ nom, description });
+    user.reports.push(report._id);
+    await user.save();
+    res.status(200).json({ report });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 //delete report
 const deleteReport = async (req, res) => {
   const { id } = req.params;
@@ -69,4 +105,6 @@ module.exports = {
   deleteReport,
   updateReport,
   getTasksForReport,
+  getReportsForUser,
+  createReportForUser,
 };

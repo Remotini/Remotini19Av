@@ -14,7 +14,6 @@ function Log() {
     e.preventDefault();
     await handleLogIn(email, password);
   };
-
   return (
     <div className="wrapper_log">
       <h2>Se Connecter</h2>
@@ -37,7 +36,6 @@ function Log() {
             value={password}
           />
         </div>
-
         <div className="input-box-login button">
           <button disabled={isLoading}>Login</button>
         </div>
@@ -51,5 +49,4 @@ function Log() {
     </div>
   );
 }
-
 export default Log;

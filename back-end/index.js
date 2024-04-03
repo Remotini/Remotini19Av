@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-
 const cors = require("cors"); //allow us to send data from frontend to backend
 const userRoutes = require("./routes/user");
 const reportRoutes = require("./routes/reports");
