@@ -16,12 +16,12 @@ const getTasks = async (req, res) => {
 // modify task
 const modifyTask = async (req, res) => {
   const { id } = req.params;
-  const { nom, datePub, DateComp, status } = req.body;
+  const { nom, datePub, DateComp, description, project, status } = req.body;
 
   try {
     const task = await Task.findByIdAndUpdate(
       id,
-      { nom, datePub, DateComp, status },
+      { nom, datePub, DateComp, description, project, status },
       { new: true }
     );
     if (!task) {
@@ -35,10 +35,18 @@ const modifyTask = async (req, res) => {
 
 // create new task
 const createTask = async (req, res) => {
-  const { nom, datePub, DateComp, status, rapport_id } = req.body;
+  const { nom, datePub, DateComp, description, project, status, rapport_id } =
+    req.body;
 
   try {
-    const task = await Task.create({ nom, datePub, DateComp, status });
+    const task = await Task.create({
+      nom,
+      datePub,
+      DateComp,
+      description,
+      project,
+      status,
+    });
     if (task) {
       console.log("task created successfully");
     }
@@ -62,4 +70,4 @@ const createTask = async (req, res) => {
   }
 };
 
-module.exports = { getTasks, createTask };
+module.exports = { getTasks, createTask, modifyTask};

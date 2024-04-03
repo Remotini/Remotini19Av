@@ -4,11 +4,11 @@ import { FaUpload } from "react-icons/fa";
 
 const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
   const date = new Date();
-  console.log("hedha how lm3alem", getrapportId);
   const [newTask, setNewTask] = useState({
     nom: "",
     date: new Date(),
     description: "",
+    project: "projet1",
     rapport_id: getrapportId,
   });
 
@@ -32,6 +32,7 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
           nom: "",
           date: "",
           description: "",
+          project: "",
           rapport_id: "",
         });
         setAddTask(false);
@@ -77,7 +78,15 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
           </label>
           <label htmlFor="project" className="label-projet">
             <span>Nom du projet</span>
-            <select name="project" id="" className="project-selection">
+            <select
+              name="project"
+              id=""
+              className="project-selection"
+              onChange={(e) =>
+                setNewTask({ ...newTask, project: e.target.value })
+              }
+              
+            >
               <option value="projet1">projet1</option>
               <option value="projet2">projet2</option>
               <option value="projet3">projet3</option>

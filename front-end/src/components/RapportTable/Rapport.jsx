@@ -12,6 +12,10 @@ function Rapport({
   setRapport,
   getRapportId,
   updatedTask,
+  setTaskToEdit,
+  setEditTask,
+  setTask,
+  setTaskCard,
 }) {
   const [clickedTask, setClickedTask] = useState(false);
   const [rapports, setRapports] = useState([]);
@@ -20,6 +24,9 @@ function Rapport({
   const [hoverPlus, setHoverPlus] = useState(false);
   const [disabledRows, setDisabledRows] = useState([]);
   const [addReport, setAddReport] = useState(false);
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [openOptions, setOpenOptions] = useState(null);
+  const [action, setAction] = useState(false);
   const [report, setReport] = useState({
     nom: "",
     date: "",
@@ -33,7 +40,7 @@ function Rapport({
     try {
       const newReport = {
         nom: report.nom,
-        description: report.description,
+        description: "osef",
         createdAt: date.toLocaleDateString(),
         updatedAt: "",
       };
@@ -59,22 +66,6 @@ function Rapport({
       console.error("Error adding report:", error);
     }
   };
-
-  // const newReport = {
-  //   nom: report.nom,
-  //   description: report.description,
-  //   createdAt: date.toLocaleDateString(),
-  //   updatedAt: "",
-  // };
-  // setRapports([...rapports, newReport]);
-  // setAddReport(false);
-  // setReport({
-  //   nom: "",
-  //   date: "",
-  //   description: "",
-  //   createdAt: "",
-  //   updatedAt: "",
-  // });
 
   const handleTaskRapport = (rap) => {
     setRapportId(rap._id);
@@ -129,7 +120,7 @@ function Rapport({
               ></input>
               <span
                 className="rap-plus-icon"
-                onClick={() => setAddReport(true)}
+                
                 onMouseEnter={() => setHoverPlus(true)}
                 onMouseLeave={() => setHoverPlus(false)}
               >
@@ -155,14 +146,80 @@ function Rapport({
               <tbody>
                 <tr className="rap-elhead">
                   <th>Nom Rapport</th>
-                  <th>Description</th>
+                  
                   <th>Date creation</th>
                   <th>Date modification</th>
-                  <th>Actions</th>
+                  {/* <th>Actions</th> */}
                 </tr>
+                
+                {rapports.map((rapport, index) => (
+                  <tr
+                    key={index}
+                    className={"rap-report-row "+
+                      (disabledRows.includes(rapport._id) ? "disabled" : "")
+                    }
+                    onMouseEnter={() => setHoveredRow(index)}
+                    onMouseLeave={() => setHoveredRow(null)}
+                  >
+                    <td onClick={() => handleTaskRapport(rapport)}>
+                      {rapport.nom}
+                    </td>
+                    
+                    <td onClick={() => handleTaskRapport(rapport)}>
+                      {rapport.createdAt}
+                    </td>
+                    <td>
+                      <div className="btn-edit">
+                        <p onClick={() => handleTaskRapport(rapport)}>
+                          {rapport.updatedAt}
+                        </p>
+                        {hoveredRow === index && (
+                          <div
+                            className="edit-icon"
+                            onClick={() => {
+                              setOpenOptions(
+                                openOptions === index ? null : index
+                              );
+                              setAction(true);
+                            }}
+                            onMouseLeave={() => {
+                              setOpenOptions(null);
+                              setAction(false);
+                            }}
+                          >
+                            <span
+                              className="material-symbols-outlined"
+                              style={action ? { color: "#3e4676",opacity:"1" } : {}}
+                            >
+                              edit
+                            </span>
+                            {openOptions === index && (
+                              <div className="options-list">
+                                <button>Show</button>
+                                <hr />
+                                <button
+                                  onClick={() => handleEditRepport(rapport)}
+                                >
+                                  Modify
+                                </button>
+                                <hr />
+                                <button
+                                  onClick={() => handleRowRapport(rapport._id)}
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                   
+                  </tr>
+                ))}
                 {addReport && (
                   <tr>
-                    <td>
+                    <td colSpan={2}>
                       <input
                         type="text"
                         placeholder="Nom du rapport"
@@ -170,110 +227,83 @@ function Rapport({
                         onChange={(e) =>
                           setReport({ ...report, nom: e.target.value })
                         }
+                        className="input-nom-rapport"
                       />
                     </td>
+                    
+                    
                     <td>
-                      <input
-                        type="text"
-                        placeholder="Description du rapport"
-                        value={report.description}
-                        onChange={(e) =>
-                          setReport({ ...report, description: e.target.value })
-                        }
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        placeholder="Date de creation"
-                        defaultValue={date.toLocaleDateString()}
-                        readOnly
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        placeholder="Date de modification"
-                        readOnly
-                      />
-                    </td>
-                    <td>
+                      
                       <div className="rap-action">
                         <button
+                          className="rap-button add-button"
+                          onClick={handleAddReport} // Call handleAddReport on button click
+                        >
+                          <span className="material-symbols-outlined">add</span>{" "}
+                          Ajouter
+                        </button>
+                        <button
                           onClick={() => setAddReport(false)}
-                          className="rap-button"
+                          className="rap-button cancel-button"
                         >
                           <span className="material-symbols-outlined">
                             cancel
                           </span>{" "}
                           Annuler
                         </button>
-                        <button
-                          className="rap-button"
-                          onClick={handleAddReport} // Call handleAddReport on button click
-                        >
-                          <span className="material-symbols-outlined">add</span>{" "}
-                          Ajouter
-                        </button>
                       </div>
                     </td>
+                    
                   </tr>
                 )}
-                {rapports.map((rapport, index) => (
-                  <tr
-                    key={index}
-                    className={
-                      disabledRows.includes(rapport._id) ? "disabled" : ""
-                    }
-                  >
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.nom}
-                    </td>
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.description}
-                    </td>
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.createdAt}
-                    </td>
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.updatedAt}
-                    </td>
-                    <td>
-                      <div className="rap-action">
-                        <button
-                          onClick={() => handleEditRepport(rapport)}
-                          className="rap-button"
-                        >
-                          <span className="material-symbols-outlined">
-                            edit
-                          </span>{" "}
-                          Modifier
-                        </button>
-                        <button
-                          className="rap-button"
-                          onClick={() => handleRowRapport(rapport._id)}
-                        >
-                          <span className="material-symbols-outlined">
-                            delete
-                          </span>{" "}
-                          Effacer
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
               </tbody>
             </table>
           </div>
+          
+          <div className="footer-table">
+          <button
+            type="button"
+            className="button"
+            onClick={() => setAddReport(true)}
+          >
+            <span className="button__text">Ajouter rapport</span>
+            <span className="button__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke="currentColor"
+                height="24"
+                fill="none"
+                className="svg"
+              >
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+              </svg>
+            </span>
+          </button>
+          
+
+          
+        </div>
         </div>
       ) : (
         <Maintable
           rapport_id={rapportId}
           rapport_nom={rapportNom}
+          setRapportId={setRapportId}
+          setRapportNom={setRapportNom}
           back_button={setClickedTask}
           state={clickedTask}
           setAddTask={setAddTask}
           updatedTask={updatedTask}
+          setTaskToEdit={setTaskToEdit}
+          setEditTask={setEditTask}
+          setTask={setTask}
+          setTaskCard={setTaskCard}
         />
       )}
     </>

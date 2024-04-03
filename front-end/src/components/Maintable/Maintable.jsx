@@ -5,14 +5,23 @@ function Maintable(props) {
   const {
     rapport_nom,
     rapport_id,
+    setRapportId,
+    setRapportNom,
     back_button,
     state,
     setAddTask,
     updatedTask,
+    setTaskToEdit,
+    setEditTask,
+    setTask,
+    setTaskCard,
   } = props;
-  console.log(state);
   const [Tasks, setTasks] = useState([]);
-  const [hoverPlus, setHoverPlus] = useState(false);
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [openOptions, setOpenOptions] = useState(null);
+
+
+
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -29,43 +38,32 @@ function Maintable(props) {
     fetchTasks();
   }, [updatedTask]);
 
+  const handleEditTask = (task) => {
+    setTaskToEdit(task);
+    setEditTask(true);
+  };
+
+  
+  const handleTaskCard = (task) => {
+    setTask(task);
+    setTaskCard(true);
+  };
+
   return (
     <>
       <div className="wrapperTable">
-        <div className="rapport-desc">Rapport des taches : </div>
-        <p>{rapport_nom}</p>
+        <div className="rapport-desc">{rapport_nom}</div>
 
         <div className="table-head">
-          {/* <div className="left">Taches</div> */}
-          <select name="" id="">
-            <option value="">Toutes les tâches</option>
-            <option value="">Tâches en cours</option>
-            <option value="">Tâches finies</option>
-          </select>
+          <div className="left">Taches</div>
+          
           <div className="search">
             <input
               type="search"
               className="search-input"
               placeholder="Rechercher..."
             ></input>
-            <span
-              className="rap-plus-icon"
-              onClick={() => setAddTask(true)}
-              onMouseEnter={() => setHoverPlus(true)}
-              onMouseLeave={() => setHoverPlus(false)}
-            >
-              <svg
-                className="material-symbols-outlined"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="#fff"
-              >
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-              </svg>
-            </span>
-            {hoverPlus && <span className="ajoutstyle">Ajouter une tache</span>}
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -87,6 +85,7 @@ function Maintable(props) {
               <tr className="elhead">
                 <th> Projet</th>
                 <th>Nom</th>
+                <th>Description</th>
                 <th>Date de publication</th>
                 <th>Date fin réalisation</th>
                 <th>Status</th>
@@ -95,28 +94,64 @@ function Maintable(props) {
 
             <tbody>
               {Tasks.map((task, index) => (
-                <tr key={index}>
-                  <td>{rapport_nom}</td>
-                  <td>{task.nom}</td>
-                  <td>{task.datePub}</td>
-                  <td>{task.dateComp ? "yes " : "non"}</td>
+                <tr
+                  key={index}
+                  onMouseEnter={() => setHoveredRow(index)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  className="task-row"
+                >
+                  <td onClick={()=> handleTaskCard(task) }>{task.project}</td>
+                  <td onClick={()=> handleTaskCard(task)} >{task.nom}</td>
+                  <td onClick={()=> handleTaskCard(task)}>{task.description}</td>
+                  <td onClick={()=> handleTaskCard(task)}>{task.datePub}</td>
+                  <td onClick={()=> handleTaskCard(task)} >{task.dateComp ? "yes " : "non"}</td>
                   {/* //change to date later */}
                   <td>
-                    <div className="button-container">
-                      <button
-                        style={{
-                          backgroundColor:
-                            task.status === "En cours"
-                              ? "#d8b339"
-                              : task.status === "validé"
-                              ? "#00a36d"
-                              : task.status === "refusé"
-                              ? "#db3434"
-                              : "transparent",
-                        }}
-                      >
-                        {task.status}
-                      </button>
+                    <div className="btn-edit" >
+                      <div className="button-container" onClick={()=> handleTaskCard(task)}>
+                        <button
+                          style={{
+                            backgroundColor:
+                              task.status === "En cours"
+                                ? "#d8b339"
+                                : task.status === "Validé"
+                                ? "#00a36d"
+                                : task.status === "refusé"
+                                ? "#db3434"
+                                : "transparent",
+                          }}
+                        >
+                          {task.status}
+                        </button>
+                      </div>
+                      {hoveredRow === index && (
+                        <div
+                          className="edit-icon"
+                          onClick={() =>
+                            setOpenOptions(openOptions === index ? null : index)
+                          }
+                          onMouseLeave={() => setOpenOptions(null)}
+                        >
+                          <span className="material-symbols-outlined">
+                            edit
+                          </span>
+                          {openOptions === index && (
+                            <div className="options-list">
+                              <button >
+                                Show
+                              </button>
+                              <hr />
+                              <button onClick={()=> handleEditTask(task)}>
+                                Modify
+                              </button>
+                              <hr />
+                              <button >
+                                Delete
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -124,7 +159,41 @@ function Maintable(props) {
             </tbody>
           </table>
         </div>
-        <div className="back-button" onClick={() => back_button(!state)}>
+        <div className="footer-table">
+          <button
+            type="button"
+            className="button"
+            onClick={() => setAddTask(true)}
+          >
+            <span className="button__text">Ajouter tache</span>
+            <span className="button__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke="currentColor"
+                height="24"
+                fill="none"
+                className="svg"
+              >
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+              </svg>
+            </span>
+          </button>
+          
+        </div>
+        <div
+          className="back-button"
+          onClick={() => {
+            back_button(!state);
+            setRapportId("");
+            setRapportNom("");
+          }}
+        >
           <span className="material-symbols-outlined">arrow_back_ios_new</span>
         </div>
       </div>

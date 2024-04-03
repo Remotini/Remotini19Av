@@ -5,16 +5,25 @@ import "../App.css";
 import Footer from "../components/Footer/Footer";
 import Rapport from "../components/RapportTable/Rapport";
 import AddTaks from "../components/AddTask/AddTasks";
-import EditReport from "../components/EditTask/EditTask";
+import EditReport from "../components/EditRaport/EditRaport";
+import EditTask from "../components/EditTask/EditTask";
+import TaskCard from "../components/TaskCard/TaskCard";
 function Home() {
   const [addTask, setAddTask] = useState(false);
   const [editReport, setEditReport] = useState(false);
   const [rapport, setRapport] = useState(null);
   const [getrapportId, setGetRapportId] = useState("");
   const [updatedTask, setUpdatedTask] = useState(false);
+  const [editTask, setEditTask] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null);
+  const [task, setTask] = useState(null);
+  const [taskCard, setTaskCard] = useState(false);
+
 
   return (
     <>
+      
+      {taskCard ? ( <TaskCard task={task} onClose={() => setTaskCard(false)} /> ) : null} 
       {addTask ? (
         <AddTaks
           addTask={addTask}
@@ -30,6 +39,7 @@ function Home() {
           rapport={rapport}
         />
       ) : null}
+      {editTask ? ( <EditTask task={taskToEdit} setEditTask={setEditTask} setUpdatedTask={setUpdatedTask} /> ) : null}
       <div className={"All"}>
         <div className="App" />
         <Header />
@@ -45,10 +55,15 @@ function Home() {
             setRapport={setRapport}
             getRapportId={setGetRapportId}
             updatedTask={updatedTask}
+            setEditTask={setEditTask}
+            setTaskToEdit={setTaskToEdit}
+            setTask={setTask}
+            setTaskCard={setTaskCard}
           />
         </div>
         {addTask && <div className="All-b"></div>}
         {editReport && <div className="All-b"></div>}
+        {editTask && <div className="All-b"></div>}
         <div className="ft">
           <Footer />
         </div>

@@ -26,6 +26,10 @@ const taskSchema = new Schema({
     type: String,
     default: "nothing",
   },
+  project:{
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
