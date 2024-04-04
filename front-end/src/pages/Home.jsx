@@ -30,6 +30,7 @@ function Home() {
           setAddTask={setAddTask}
           getrapportId={getrapportId}
           setUpdatedTask={setUpdatedTask}
+          updatedTask={updatedTask}
         />
       ) : null}
       {editReport ? (

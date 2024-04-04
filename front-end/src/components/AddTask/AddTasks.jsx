@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import "./AddTask.css";
 import { FaUpload } from "react-icons/fa";
 
-const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
+const AddTaks = ({
+  addTask,
+  setAddTask,
+  getrapportId,
+  setUpdatedTask,
+  updatedTask,
+}) => {
   const date = new Date();
   const [newTask, setNewTask] = useState({
     nom: "",
@@ -27,7 +33,7 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
         const data = await response.json();
         // setRapports((prevRapports) => [...prevRapports, data]);
         console.log("Task added successfully:", data);
-        setUpdatedTask(true);
+        setUpdatedTask(!updatedTask);
         setNewTask({
           nom: "",
           date: "",
@@ -36,7 +42,6 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
           rapport_id: "",
         });
         setAddTask(false);
-        // setAddTask(false);
       } else {
         console.log("Failed to add task");
       }
@@ -85,7 +90,6 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
               onChange={(e) =>
                 setNewTask({ ...newTask, project: e.target.value })
               }
-              
             >
               <option value="projet1">projet1</option>
               <option value="projet2">projet2</option>
@@ -110,6 +114,7 @@ const AddTaks = ({ addTask, setAddTask, getrapportId, setUpdatedTask }) => {
         <label htmlFor="description" className="label">
           <span>Description</span>
           <textarea
+            required
             name=""
             cols="30"
             rows="5"

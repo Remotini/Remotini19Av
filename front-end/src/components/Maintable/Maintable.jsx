@@ -34,7 +34,7 @@ function Maintable(props) {
         console.log("error");
       }
     };
-
+    
     fetchTasks();
   }, [updatedTask]);
 

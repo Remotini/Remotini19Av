@@ -45,10 +45,9 @@ function Rapport({
         createdAt: date.toLocaleDateString(),
         updatedAt: "",
       };
-      const response = await axios.post(
-        "http://localhost:5001/api/reports",
-        newReport
-      );
+      
+     
+      const response = await axios.post(`http://localhost:5001/api/reports/user/${user.id}`, newReport);
       if (response.data.report) {
         console.log("Report added successfully:", response.data.report);
         setRapports([...rapports, response.data.report]);
@@ -86,11 +85,16 @@ function Rapport({
     // Fetch data from the backend
     const fetchReports = async () => {
       try {
-        console.log("user", user);
-        const response = await axios.get(`http://localhost:5001/api/reports/user/${user.id}`);
+        console.log(user.id)
+        const response = await axios.get(
+          `http://localhost:5001/api/reports/user/${user.id}`
+        );
         if (response.data.userReports) {
           setRapports(response.data.userReports);
-          console.log("Reports fetched successfully:", response.data.userReports);
+          console.log(
+            "Reports fetched successfully:",
+            response.data.userReports
+          );
         } else {
           console.log("Error fetching reports");
         }
@@ -123,7 +127,6 @@ function Rapport({
               ></input>
               <span
                 className="rap-plus-icon"
-                
                 onMouseEnter={() => setHoverPlus(true)}
                 onMouseLeave={() => setHoverPlus(false)}
               >
@@ -149,16 +152,17 @@ function Rapport({
               <tbody>
                 <tr className="rap-elhead">
                   <th>Nom Rapport</th>
-                  
+
                   <th>Date creation</th>
                   <th>Date modification</th>
                   {/* <th>Actions</th> */}
                 </tr>
-                
+
                 {rapports.map((rapport, index) => (
                   <tr
                     key={index}
-                    className={"rap-report-row "+
+                    className={
+                      "rap-report-row " +
                       (disabledRows.includes(rapport._id) ? "disabled" : "")
                     }
                     onMouseEnter={() => setHoveredRow(index)}
@@ -167,7 +171,7 @@ function Rapport({
                     <td onClick={() => handleTaskRapport(rapport)}>
                       {rapport.nom}
                     </td>
-                    
+
                     <td onClick={() => handleTaskRapport(rapport)}>
                       {rapport.createdAt}
                     </td>
@@ -192,7 +196,9 @@ function Rapport({
                           >
                             <span
                               className="material-symbols-outlined"
-                              style={action ? { color: "#3e4676",opacity:"1" } : {}}
+                              style={
+                                action ? { color: "#3e4676", opacity: "1" } : {}
+                              }
                             >
                               edit
                             </span>
@@ -217,7 +223,6 @@ function Rapport({
                         )}
                       </div>
                     </td>
-                   
                   </tr>
                 ))}
                 {addReport && (
@@ -233,10 +238,8 @@ function Rapport({
                         className="input-nom-rapport"
                       />
                     </td>
-                    
-                    
+
                     <td>
-                      
                       <div className="rap-action">
                         <button
                           className="rap-button add-button"
@@ -256,42 +259,38 @@ function Rapport({
                         </button>
                       </div>
                     </td>
-                    
                   </tr>
                 )}
               </tbody>
             </table>
           </div>
-          
-          <div className="footer-table">
-          <button
-            type="button"
-            className="button"
-            onClick={() => setAddReport(true)}
-          >
-            <span className="button__text">Ajouter rapport</span>
-            <span className="button__icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke="currentColor"
-                height="24"
-                fill="none"
-                className="svg"
-              >
-                <line y2="19" y1="5" x2="12" x1="12"></line>
-                <line y2="12" y1="12" x2="19" x1="5"></line>
-              </svg>
-            </span>
-          </button>
-          
 
-          
-        </div>
+          <div className="footer-table">
+            <button
+              type="button"
+              className="button"
+              onClick={() => setAddReport(true)}
+            >
+              <span className="button__text">Ajouter rapport</span>
+              <span className="button__icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke="currentColor"
+                  height="24"
+                  fill="none"
+                  className="svg"
+                >
+                  <line y2="19" y1="5" x2="12" x1="12"></line>
+                  <line y2="12" y1="12" x2="19" x1="5"></line>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       ) : (
         <Maintable
