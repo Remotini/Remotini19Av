@@ -3,9 +3,9 @@ import axios from "axios";
 import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
-import { Pie } from "react-chartjs-2";
-import Statistique from "../components/Statistique/Statist";
-import { Chart as ChartJS } from "chart.js/auto";
+// import { Pie } from "react-chartjs-2";
+import Statistique from "../components/Statistiique/Statist";
+// import { Chart as ChartJS } from "chart.js/auto";
 
 function Stat() {
   // const [tasks, setTasks] = useState([]);

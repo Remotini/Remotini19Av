@@ -29,6 +29,7 @@
   margin-bottom: 5rem;
   overflow-x: auto;
   overflow-y: hidden;
+  min-height: 570px;
 }
 .rap-table::-webkit-scrollbar {
   display: none;

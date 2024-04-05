@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./NavBar.css";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaChartLine } from "react-icons/fa";
 import { IoPersonOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogOut";
 import { AuthContext } from "../../context/AuthContext";
 function NavBar() {
+  const location = useLocation();
+  const [activePage, setActivePage] = useState("");
   const [isActiveHamburger, setisActiveHamburger] = useState(false);
   const { logout } = useLogout();
   const { user } = useContext(AuthContext);
@@ -19,6 +21,9 @@ function NavBar() {
   const handleClick = () => {
     logout();
   };
+  useEffect(() => {
+    setActivePage(location.pathname);
+  }, [location.pathname]);
   return (
     <>
       <div
@@ -41,46 +46,62 @@ function NavBar() {
             <span className="name primaryText">
               {/* name et Family name java elements */}
               {/* <span>iyed </span> <span>grassi </span> */}
-              <span>{user ? user.email : ""}</span>
+              <span>Iyed Grassi</span>
             </span>
-            <span className="secondaryText">description Dabboucha </span>
+            <span className="secondaryText desc">description Dabboucha </span>
           </div>
         </div>
 
         <div className=" menu-wrapper">
           <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">home</span>
-            <button>
-              <Link to="/">Acceuil</Link>
+            <button className={activePage === "/" ? "activeBtn" : ""}>
+              <Link to="/">
+                <div className="link_inside">
+                  Acceuil
+                  <div className="arrow">
+                    <span className="material-symbols-outlined">
+                      arrow_forward_ios
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </button>
-            <div className="arrow1">
-              <span className="material-symbols-outlined">
-                arrow_forward_ios
-              </span>
-            </div>
           </div>
           <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">show_chart</span>
-            <button>
-              <Link to="/Stat">Statistique</Link>
+            <button className={activePage === "/Stat" ? "activeBtn" : ""}>
+              <Link to="/Stat">
+                <div className="link_inside">
+                  Statistique
+                  <div className="arrow">
+                    <span className="material-symbols-outlined">
+                      arrow_forward_ios
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </button>
-            <div className="arrow2">
-              <span className="material-symbols-outlined">
-                arrow_forward_ios
-              </span>
-            </div>
           </div>
 
           <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">person</span>
-            <button>
-              <Link to="/Profile">Profile</Link>
+            <button
+              className={`btnFlex ${
+                activePage === "/Profile" ? "activeBtn" : ""
+              }`}
+            >
+              <Link to="/Profile">
+                <div className="link_inside">
+                  Profile
+                  <div className="arrow">
+                    <span className="material-symbols-outlined">
+                      arrow_forward_ios
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </button>
-            <div className="arrow3">
-              <span className="material-symbols-outlined">
-                arrow_forward_ios
-              </span>
-            </div>
           </div>
         </div>
 
