@@ -105,7 +105,7 @@ button {
   background-color: white;
   height: 4rem;
   display: flex;
-  justify-content: end;
+  justify-content:space-between;
   align-items: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -136,7 +136,7 @@ button {
 
 .rap-plus-icon {
   border-radius: 50%;
-  background-color: #838383;
+  
   height: 30px;
   width: 30px;
   color: #e8e8e8;
@@ -153,6 +153,19 @@ button {
   display: flex;
   gap: 1rem;
   align-items: center;
+ 
+  justify-content: right;
+  
+}
+
+.titleHeaderRapport{
+  margin-left: 2rem;
+  font-size: 1.7rem;
+  font-weight: lighter;
+}
+.points{
+  border: 5px solid;
+  fill: black;
 }
 
 .rap-plus-icon:hover {

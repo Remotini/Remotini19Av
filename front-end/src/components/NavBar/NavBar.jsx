@@ -6,13 +6,15 @@ import { IoPersonOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogOut";
-import { AuthContext } from "../../context/AuthContext";
+
+import { useAuthContext } from "../../hooks/useAuthContext";
 function NavBar() {
   const location = useLocation();
   const [activePage, setActivePage] = useState("");
   const [isActiveHamburger, setisActiveHamburger] = useState(false);
   const { logout } = useLogout();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
+
   //generate handle function
   const handleHamburger = () => {
     setisActiveHamburger(!isActiveHamburger);
@@ -46,9 +48,11 @@ function NavBar() {
             <span className="name primaryText">
               {/* name et Family name java elements */}
               {/* <span>iyed </span> <span>grassi </span> */}
-              <span>Iyed Grassi</span>
+              <span>
+                {user.nom} {user.prenom}{" "}
+              </span>
             </span>
-            <span className="secondaryText desc">description Dabboucha </span>
+            <span className="secondaryText desc">{user.email} </span>
           </div>
         </div>
 
