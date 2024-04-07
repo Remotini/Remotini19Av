@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Maintable.css";
 import axios from "axios";
+import { IoIosArrowBack } from "react-icons/io";
+import Swal from "sweetalert2";
 function Maintable(props) {
   const {
     rapport_nom,
@@ -19,9 +21,6 @@ function Maintable(props) {
   const [Tasks, setTasks] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openOptions, setOpenOptions] = useState(null);
-
-
-
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -34,36 +33,66 @@ function Maintable(props) {
         console.log("error");
       }
     };
-    
     fetchTasks();
   }, [updatedTask]);
+  const handleDeleteTask = async (id) => {
+    const result = await Swal.fire({
+      title: "Etes-vous sûr?",
+      text: "Vous ne pourrez pas revenir en arrière!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Supprimer",
+      cancelButtonText: "Annuler",
+    });
 
+    if (result.isConfirmed) {
+      console.log(id);
+      const response = await axios.delete(
+        `http://localhost:5001/api/tasks/${id}`
+      );
+      if (response.status === 200) {
+        const newTasks = Tasks.filter((task) => task._id !== id);
+        setTasks(newTasks);
+        console.log("task deleted successfully");
+      } else {
+        console.log("error");
+      }
+    }
+  };
   const handleEditTask = (task) => {
     setTaskToEdit(task);
     setEditTask(true);
   };
-
-  
   const handleTaskCard = (task) => {
     setTask(task);
     setTaskCard(true);
   };
-
   return (
     <>
       <div className="wrapperTable">
-        <div className="rapport-desc">{rapport_nom}</div>
-
+        <div className="rapport-desc">
+          <div
+            className="back-button"
+            onClick={() => {
+              back_button(!state);
+              setRapportId("");
+              setRapportNom("");
+            }}
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </div>
+        </div>
         <div className="table-head">
           <div className="left">Taches</div>
-          
+
           <div className="search">
             <input
               type="search"
               className="search-input"
               placeholder="Rechercher..."
             ></input>
-
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -76,39 +105,39 @@ function Maintable(props) {
             </svg>
           </div>
         </div>
-
         <div className="table">
           {/* table can be a seperate component if needed */}
-
           <table className="tableaux-rapport">
             <thead>
               <tr className="elhead">
                 <th> Projet</th>
                 <th>Nom</th>
-                <th>Description</th>
+
                 <th>Date de publication</th>
-                <th>Date fin réalisation</th>
+
                 <th>Status</th>
               </tr>
             </thead>
-
             <tbody>
-              {Tasks.map((task, index) => (
+              {Tasks.filter((task) => !task.disabled).map((task, index) => (
                 <tr
                   key={index}
                   onMouseEnter={() => setHoveredRow(index)}
                   onMouseLeave={() => setHoveredRow(null)}
                   className="task-row"
                 >
-                  <td onClick={()=> handleTaskCard(task) }>{task.project}</td>
-                  <td onClick={()=> handleTaskCard(task)} >{task.nom}</td>
-                  <td onClick={()=> handleTaskCard(task)}>{task.description}</td>
-                  <td onClick={()=> handleTaskCard(task)}>{task.datePub}</td>
-                  <td onClick={()=> handleTaskCard(task)} >{task.dateComp ? "yes " : "non"}</td>
+                  <td onClick={() => handleTaskCard(task)}>{task.project}</td>
+                  <td onClick={() => handleTaskCard(task)}>{task.nom}</td>
+
+                  <td onClick={() => handleTaskCard(task)}>{task.datePub}</td>
+
                   {/* //change to date later */}
                   <td>
-                    <div className="btn-edit" >
-                      <div className="button-container" onClick={()=> handleTaskCard(task)}>
+                    <div className="btn-edit">
+                      <div
+                        className="button-container"
+                        onClick={() => handleTaskCard(task)}
+                      >
                         <button
                           style={{
                             backgroundColor:
@@ -137,15 +166,15 @@ function Maintable(props) {
                           </span>
                           {openOptions === index && (
                             <div className="options-list">
-                              <button >
-                                Show
-                              </button>
+                              <button>Show</button>
                               <hr />
-                              <button onClick={()=> handleEditTask(task)}>
+                              <button onClick={() => handleEditTask(task)}>
                                 Modify
                               </button>
                               <hr />
-                              <button >
+                              <button
+                                onClick={() => handleDeleteTask(task._id)}
+                              >
                                 Delete
                               </button>
                             </div>
@@ -184,9 +213,8 @@ function Maintable(props) {
               </svg>
             </span>
           </button>
-          
         </div>
-        <div
+        {/* <div
           className="back-button"
           onClick={() => {
             back_button(!state);
@@ -195,7 +223,7 @@ function Maintable(props) {
           }}
         >
           <span className="material-symbols-outlined">arrow_back_ios_new</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

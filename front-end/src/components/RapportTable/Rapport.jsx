@@ -4,7 +4,7 @@ import Maintable from "../Maintable/Maintable";
 import axios from "axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
-
+import Swal from "sweetalert2";
 function Rapport({
   addTask,
   setAddTask,
@@ -37,6 +37,33 @@ function Rapport({
   });
   const date = new Date();
   const { user } = useContext(AuthContext);
+  const handleDeleteReport = async (id) => {
+    const result = await Swal.fire({
+      title: "Êtes-vous sûr de vouloir supprimer ce rapport?",
+      text: "Vous ne pourrez pas revenir en arrière!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "royalblue",
+      cancelButtonColor: "gray",
+      confirmButtonText: "Confirmer",
+    });
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:5001/api/reports/${id}`
+        );
+        console.log(response.data.message);
+        if (response.status === 200) {
+          await Swal.fire("Supprimé", response.data.message, "success");
+          const newRapports = rapports.filter((rapport) => rapport._id !== id);
+          setRapports(newRapports);
+        }
+      } catch (error) {
+        console.error("Error deleting report:", error);
+        await Swal.fire("Error!", "Failed to delete rapport.", "error");
+      }
+    }
+  };
   const handleAddReport = async () => {
     try {
       const newReport = {
@@ -45,9 +72,10 @@ function Rapport({
         createdAt: date.toLocaleDateString(),
         updatedAt: "",
       };
-      
-     
-      const response = await axios.post(`http://localhost:5001/api/reports/user/${user.id}`, newReport);
+      const response = await axios.post(
+        `http://localhost:5001/api/reports/user/${user.id}`,
+        newReport
+      );
       if (response.data.report) {
         console.log("Report added successfully:", response.data.report);
         setRapports([...rapports, response.data.report]);
@@ -59,6 +87,7 @@ function Rapport({
           createdAt: "",
           updatedAt: "",
         });
+        Swal.fire("Rapport ajouté!", "Le rapport a été ajouté.", "success");
       } else {
         console.log("Error adding report");
       }
@@ -66,7 +95,6 @@ function Rapport({
       console.error("Error adding report:", error);
     }
   };
-
   const handleTaskRapport = (rap) => {
     setRapportId(rap._id);
     setRapportNom(rap.nom);
@@ -75,17 +103,63 @@ function Rapport({
   const handleRowRapport = (id) => {
     setDisabledRows([...disabledRows, id]);
   };
+  const handleEditRepport = async (rapport) => {
+    const { value: updatedRapportName } = await Swal.fire({
+      title: "Modifier le nom du rapport",
+      input: "text",
+      inputValue: rapport.nom, // Prefill the input with current rapport name
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return "Vous devez saisir un nom pour le rapport!";
+        }
+      },
+      confirmButtonColor: "royalblue", // Set the color of the confirm button to royalblue
+      cancelButtonColor: "gray", // Set the color of the cancel button to red
+      confirmButtonText: "Modifier", // Set the text of the confirm button to "Modifier"
+      cancelButtonText: "Annuler", // Set the text of the cancel button to "Annuler"
+    });
+    if (updatedRapportName) {
+      console.log("Updated rapport name:", updatedRapportName);
+      try {
+        console.log(rapport._id);
 
-  const handleEditRepport = (rapport) => {
-    setEditReport(true);
+        await axios.put(`http://localhost:5001/api/reports/${rapport._id}`, {
+          nom: updatedRapportName,
+        });
+
+        Swal.fire(
+          "Rapport mis à jour!",
+          "Le rapport a été modifié.",
+          "success"
+        );
+
+        // Refresh the rapport data
+        setRapports((prevRapports) =>
+          prevRapports.map((rap) =>
+            rap._id === rapport._id ? { ...rap, nom: updatedRapportName } : rap
+          )
+        );
+        // setRapports((prevRapports) =>
+        //   prevRapports.filter((rap) => rap._id !== rapport._id)
+        // );
+      } catch (error) {
+        console.error("Error updating rapport:", error);
+        Swal.fire(
+          "Erreur!",
+          "Une erreur est survenue lors de la mise à jour du rapport.",
+          "error"
+        );
+      }
+    }
+    // setEditReport(true);
     setRapport(rapport);
   };
-
   useEffect(() => {
     // Fetch data from the backend
     const fetchReports = async () => {
       try {
-        console.log(user.id)
+        console.log(user.id);
         const response = await axios.get(
           `http://localhost:5001/api/reports/user/${user.id}`
         );
@@ -102,7 +176,6 @@ function Rapport({
         console.error("Error fetching reports:", error);
       }
     };
-
     fetchReports();
   }, []);
 
@@ -112,7 +185,6 @@ function Rapport({
       setClickedTask(true);
     }
   }, [rapportId]);
-
   return (
     <>
       {!clickedTask ? (
@@ -146,7 +218,6 @@ function Rapport({
               )}
             </div>
           </div>
-
           <div className="rap-table">
             <table className="rap-tableaux-rapport">
               <tbody>
@@ -157,74 +228,79 @@ function Rapport({
                   <th>Date modification</th>
                   {/* <th>Actions</th> */}
                 </tr>
-
-                {rapports.map((rapport, index) => (
-                  <tr
-                    key={index}
-                    className={
-                      "rap-report-row " +
-                      (disabledRows.includes(rapport._id) ? "disabled" : "")
-                    }
-                    onMouseEnter={() => setHoveredRow(index)}
-                    onMouseLeave={() => setHoveredRow(null)}
-                  >
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.nom}
-                    </td>
-
-                    <td onClick={() => handleTaskRapport(rapport)}>
-                      {rapport.createdAt}
-                    </td>
-                    <td>
-                      <div className="btn-edit">
-                        <p onClick={() => handleTaskRapport(rapport)}>
-                          {rapport.updatedAt}
-                        </p>
-                        {hoveredRow === index && (
-                          <div
-                            className="edit-icon"
-                            onClick={() => {
-                              setOpenOptions(
-                                openOptions === index ? null : index
-                              );
-                              setAction(true);
-                            }}
-                            onMouseLeave={() => {
-                              setOpenOptions(null);
-                              setAction(false);
-                            }}
-                          >
-                            <span
-                              className="material-symbols-outlined"
-                              style={
-                                action ? { color: "#3e4676", opacity: "1" } : {}
-                              }
+                {rapports
+                  .filter((rapport) => !rapport.disabled)
+                  .map((rapport, index) => (
+                    <tr
+                      key={index}
+                      className={
+                        "rap-report-row " +
+                        (disabledRows.includes(rapport._id) ? "disabled" : "")
+                      }
+                      onMouseEnter={() => setHoveredRow(index)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                    >
+                      <td onClick={() => handleTaskRapport(rapport)}>
+                        {rapport.nom}
+                      </td>
+                      <td onClick={() => handleTaskRapport(rapport)}>
+                        {rapport.createdAt}
+                      </td>
+                      <td>
+                        <div className="btn-edit">
+                          <p onClick={() => handleTaskRapport(rapport)}>
+                            {rapport.updatedAt}
+                          </p>
+                          {hoveredRow === index && (
+                            <div
+                              className="edit-icon"
+                              onClick={() => {
+                                setOpenOptions(
+                                  openOptions === index ? null : index
+                                );
+                                setAction(true);
+                              }}
+                              onMouseLeave={() => {
+                                setOpenOptions(null);
+                                setAction(false);
+                              }}
                             >
-                              edit
-                            </span>
-                            {openOptions === index && (
-                              <div className="options-list">
-                                <button>Show</button>
-                                <hr />
-                                <button
-                                  onClick={() => handleEditRepport(rapport)}
-                                >
-                                  Modify
-                                </button>
-                                <hr />
-                                <button
-                                  onClick={() => handleRowRapport(rapport._id)}
-                                >
-                                  Delete
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                              <span
+                                className="material-symbols-outlined"
+                                style={
+                                  action
+                                    ? { color: "#3e4676", opacity: "1" }
+                                    : {}
+                                }
+                              >
+                                edit
+                              </span>
+                              {openOptions === index && (
+                                <div className="options-list">
+                                  <button>Show</button>
+                                  <hr />
+                                  <button
+                                    onClick={() => handleEditRepport(rapport)}
+                                  >
+                                    Modify
+                                  </button>
+                                  <hr />
+                                  <button
+                                    // onClick={() => handleRowRapport(rapport._id)}
+                                    onClick={() =>
+                                      handleDeleteReport(rapport._id)
+                                    }
+                                  >
+                                    Delete
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 {addReport && (
                   <tr>
                     <td colSpan={2}>
@@ -238,7 +314,6 @@ function Rapport({
                         className="input-nom-rapport"
                       />
                     </td>
-
                     <td>
                       <div className="rap-action">
                         <button
@@ -264,7 +339,6 @@ function Rapport({
               </tbody>
             </table>
           </div>
-
           <div className="footer-table">
             <button
               type="button"

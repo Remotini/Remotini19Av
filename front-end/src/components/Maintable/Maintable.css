@@ -19,7 +19,6 @@
   margin-bottom: 5rem;
   overflow-x: auto;
   overflow-y: hidden;
-  
 }
 .table::-webkit-scrollbar {
   display: none;
@@ -45,20 +44,16 @@
   border-radius: 50px;
   opacity: 0.8;
 }
-
 .tableaux-rapport .elhead {
   position: sticky;
   top: 0rem;
   background-color: var(--blue);
-
   color: white;
   z-index: 2;
   opacity: 1;
   text-align: center;
   height: 4.5rem;
-
   /* opacity: 0.8; */
-
   /* color: #d8b339; */
 }
 .custom-select {
@@ -69,8 +64,6 @@
   border: none;
   cursor: pointer;
   margin-left: 3px;
-
-  
 }
 .elhead th {
   border: 2px solid white;
@@ -89,14 +82,12 @@ button {
 .tableaux-rapport td {
   border: 2px solid white;
 }
-
 .tableaux-rapport tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 .tableaux-rapport .task-row:hover {
   background-color: #ddd;
 }
-
 .table-head {
   background-color: white;
   height: 5rem;
@@ -106,7 +97,6 @@ button {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-
 .search-input {
   background-color: var(#e8e8e8);
   border-radius: 1rem;
@@ -117,7 +107,6 @@ button {
   margin-top: 0.2rem;
   opacity: 0.7;
 }
-
 .search {
   width: 25rem;
   display: flex;
@@ -151,6 +140,7 @@ button {
   font-size: 2rem;
   padding: 0.3rem 0.5rem;
   margin-bottom: 3rem;
+  
 }
 @media screen and(min-height:500px ) {
 }
@@ -164,10 +154,19 @@ button {
 }
 .back-button {
   cursor: pointer;
-
+  position: relative;
+  left: 0;
+  bottom: 1%;
+  height: 4.3rem;
   padding: 0.5rem;
-  color: #3e4676;
-  border-radius: 10px;
+  color: #ececec;
+  
+}
+.back-button :nth-child(1) {
+     border: 1px solid #ececec;
+   padding: 0.3rem;
+   border-radius: 50%; 
+   
 }
 .back-button:hover {
   opacity: 0.8;
@@ -177,25 +176,20 @@ button {
   font-size: 4rem;
 }
 .btn-edit{
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0.5rem;
   
+  
 }
-
 .edit-icon {
   display: flex;
   cursor: pointer;
-
   position: absolute;
-  right: 20px;
-  
+  right: 10px;
 }
-
-
-
-
 .options-list button {
   display: block;
   background: none;
@@ -205,9 +199,6 @@ button {
   color: #3e4676;
 
 }
-
-
-
 .footer-table {
   position: sticky;
   bottom: 0;
@@ -219,7 +210,6 @@ button {
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 .button {
   width: 170px;
   height: 40px;
@@ -230,19 +220,16 @@ button {
   background-color: #3875d1;
   margin: 0.5rem 0;
 }
-
 .button,
 .button__icon,
 .button__text {
   transition: all 0.3s;
 }
-
 .button .button__text {
   transform: translateX(30px);
   color: #fff;
   font-weight: 600;
 }
-
 .button .button__icon {
   position: absolute;
   transform: translateX(139px);
@@ -253,31 +240,25 @@ button {
   align-items: center;
   justify-content: center;
 }
-
 .button .svg {
   width: 30px;
   stroke: #fff;
 }
-
 .button:hover {
   background: #1663d6;
 
   border: none;
 }
-
 .button:hover .button__text {
   color: transparent;
 }
-
 .button:hover .button__icon {
   width: 150px;
   transform: translateX(7px);
 }
-
 .button:active .button__icon {
   background-color: #173d77;
 }
-
 .button:active {
   border: 1px solid #173d77;
 }

@@ -1,10 +1,9 @@
 const express = require("express");
-
 const router = express.Router();
 const {
   createReport,
   getReports,
-  deleteReport,
+  deletedReport,
   updateReport,
   getTasksForReport,
   getReportsForUser,
@@ -27,12 +26,10 @@ router.post("/", createReport);
 router.post("/user/:id", createReportForUser);
 
 //Delete a report
-router.delete("/:id", deleteReport);
+router.delete("/:id", deletedReport);
 
 // // Modify a report
 router.put("/:id", updateReport);
-
-
 
 // Export the router
 module.exports = router;

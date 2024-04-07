@@ -18,15 +18,7 @@ const taskSchema = new Schema({
       return `${day}/${month}/${year}`;
     },
   },
-  DateComp: {
-    type: Boolean,
-    default: false,
-  },
-  description: {
-    type: String,
-    default: "nothing",
-  },
-  project:{
+  project: {
     type: String,
     required: true,
   },
@@ -37,6 +29,10 @@ const taskSchema = new Schema({
   status: {
     type: String,
     default: "En cours",
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 
