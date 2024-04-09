@@ -19,11 +19,11 @@ function Home() {
   const [task, setTask] = useState(null);
   const [taskCard, setTaskCard] = useState(false);
 
-
   return (
     <>
-      
-      {taskCard ? ( <TaskCard task={task} onClose={() => setTaskCard(false)} /> ) : null} 
+      {taskCard ? (
+        <TaskCard task={task} onClose={() => setTaskCard(false)} />
+      ) : null}
       {addTask ? (
         <AddTaks
           addTask={addTask}
@@ -40,7 +40,14 @@ function Home() {
           rapport={rapport}
         />
       ) : null}
-      {editTask ? ( <EditTask task={taskToEdit} setEditTask={setEditTask} setUpdatedTask={setUpdatedTask} /> ) : null}
+      {editTask ? (
+        <EditTask
+          task={taskToEdit}
+          setEditTask={setEditTask}
+          setUpdatedTask={setUpdatedTask}
+          updatedTask={updatedTask}
+        />
+      ) : null}
       <div className={"All"}>
         <div className="App" />
         <Header />

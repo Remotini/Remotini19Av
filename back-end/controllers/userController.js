@@ -12,9 +12,13 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.login(email, password);
     //create a token
+    console.log(user);
     const token = createToken(user._id);
-    const id=user._id;
-    res.status(200).json({id,email, token });
+    // lahne
+    const id = user._id;
+    const firstName = user.firstName;
+    const lastName = user.lastName;
+    res.status(200).json({ id, email, token, firstName, lastName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -22,20 +26,15 @@ const loginUser = async (req, res) => {
 
 // sinup user
 const signupUser = async (req, res) => {
-  const { nom, prenom, email, cin, password, confPass, cdequipe } = req.body;
+  const { firstName, lastName, email, password } = req.body;
+
   try {
-    const user = await User.signup(
-      nom,
-      prenom,
-      email,
-      cin,
-      password,
-      confPass,
-      cdequipe
-    );
+    const user = await User.signup(firstName, lastName, email, password);
+
     //create a token
     const token = createToken(user._id);
-    res.status(200).json({id, email, token });
+    const id = user._id;
+    res.status(200).json({ id, email, token, firstName, lastName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

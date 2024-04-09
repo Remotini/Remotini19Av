@@ -1,24 +1,67 @@
-.container-grid{
-    border: 5px solid;
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
-    min-height: 750px;
-     
-}
-.item1{
-    border: 5px solid springgreen;
-    grid-column: span 2;
+.Cards-containerStat{
+   display: flex;
+   gap: 1rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   /* border: 5px solid green; */
+   /* width:91%; */
+   margin: auto ;
+  
+   border: 5px solid hsl(0, 0%, 69%,1);
    
-}
-.item2{
-    border: 5px solid azure;
-    grid-row: 1 / span 2;   
-    grid-column-start:3 ;
-}
-.item3{
-    border: 5px solid violet;
-    grid-column: span 2;
+   /* width: 97%; */
+   width: 70%;
+   padding-bottom: 2rem;
     
+   margin-bottom: 6rem;
+   height: clamp(200px,90%,350%);
+   overflow: auto !important;
+   background-color: hsl(0, 0%, 95%,1);
+   padding-top: 2rem;    /*fix this when page getting smaller make the heigt bigger or check m3a louled ken mech bech taamel overflow*/
+}
+.charts{
+   border: 5px solid  hsl(0, 0%, 60%);
+   height: 350px;
+   background-color: hsl(0, 0%, 98%,0.99);
+   width: 98%;
+   margin-bottom: 4rem;
+
+}
+.gridding-container{
+   width: 100%;
+   padding-top: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   justify-content: center;
+   align-items: center;
+}
+
+.doubled-cards{
+   width: 80%;
+   display: flex;
+   flex-direction: row;
+   /* align-items: center; */
+   flex-wrap: wrap;
+   
+   justify-content: space-around;
+   align-items: center;
+   padding-bottom: 2rem;
+}
+
+.two-cards{
+   display: flex;
+   flex-direction: column;
+    width: 49%;
+ justify-content: center;
+ align-items: center;
+   min-width: 250px;
 }
  
+/* @media screen and (max-width: 1310px) {
+    .Cards-containerStat{
+         flex-wrap: wrap;
+        
+    }
+   
+} */

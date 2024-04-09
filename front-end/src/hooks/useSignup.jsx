@@ -6,15 +6,7 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signup = async (
-    nom,
-    prenom,
-    email,
-    cin,
-    password,
-    confPass,
-    cdequipe
-  ) => {
+  const signup = async (firstName, lastName, email, password) => {
     setIsLoading(true);
     setError(null);
     //there is an error i could not find it
@@ -24,13 +16,10 @@ export const useSignup = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nom,
-        prenom,
+        firstName,
+        lastName,
         email,
-        cin,
         password,
-        confPass,
-        cdequipe,
       }),
     });
     const json = await response.json();

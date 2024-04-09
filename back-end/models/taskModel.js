@@ -1,43 +1,52 @@
+// Task model
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-// Import the required modules
 
-// Define the task schema
-const taskSchema = new Schema({
-  nom: {
-    type: String,
-    required: true,
-  },
-  datePub: {
-    type: String,
-    default: () => {
-      const date = new Date();
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
-      return `${day}/${month}/${year}`;
+const TaskSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      min: 2,
+      max: 50,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    project: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["Validé", "En cours", "Refusé"],
+      default: "En cours",
+    },
+    comments: {
+      type: [
+        {
+          text: String,
+          postedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          createdAt: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
+      default: [],
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
   },
-  project: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  status: {
-    type: String,
-    default: "En cours",
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-// Create the task model
-const Task = mongoose.model("Task", taskSchema);
-
-// Export the task model
+const Task = mongoose.model("Task", TaskSchema);
 module.exports = Task;

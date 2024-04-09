@@ -1,9 +1,11 @@
 .rap-table {
   overflow-y: auto;
-  height: 60%;
+  /* height: 60%; */
   background-color: white;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  position: relative;
+  height: clamp(500px,60%,700px);
 
 }
 
@@ -12,6 +14,7 @@
   width: 100%;
   border-collapse: collapse;
   table-layout:auto; /* Add this line */
+ 
 }
 
 .rap-tableaux-rapport td:first-child {
@@ -23,13 +26,15 @@
   width: 25%; /* Make the second and third columns each take up a quarter of the table */
 }
 .rap-wrapperTable {
+  
   position: relative;
   margin: 0rem auto;
   width: 1250px;
-  margin-bottom: 5rem;
+  
   overflow-x: auto;
-  overflow-y: hidden;
-  min-height: 570px;
+ /* overflow-y: hidden; */
+  min-height: 800px;
+ 
 }
 .rap-table::-webkit-scrollbar {
   display: none;
@@ -100,6 +105,7 @@ button {
   background-color: #ddd;
   
 }
+
 
 .rap-table-head {
   background-color: white;
@@ -215,17 +221,14 @@ button {
 .cancel-button{
   background-color: rgb(163, 158, 158) !important;
 }
-
 .btn-edit{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.1em;
+  position: relative;
   
 }
-
-
-
 .edit-icon > span {
   font-size: 1.75rem;
   color: gray;
@@ -239,9 +242,10 @@ button {
   position: absolute;
   background-color: #fff;
   border: 1px solid #5965a8;
-  padding: 8px 10px;
+
+  
   border-radius: 5px;
-  top: 1.8rem;
+  bottom:  0rem;
   right: -0.5rem;
   z-index: 500;
 }
@@ -250,8 +254,8 @@ button {
   display: block;
   background: none;
   border: none;
-  padding: 7px auto;
-  margin: 2px 0;
+  margin: 1px 0;
+  
   text-align: center;
   color: #3e4676;
 }
@@ -275,11 +279,12 @@ button {
 }
 
 .table-footer{
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   background-color: #e8e8e8;
   border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
 }
+ 

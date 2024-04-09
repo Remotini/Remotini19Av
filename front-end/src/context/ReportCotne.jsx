@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
-export const RapportContext = createContext();
+export const ReportCotne = createContext();
 
 const RappportProvider = ({ children }) => {
   const { user } = useAuthContext();
@@ -22,9 +22,7 @@ const RappportProvider = ({ children }) => {
   }, [user]);
   console.log("ReportContext state : ", rapports);
   return (
-    <RapportContext.Provider value={rapports}>
-      {children}
-    </RapportContext.Provider>
+    <ReportCotne.Provider value={rapports}>{children}</ReportCotne.Provider>
   );
 };
 export default RappportProvider;

@@ -23,12 +23,14 @@ function Maintable(props) {
   const [openOptions, setOpenOptions] = useState(null);
   useEffect(() => {
     const fetchTasks = async () => {
+      console.log("rapport_id", rapport_id);
       const response = await axios.get(
-        `http://localhost:5001/api/reports/${rapport_id}`
+        `http://localhost:5001/api/tasks?rapport_id=${rapport_id}`
       );
+      console.log("response tasks ", response);
       if (response) {
         console.log(Tasks);
-        setTasks(response.data.tasks);
+        setTasks(response.data);
       } else {
         console.log("error");
       }
@@ -50,7 +52,7 @@ function Maintable(props) {
     if (result.isConfirmed) {
       console.log(id);
       const response = await axios.delete(
-        `http://localhost:5001/api/tasks/${id}`
+        `http://localhost:5001/api/tasks/${id}?rapportId=${rapport_id}`
       );
       if (response.status === 200) {
         const newTasks = Tasks.filter((task) => task._id !== id);
@@ -119,7 +121,7 @@ function Maintable(props) {
               </tr>
             </thead>
             <tbody>
-              {Tasks.filter((task) => !task.disabled).map((task, index) => (
+              {Tasks?.filter((task) => task.active).map((task, index) => (
                 <tr
                   key={index}
                   onMouseEnter={() => setHoveredRow(index)}
@@ -127,9 +129,11 @@ function Maintable(props) {
                   className="task-row"
                 >
                   <td onClick={() => handleTaskCard(task)}>{task.project}</td>
-                  <td onClick={() => handleTaskCard(task)}>{task.nom}</td>
+                  <td onClick={() => handleTaskCard(task)}>{task.name}</td>
 
-                  <td onClick={() => handleTaskCard(task)}>{task.datePub}</td>
+                  <td onClick={() => handleTaskCard(task)}>
+                    {new Date(task.createdAt).toLocaleDateString()}
+                  </td>
 
                   {/* //change to date later */}
                   <td>
@@ -166,8 +170,6 @@ function Maintable(props) {
                           </span>
                           {openOptions === index && (
                             <div className="options-list">
-                              <button>Show</button>
-                              <hr />
                               <button onClick={() => handleEditTask(task)}>
                                 Modify
                               </button>
@@ -187,33 +189,38 @@ function Maintable(props) {
               ))}
             </tbody>
           </table>
+          <div className="ena"></div>
         </div>
+
         <div className="footer-table">
           <button
             type="button"
             className="button"
             onClick={() => setAddTask(true)}
           >
-            <span className="button__text">Ajouter tache</span>
-            <span className="button__icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke="currentColor"
-                height="24"
-                fill="none"
-                className="svg"
-              >
-                <line y2="19" y1="5" x2="12" x1="12"></line>
-                <line y2="12" y1="12" x2="19" x1="5"></line>
-              </svg>
+            <span className="button_text">
+              Ajouter tache
+              <span className="button__icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  height="24"
+                  fill="none"
+                  className="svg"
+                >
+                  <line y2="19" y1="5" x2="12" x1="12"></line>
+                  <line y2="12" y1="12" x2="19" x1="5"></line>
+                </svg>
+              </span>
             </span>
           </button>
         </div>
+
         {/* <div
           className="back-button"
           onClick={() => {

@@ -4,33 +4,22 @@ const Schema = mongoose.Schema;
 
 const reportSchema = new Schema(
   {
-    // Define your report model fields here
-    // For example:
-    nom: {
+    name: {
       type: String,
       required: true,
+      min: 2,
+      max: 50,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    tasks: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Task",
-      },
-    ],
-    disabled: {
+
+    tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
+    active: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
-
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 const Report = mongoose.model("Report", reportSchema);

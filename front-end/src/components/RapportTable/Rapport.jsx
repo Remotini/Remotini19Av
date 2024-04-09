@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Rapport.css";
 import Maintable from "../Maintable/Maintable";
 import axios from "axios";
@@ -28,15 +28,30 @@ function Rapport({
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openOptions, setOpenOptions] = useState(null);
   const [action, setAction] = useState(false);
+  const [triggerScroll, setTriggerScroll] = useState(false);
   const [report, setReport] = useState({
-    nom: "",
-    date: "",
-    description: "",
-    createdAt: "",
-    updatedAt: "",
+    id: "",
+    name: "",
   });
+  const myRef = useRef(null);
+  const containerRef = useRef(null);
   const date = new Date();
   const { user } = useContext(AuthContext);
+
+  const handleScrollReport = () => {
+    setAddReport(true);
+    setTriggerScroll(!triggerScroll);
+  };
+  const scrollToBottom = () => {
+    const container = containerRef.current;
+    const element = myRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const offset = elementRect.top - containerRect.top;
+    container.scrollTo(0, offset);
+    console.log(containerRect, elementRect, offset);
+  };
+
   const handleDeleteReport = async (id) => {
     const result = await Swal.fire({
       title: "Êtes-vous sûr de vouloir supprimer ce rapport?",
@@ -50,13 +65,14 @@ function Rapport({
     if (result.isConfirmed) {
       try {
         const response = await axios.delete(
-          `http://localhost:5001/api/reports/${id}`
+          `http://localhost:5001/api/reports/${id}?userId=${user.id}`
         );
+        console.log(response);
         console.log(response.data.message);
         if (response.status === 200) {
           await Swal.fire("Supprimé", response.data.message, "success");
           const newRapports = rapports.filter((rapport) => rapport._id !== id);
-          setRapports(newRapports);
+          setRapports(newRapports); //
         }
       } catch (error) {
         console.error("Error deleting report:", error);
@@ -64,32 +80,40 @@ function Rapport({
       }
     }
   };
+  // ! NO TOUCHING ya zebi fok aa zebi
   const handleAddReport = async () => {
     try {
       const newReport = {
-        nom: report.nom,
-        description: "osef",
-        createdAt: date.toLocaleDateString(),
-        updatedAt: "",
+        id: user.id,
+        name: report.name,
       };
-      const response = await axios.post(
-        `http://localhost:5001/api/reports/user/${user.id}`,
-        newReport
-      );
-      if (response.data.report) {
-        console.log("Report added successfully:", response.data.report);
-        setRapports([...rapports, response.data.report]);
-        setAddReport(false);
-        setReport({
-          nom: "",
-          date: "",
-          description: "",
-          createdAt: "",
-          updatedAt: "",
-        });
-        Swal.fire("Rapport ajouté!", "Le rapport a été ajouté.", "success");
+
+      console.log("newReport", newReport);
+      if (newReport.name) {
+        const response = await axios.post(
+          `http://localhost:5001/api/reports/`,
+          newReport
+        );
+
+        console.log("response", response);
+        if (response.data) {
+          console.log("Report added successfully:", response.data);
+          setRapports([...rapports, response.data]);
+          setAddReport(false);
+          setReport({
+            id: "",
+            name: "",
+          });
+          Swal.fire("Rapport ajouté!", "Le rapport a été ajouté.", "success");
+        } else {
+          console.log("Error adding report");
+        }
       } else {
-        console.log("Error adding report");
+        Swal.fire(
+          "Saisie invalide!",
+          "Une erreur est survenue lors de l'ajout du rapport.",
+          "error"
+        );
       }
     } catch (error) {
       console.error("Error adding report:", error);
@@ -97,7 +121,7 @@ function Rapport({
   };
   const handleTaskRapport = (rap) => {
     setRapportId(rap._id);
-    setRapportNom(rap.nom);
+    setRapportNom(rap.name);
   };
 
   const handleRowRapport = (id) => {
@@ -107,7 +131,7 @@ function Rapport({
     const { value: updatedRapportName } = await Swal.fire({
       title: "Modifier le nom du rapport",
       input: "text",
-      inputValue: rapport.nom, // Prefill the input with current rapport name
+      inputValue: rapport.name, // Prefill the input with current rapport name
       showCancelButton: true,
       inputValidator: (value) => {
         if (!value) {
@@ -125,7 +149,7 @@ function Rapport({
         console.log(rapport._id);
 
         await axios.put(`http://localhost:5001/api/reports/${rapport._id}`, {
-          nom: updatedRapportName,
+          name: updatedRapportName,
         });
 
         Swal.fire(
@@ -137,7 +161,7 @@ function Rapport({
         // Refresh the rapport data
         setRapports((prevRapports) =>
           prevRapports.map((rap) =>
-            rap._id === rapport._id ? { ...rap, nom: updatedRapportName } : rap
+            rap._id === rapport._id ? { ...rap, name: updatedRapportName } : rap
           )
         );
         // setRapports((prevRapports) =>
@@ -159,16 +183,14 @@ function Rapport({
     // Fetch data from the backend
     const fetchReports = async () => {
       try {
-        console.log(user.id);
+        console.log("this is use id ", user.id);
         const response = await axios.get(
-          `http://localhost:5001/api/reports/user/${user.id}`
+          `http://localhost:5001/api/reports?userId=${user.id}`
         );
-        if (response.data.userReports) {
-          setRapports(response.data.userReports);
-          console.log(
-            "Reports fetched successfully:",
-            response.data.userReports
-          );
+        console.log("fetched ", response.data);
+        if (response.data) {
+          setRapports(response.data);
+          console.log("Reports fetched successfully:", response.data);
         } else {
           console.log("Error fetching reports");
         }
@@ -178,18 +200,23 @@ function Rapport({
     };
     fetchReports();
   }, []);
-
   useEffect(() => {
     if (rapportId) {
       getRapportId(rapportId);
       setClickedTask(true);
+      setAddReport(false);
     }
   }, [rapportId]);
+  useEffect(() => {
+    if (addReport && myRef.current) {
+      scrollToBottom();
+    }
+  }, [triggerScroll]);
   return (
     <>
       {!clickedTask ? (
         <div className="rap-wrapperTable">
-          <div className="rapport-desc">Bienvenue Mr {user.prenom}</div>
+          <div className="rapport-desc">Bienvenue Mr {user.lastName}</div>
           <div className="rap-table-head">
             <h3 className="titleHeaderRapport">Rapport</h3>
             <div className="rap-search">
@@ -219,7 +246,7 @@ function Rapport({
               )}
             </div>
           </div>
-          <div className="rap-table">
+          <div className="rap-table" ref={containerRef}>
             <table className="rap-tableaux-rapport">
               <tbody>
                 <tr className="rap-elhead">
@@ -242,15 +269,15 @@ function Rapport({
                       onMouseLeave={() => setHoveredRow(null)}
                     >
                       <td onClick={() => handleTaskRapport(rapport)}>
-                        {rapport.nom}
+                        {rapport.name}
                       </td>
                       <td onClick={() => handleTaskRapport(rapport)}>
-                        {rapport.createdAt}
+                        {new Date(rapport.createdAt).toLocaleDateString()}
                       </td>
                       <td>
                         <div className="btn-edit">
                           <p onClick={() => handleTaskRapport(rapport)}>
-                            {rapport.updatedAt}
+                            {new Date(rapport.updatedAt).toLocaleDateString()}
                           </p>
                           {hoveredRow === index && (
                             <div
@@ -278,8 +305,6 @@ function Rapport({
                               </span>
                               {openOptions === index && (
                                 <div className="options-list">
-                                  <button>Show</button>
-                                  <hr />
                                   <button
                                     onClick={() => handleEditRepport(rapport)}
                                   >
@@ -303,14 +328,14 @@ function Rapport({
                     </tr>
                   ))}
                 {addReport && (
-                  <tr>
+                  <tr ref={myRef}>
                     <td colSpan={2}>
                       <input
                         type="text"
                         placeholder="Nom du rapport"
-                        value={report.nom}
+                        value={report.name}
                         onChange={(e) =>
-                          setReport({ ...report, nom: e.target.value })
+                          setReport({ ...report, name: e.target.value })
                         }
                         className="input-nom-rapport"
                       />
@@ -339,30 +364,34 @@ function Rapport({
                 )}
               </tbody>
             </table>
+            <div className="ena"></div>
           </div>
+
           <div className="footer-table">
             <button
               type="button"
               className="button"
-              onClick={() => setAddReport(true)}
+              onClick={handleScrollReport}
             >
-              <span className="button__text">Ajouter rapport</span>
-              <span className="button__icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
-                  stroke="currentColor"
-                  height="24"
-                  fill="none"
-                  className="svg"
-                >
-                  <line y2="19" y1="5" x2="12" x1="12"></line>
-                  <line y2="12" y1="12" x2="19" x1="5"></line>
-                </svg>
+              <span className="button_text">
+                Ajouter rapport
+                <span className="button__icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    stroke="currentColor"
+                    height="24"
+                    fill="none"
+                    className="svg"
+                  >
+                    <line y2="19" y1="5" x2="12" x1="12"></line>
+                    <line y2="12" y1="12" x2="19" x1="5"></line>
+                  </svg>
+                </span>
               </span>
             </button>
           </div>

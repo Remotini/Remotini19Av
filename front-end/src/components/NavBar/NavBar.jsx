@@ -49,7 +49,7 @@ function NavBar() {
               {/* name et Family name java elements */}
               {/* <span>iyed </span> <span>grassi </span> */}
               <span>
-                {user.nom} {user.prenom}{" "}
+                {user.firstName} {user.lastName}{" "}
               </span>
             </span>
             <span className="secondaryText desc">{user.email} </span>

@@ -1,16 +1,24 @@
 .table {
-  overflow-y: scroll; /* Change 'auto' to 'scroll' */
-  height: 62%;
+  overflow-y: auto; /* Change 'auto' to 'scroll' */
+  /* height: 60%; */
   -ms-overflow-style: none;
   scrollbar-width: none;
   background-color: white;
   position: relative;
+  height: clamp(500px,60%,700px);
+ 
 }
+.ena{
+    background-color: white;
+    height: 40px;
 
+}
 .tableaux-rapport {
   background-color: #e8e8e8;
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto; /* Add this line */
+   
 }
 .wrapperTable {
   margin: 0rem auto;
@@ -18,7 +26,10 @@
   position: relative;
   margin-bottom: 5rem;
   overflow-x: auto;
-  overflow-y: hidden;
+   /* overflow-y: hidden; */
+  min-height: 800px;
+ 
+  
 }
 .table::-webkit-scrollbar {
   display: none;
@@ -128,7 +139,6 @@ button {
 .right-m > svg:hover {
   opacity: 1;
 }
-
 .left {
   position: relative;
   text-align: left;
@@ -140,8 +150,12 @@ button {
   font-size: 2rem;
   padding: 0.3rem 0.5rem;
   margin-bottom: 3rem;
-  
 }
+.task-row{
+  text-align: center;
+}
+
+
 @media screen and(min-height:500px ) {
 }
 @media screen and (max-width: 530px) {
@@ -160,7 +174,6 @@ button {
   height: 4.3rem;
   padding: 0.5rem;
   color: #ececec;
-  
 }
 .back-button :nth-child(1) {
      border: 1px solid #ececec;
@@ -171,7 +184,6 @@ button {
 .back-button:hover {
   opacity: 0.8;
 }
-
 .back-button > span {
   font-size: 4rem;
 }
@@ -181,10 +193,8 @@ button {
   justify-content: space-around;
   align-items: center;
   padding: 0.5rem;
-  
-  
 }
-.edit-icon {
+.edit-icon{
   display: flex;
   cursor: pointer;
   position: absolute;
@@ -194,14 +204,14 @@ button {
   display: block;
   background: none;
   border: none;
-  padding: 5px 0;
+  padding: 3px 0;
   text-align: center;
   color: #3e4676;
 
 }
 .footer-table {
-  position: sticky;
-  bottom: 0;
+  
+   
   z-index: 4;
   display: flex;
   justify-content: center; 
@@ -219,7 +229,14 @@ button {
   border: 1px solid #3875d1;
   background-color: #3875d1;
   margin: 0.5rem 0;
+}  
+
+.button_text{
+  color: white;
+  
+  font-weight: 600;
 }
+
 .button,
 .button__icon,
 .button__text {
@@ -230,31 +247,61 @@ button {
   color: #fff;
   font-weight: 600;
 }
-.button .button__icon {
+/* .button .button__icon {
+  
+  transform: translateX(239px);
   position: absolute;
-  transform: translateX(139px);
   height: 69%;
   width: 30px;
   background-color: #1663d6;
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+
+.button{
+  
+  
+  position: relative;
+  background-color: #1663d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   
+}
+.button__icon{
+  position: absolute;
+  right: 0;
+  top: 5px;
+  height: 30px;
+  padding-top: 5px;
+  width: 30px;
+  background-color: #1663d6;
+   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 .button .svg {
   width: 30px;
   stroke: #fff;
+  padding-bottom: 0.4rem;
+  
 }
 .button:hover {
   background: #1663d6;
 
   border: none;
 }
-.button:hover .button__text {
+.button:hover .button_text {
   color: transparent;
 }
 .button:hover .button__icon {
-  width: 150px;
-  transform: translateX(7px);
+  width: 30px;
+  transform: translateX(-130px);
 }
 .button:active .button__icon {
   background-color: #173d77;

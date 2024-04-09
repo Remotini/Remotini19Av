@@ -1,52 +1,68 @@
 import React, { useState } from "react";
 import "./AddTask.css";
 import { FaUpload } from "react-icons/fa";
-
-const AddTaks = ({
-  addTask,
+import axios from "axios";
+import { useEffect } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import Swal from "sweetalert2";
+const AddTasks = ({
   setAddTask,
   getrapportId,
   setUpdatedTask,
   updatedTask,
 }) => {
+  const { user } = useAuthContext();
+  console.log(user);
+
+  const [project, setProject] = useState([]);
   const date = new Date();
+
   const [newTask, setNewTask] = useState({
-    nom: "",
-    date: new Date(),
+    name: "",
     description: "",
-    project: "projet1",
-    rapport_id: getrapportId,
+    project: "", //default value for the select option
+    rapportId: getrapportId,
   });
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        if (!user) return;
+        const response = await axios.get(
+          `http://localhost:5001/api/projects?userId=${user.id}`
+        );
+        setProject(response.data);
+        console.log(response.data);
+        // Set default project name if project list is not empty
+        if (response.data.length > 0) {
+          setNewTask({ ...newTask, project: response.data[0].name });
+        }
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, [user]);
 
   const handleAddTask = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5001/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTask),
+      await axios.post("http://localhost:5001/api/tasks", newTask);
+
+      setUpdatedTask(!updatedTask); // Trigger update after adding task
+      setAddTask(false); // Close the AddTask modal
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "tache ajoutée avec succès",
+        showConfirmButton: false,
+        timer: 1500,
       });
-      if (response.ok) {
-        const data = await response.json();
-        // setRapports((prevRapports) => [...prevRapports, data]);
-        console.log("Task added successfully:", data);
-        setUpdatedTask(!updatedTask);
-        setNewTask({
-          nom: "",
-          date: "",
-          description: "",
-          project: "",
-          rapport_id: "",
-        });
-        setAddTask(false);
-      } else {
-        console.log("Failed to add task");
-      }
     } catch (error) {
-      console.error("Error adding task:", error);
+      console.error("Failed to submit task:", error);
+      // Handle error here, if needed
     }
   };
 
@@ -54,7 +70,7 @@ const AddTaks = ({
     <div className="add-task-container">
       <form className="form" onSubmit={handleAddTask}>
         <div className="heading">
-          <p className="title">Ajouter une tâche </p>
+          <p className="title">Ajouter une tâche</p>
           <button className="Btnn" onClick={() => setAddTask(false)}>
             <span className="material-symbols-outlined">close</span>
           </button>
@@ -67,7 +83,7 @@ const AddTaks = ({
             className="input"
             id="reportName"
             defaultValue={"Rapport 1"}
-            readOnly // Make it read-only if it's set by default
+            readOnly
           />
         </label>
         <div className="header-tache">
@@ -78,24 +94,25 @@ const AddTaks = ({
               type="text"
               className="input"
               id="firstname"
-              onChange={(e) => setNewTask({ ...newTask, nom: e.target.value })}
+              value={newTask.name}
+              onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
             />
           </label>
           <label htmlFor="project" className="label-projet">
             <span>Nom du projet</span>
             <select
               name="project"
-              id=""
               className="project-selection"
+              value={newTask.project}
               onChange={(e) =>
                 setNewTask({ ...newTask, project: e.target.value })
               }
             >
-              <option value="projet1">projet1</option>
-              <option value="projet2">projet2</option>
-              <option value="projet3">projet3</option>
-              <option value="projet4">projet4</option>
-              <option value="projet5">projet5</option>
+              {project.map((project1) => (
+                <option key={project1._id} value={project1.name}>
+                  {project1.name}
+                </option>
+              ))}
             </select>
           </label>
         </div>
@@ -114,13 +131,13 @@ const AddTaks = ({
         <label htmlFor="description" className="label">
           <span>Description</span>
           <textarea
-            required
             name=""
             cols="30"
             rows="5"
             className="input"
             id="description"
             placeholder="Ajouter une description"
+            value={newTask.description}
             onChange={(e) =>
               setNewTask({ ...newTask, description: e.target.value })
             }
@@ -146,4 +163,4 @@ const AddTaks = ({
   );
 };
 
-export default AddTaks;
+export default AddTasks;

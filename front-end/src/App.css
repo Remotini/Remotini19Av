@@ -61,12 +61,11 @@
 
 
  
-@media (max-height:500px) {
+@media (max-height:800px) {
   .center{
-    min-height: 600px;
-  
+    min-height: 800px;
   }
-
+   
    
 }
  
@@ -74,7 +73,7 @@
   display: flex;
   height: 100vh;
   position: relative;
-  
+  gap: 2rem;
   /* overflow: auto; */
   
    
@@ -113,8 +112,18 @@
   display: flex;
   justify-content: center;
 }
-
+ 
+.center-stat{
+ 
+  display: flex;
+  position: relative;
+  min-height: 115vh;
+  border: 5px solid  ;
+  gap: 2rem;
+  
+}
+ 
 .stat_page{
-  border: 5px solid red;
   width: 100%;
+  
 }

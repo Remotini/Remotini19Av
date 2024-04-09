@@ -1,46 +1,47 @@
 import React, { useState } from "react";
 import "./EditTask.css";
 import { FaUpload } from "react-icons/fa";
-
-const EditTask = ({ task, setEditTask, setUpdatedTask }) => {
+import axios from "axios";
+import Swal from "sweetalert2";
+const EditTask = ({ task, setEditTask, setUpdatedTask, updatedTask }) => {
   const date = new Date();
 
   const [newTask, setNewTask] = useState({
-    nom: task.nom,
+    nom: task.name,
     date: new Date(),
     description: task.description,
     project: "projet1",
-    rapport_id: task.rapport_id,
   });
 
   const handleEditTask = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
+      const response = await axios.put(
         `http://localhost:5001/api/tasks/${task._id}`,
         {
-          method: "PUT",
+          name: newTask.nom,
+          description: newTask.description,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newTask),
         }
       );
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         console.log("Task updated successfully:", data);
-        setUpdatedTask(true);
+        setUpdatedTask(!updatedTask);
         setNewTask({
           nom: "",
           date: "",
           description: "",
           project: "",
-          rapport_id: "",
         });
         setEditTask(false);
-      } else {
-        console.log("Failed to update task");
+
+        Swal.fire({ icon: "success", title: "Tâche modifiée avec succès" });
       }
     } catch (error) {
       console.error("Error updating task:", error);
@@ -146,7 +147,7 @@ const EditTask = ({ task, setEditTask, setUpdatedTask }) => {
           />
         </label>
         <button className="submit" type="submit">
-          Ajouter
+          Modifier
         </button>
       </form>
     </div>

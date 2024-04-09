@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 // import { Pie } from "react-chartjs-2";
 import Statistique from "../components/Statistiique/Statist";
 // import { Chart as ChartJS } from "chart.js/auto";
-
+import UserTable from "../components/userTable/userTable";
 function Stat() {
   // const [tasks, setTasks] = useState([]);
   // useEffect(() => {
@@ -26,12 +26,13 @@ function Stat() {
     <div className="All">
       <div className="App" />
       <Header />
-      <div className="center">
+      <div className="center-stat">
         <div className="the-nav">
           <NavBar />
         </div>
         <div className="stat_page">
-          <Statistique />
+          {/* <Statistique /> */}
+          <UserTable />{" "}
         </div>
       </div>
       <div className="ft">
