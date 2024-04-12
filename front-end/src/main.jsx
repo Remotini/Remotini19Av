@@ -8,11 +8,11 @@ import ReportProvider from "../src/context/ReportCotne";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
-      {/* <ReportProvider> */}
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      {/* </ReportProvider> */}
+      <ReportProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReportProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

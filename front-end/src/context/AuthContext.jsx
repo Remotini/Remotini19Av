@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 export const AuthContext = createContext();
 export const authReducer = (state, action) => {
   switch (action.type) {
@@ -16,14 +16,18 @@ export const authReducer = (state, action) => {
 };
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, { user: null });
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       dispatch({ type: "LOGIN", payload: user }); //check on load if the user still in local storage then add it to the sharable state
     }
+    setLoading(false);
   }, []);
 
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   console.log("AuthContext state : ", state);
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

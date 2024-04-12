@@ -60,19 +60,30 @@ const getTaskDetails = async (req, res) => {
  */
 const getTasks = async (req, res) => {
   try {
-    const { rapport_id } = req.query;
-    console.log(rapport_id);
-    if (!rapport_id) {
+    // const { rapport_id } = req.query;
+    rapport_ids = Array.isArray(req.query.rapport_id.split(","))
+      ? req.query.rapport_id.split(",")
+      : [req.query.rapport_id]; //so i can pass either an array of id or a single id
+
+    if (!rapport_ids) {
       return res
         .status(400)
         .json({ message: "rapportId query parameter is required" });
     }
 
-    const rapport = await Report.findById(rapport_id).populate("tasks");
+    // const rapport = await Report.findById(rapport_id).populate("tasks");
+    const rapport = await Report.find({ _id: { $in: rapport_ids } }).populate({
+      path: "tasks",
+      model: "Task",
+    }); //to get the tasks of the rapportd by $in operator
+
     if (!rapport) {
       return res.status(404).json({ message: "rapport not found" });
     }
-    res.json(rapport.tasks);
+    const rapportString = JSON.stringify(rapport);
+    const rapportJson = JSON.parse(rapportString);
+    const allTasks = rapportJson.map((rapport) => rapport.tasks);
+    res.json(allTasks.flat()); //to flaten the nested array [[],[],[]] => []
   } catch (error) {
     console.error("Error fetching tasks:", error);
     res.status(500).json({ error: "Failed to fetch tasks" });

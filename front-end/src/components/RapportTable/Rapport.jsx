@@ -257,7 +257,7 @@ function Rapport({
                   {/* <th>Actions</th> */}
                 </tr>
                 {rapports
-                  .filter((rapport) => !rapport.disabled)
+                  .filter((rapport) => rapport.active)
                   .map((rapport, index) => (
                     <tr
                       key={index}

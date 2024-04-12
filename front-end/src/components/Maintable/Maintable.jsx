@@ -23,13 +23,10 @@ function Maintable(props) {
   const [openOptions, setOpenOptions] = useState(null);
   useEffect(() => {
     const fetchTasks = async () => {
-      console.log("rapport_id", rapport_id);
       const response = await axios.get(
         `http://localhost:5001/api/tasks?rapport_id=${rapport_id}`
       );
-      console.log("response tasks ", response);
       if (response) {
-        console.log(Tasks);
         setTasks(response.data);
       } else {
         console.log("error");
@@ -149,7 +146,7 @@ function Maintable(props) {
                                 ? "#d8b339"
                                 : task.status === "Validé"
                                 ? "#00a36d"
-                                : task.status === "refusé"
+                                : task.status === "Refusé"
                                 ? "#db3434"
                                 : "transparent",
                           }}

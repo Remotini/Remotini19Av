@@ -6,26 +6,29 @@
    /* border: 5px solid green; */
    /* width:91%; */
    margin: auto ;
-  
-   border: 5px solid hsl(0, 0%, 69%,1);
+/*   
+   border: 5px solid hsl(0, 0%, 69%,1); */
    
    /* width: 97%; */
-   width: 70%;
+   width: 100%;
    padding-bottom: 2rem;
-    
-   margin-bottom: 6rem;
+   margin-bottom: 2rem;
    height: clamp(200px,90%,350%);
    overflow: auto !important;
-   background-color: hsl(0, 0%, 95%,1);
+   /* background-color: hsl(0, 0%, 95%,1); */
    padding-top: 2rem;    /*fix this when page getting smaller make the heigt bigger or check m3a louled ken mech bech taamel overflow*/
 }
 .charts{
-   border: 5px solid  hsl(0, 0%, 60%);
-   height: 350px;
-   background-color: hsl(0, 0%, 98%,0.99);
+   /* border: 5px solid  hsl(0, 0%, 60%); */
+/*   
+   background-color: hsl(0, 0%, 98%,0.99); */
    width: 98%;
    margin-bottom: 4rem;
-
+   display: grid;
+   grid-template-columns:repeat(auto-fit, minmax(330px,1fr));  
+   gap: 1rem;
+   
+   
 }
 .gridding-container{
    width: 100%;
@@ -35,28 +38,29 @@
    gap: 1rem;
    justify-content: center;
    align-items: center;
+    
 }
 
 .doubled-cards{
-   width: 80%;
+   /* width: 80%;
    display: flex;
    flex-direction: row;
-   /* align-items: center; */
-   flex-wrap: wrap;
+   align-items: center; */
+   /* flex-wrap: wrap;
    
    justify-content: space-around;
    align-items: center;
-   padding-bottom: 2rem;
+   padding-bottom: 2rem; */
 }
 
-.two-cards{
+/* .two-cards{
    display: flex;
    flex-direction: column;
     width: 49%;
  justify-content: center;
  align-items: center;
    min-width: 250px;
-}
+} */
  
 /* @media screen and (max-width: 1310px) {
     .Cards-containerStat{
@@ -65,3 +69,20 @@
     }
    
 } */
+
+.left-chart{
+  background-color: hsl(195, 53%, 88%);
+  border-radius: 5px;
+  padding: 1rem;  
+  height: 520px;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.right-chart{
+   display: block;
+    padding: 1rem;
+    border-radius: 5px;
+      background-color: hsl(120, 73%, 85%);
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}

@@ -12,8 +12,6 @@ const AddTasks = ({
   updatedTask,
 }) => {
   const { user } = useAuthContext();
-  console.log(user);
-
   const [project, setProject] = useState([]);
   const date = new Date();
 
@@ -32,7 +30,6 @@ const AddTasks = ({
           `http://localhost:5001/api/projects?userId=${user.id}`
         );
         setProject(response.data);
-        console.log(response.data);
         // Set default project name if project list is not empty
         if (response.data.length > 0) {
           setNewTask({ ...newTask, project: response.data[0].name });
@@ -43,7 +40,7 @@ const AddTasks = ({
     };
 
     fetchProjects();
-  }, [user]);
+  }, []);
 
   const handleAddTask = async (e) => {
     e.preventDefault();
