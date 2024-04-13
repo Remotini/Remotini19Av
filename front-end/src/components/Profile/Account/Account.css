@@ -10,7 +10,6 @@
   display: flex;
   justify-content: space-around;
   background: white;
-  
   height: clamp(20rem, 20vw, 30rem);
   border-radius: 0.5rem;
   min-width: 390px;
@@ -106,12 +105,11 @@
  
 }
 .right-first-div{
-   
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-   
+  justify-content: flex-start;
+  margin-right: 7rem;
 }
 
 .upload-btn {
@@ -147,9 +145,6 @@
   min-width: 390px;
   height: clamp(640px, 40vh, 700px);
   border-radius: 0.5rem;
-  
-   
-   
 }
 
 .left-second-div {
@@ -178,30 +173,23 @@
   display: flex;
   flex-direction: column;
   margin-left: 1.5rem;
-  line-height: 3rem;
+  line-height: 2rem;
   margin-right: 1rem;
 }
 
- 
-.labels {
+.first-row{
   display: flex;
   justify-content: space-between;
-  color: rgb(62, 70, 118);
-  line-height: 1rem;
 }
-
- .last-name {
- 
-} 
 
 .inputs-names {
   display: flex;
-  gap: 1rem;
-   
+  flex-direction: column;
+  
 }
 .inputs-names input{
   transition: 0.5s ease-in width;
-  width: clamp(10.5rem, 35vw, 330px);
+  width: clamp(10.5rem, 35vw, 300px);
   cursor: auto;
   height: 33px;
   font-size: 15px;
@@ -210,7 +198,6 @@
   background-color: rgb(255, 255, 255);
   border-radius: 3.2px;
   border: 1px solid rgb(222, 226, 230);
- 
   width: 100%;
   
 }
@@ -220,21 +207,18 @@
    justify-content: flex-start;
    align-items:flex-start;
    color: rgb(62, 70, 118);
- 
    width: 100%;
     
 }
 .nomFam p{
-  
   width: 100%;
   text-align: left;
   margin: 0;
 }
  
 .e-mail {
-   
-  margin-top: 1rem;
-   
+
+   line-height: 3rem;
   color: rgb(62, 70, 118);
 }
 
@@ -247,9 +231,7 @@
   font-size: 15px;
   font-weight: 400;
   height: 33px;
-  
   width: 100%
-  
 }
 
 .CIN {

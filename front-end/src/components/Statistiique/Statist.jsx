@@ -114,7 +114,6 @@ const Statistique = ({ tasksData, reportsData }) => {
       {
         label: "En cours",
         data: [statusCounts.enCours],
-        backgroundColor: [],
         backgroundColor: ["rgba(0, 0, 255, 0.8)"],
         borderRadius: 10,
         barPercentage: 0.5,
@@ -122,7 +121,6 @@ const Statistique = ({ tasksData, reportsData }) => {
       {
         label: "Validé",
         data: [statusCounts.valide],
-        backgroundColor: [],
         backgroundColor: ["rgba(0, 255, 0, 0.8)"],
         borderRadius: 10,
         barPercentage: 0.5,
@@ -130,7 +128,6 @@ const Statistique = ({ tasksData, reportsData }) => {
       {
         label: "Refusé",
         data: [statusCounts.refused],
-        backgroundColor: [],
         backgroundColor: ["rgba(255, 0, 0, 0.8)"],
         borderRadius: 10,
         barPercentage: 0.5,

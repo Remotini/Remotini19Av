@@ -3,11 +3,15 @@ import "./Account.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import unknown from "../../../assets/unknown-user.png";
 import { FaUpload } from "react-icons/fa";
+import EditAccount from '../../../components/Profile/Account/EditAccount';
+
+
 
 const Account = () => {
+
   return (
     <div className="account">
-      <div className="first-div">
+      {/* <div className="first-div">
         <div className="left-first-div">
           <h5 className="public-info">Public Info</h5>
           <span className="info-u">
@@ -27,7 +31,7 @@ const Account = () => {
             ></input>
           </span>
           <button type="submit" className="save-changes">
-            Sauvegarder
+            Sauvegarder aaslema ya hmema
           </button>
         </div>
         <div className="right-first-div">
@@ -42,7 +46,7 @@ const Account = () => {
             </span>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="second-div">
         <div className="left-second-div">
           <div className="heading">
@@ -54,17 +58,27 @@ const Account = () => {
             </div>
           </div>
           <div className="info">
-            <div className="inputs-names">
-              <div className="nomFam">
-                <p className="prenom">Prénom</p>
-                <input type="text" placeholder="Prenom" />
+            <div className="first-row">
+              <div className="inputs-names">
+                <div className="nomFam">
+                  <p className="prenom">Prénom</p>
+                  <input type="text" placeholder="Prenom" />
+                </div>
+                <div className="nomFam">
+                  <p className="last-name">Nom de famille</p>
+                  <input type="text" placeholder="Nom de famille" />
+                </div>
               </div>
-              <div className="nomFam">
-                <p className="last-name">Nom de famille</p>
-                <input type="text" placeholder="Nom de famille" />
-              </div>
+              <div className="right-first-div">
+                <img src={unknown} alt="user-photo" />
+                <div className="upload-btn">
+                  <span className="upload">
+                    <FaUpload className="icon2" />
+                    Importer
+                  </span>
+                </div>
             </div>
-
+            </div>
             <span className="e-mail">
               <label className="mail-label">E-mail</label>
               <div className="e-mail-input">
@@ -93,7 +107,7 @@ const Account = () => {
                 <input type="text" placeholder="Adresse" />
               </span>
             </div>
-            <button type="submit" className="save-changes">
+            <button type="submit" className="save-changes" >
               Sauvegarder
             </button>
           </div>

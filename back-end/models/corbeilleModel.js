@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const CorbeilleSchema = new mongoose.Schema({
   reportId: { type: mongoose.Schema.Types.ObjectId, ref: "Rapport" },
@@ -6,4 +6,5 @@ const CorbeilleSchema = new mongoose.Schema({
 });
 
 const Corbeille = mongoose.model("Corbeille", CorbeilleSchema);
-export default Corbeille;
+
+module.exports = Corbeille;

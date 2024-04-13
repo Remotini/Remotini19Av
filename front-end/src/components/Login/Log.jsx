@@ -41,7 +41,7 @@ function Log() {
         </div>
         <div className="text">
           <h3>
-            Vouns n'avez pas de compte ? <Link to="/SignUp">Sing Up</Link>
+            Vouns n'avez pas de compte ? <Link to="/SignUp">Sign Up</Link>
           </h3>
         </div>
       </form>

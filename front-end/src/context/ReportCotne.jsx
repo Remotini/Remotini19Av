@@ -8,7 +8,7 @@ const RappportProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [rapports, setRapports] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log("user from context", user);
+  // console.log("user from context", user);
   if (user === null) {
     <Navigate to="/Login" />;
   }

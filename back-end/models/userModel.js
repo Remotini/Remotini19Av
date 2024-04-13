@@ -47,7 +47,7 @@ const userSchema = new Schema({
       workersReports: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Rapport",
+          ref: "Report",
         },
       ],
     },

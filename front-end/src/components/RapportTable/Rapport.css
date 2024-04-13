@@ -245,9 +245,9 @@ button {
 
   
   border-radius: 5px;
-  bottom:  0rem;
-  right: -0.5rem;
-  z-index: 500;
+  bottom:  -1.6rem;
+  right: -1.3rem;
+  z-index: 10;
 }
 
 .options-list button {

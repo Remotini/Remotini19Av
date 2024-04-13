@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 import "../App.css";
@@ -8,6 +8,8 @@ import AddTaks from "../components/AddTask/AddTasks";
 import EditReport from "../components/EditRaport/EditRaport";
 import EditTask from "../components/EditTask/EditTask";
 import TaskCard from "../components/TaskCard/TaskCard";
+import { AuthContext } from "../context/AuthContext";
+// import UserTable from "../components/UserTable/UserTable";
 function Home() {
   const [addTask, setAddTask] = useState(false);
   const [editReport, setEditReport] = useState(false);
@@ -18,6 +20,7 @@ function Home() {
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [task, setTask] = useState(null);
   const [taskCard, setTaskCard] = useState(false);
+  const { user }=useContext(AuthContext);
 
   return (
     <>
@@ -68,6 +71,7 @@ function Home() {
             setTask={setTask}
             setTaskCard={setTaskCard}
           />
+          {/* <UserTable /> */}
         </div>
         {addTask && <div className="All-b"></div>}
         {editReport && <div className="All-b"></div>}

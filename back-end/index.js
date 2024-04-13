@@ -8,6 +8,7 @@ const userRoutes = require("./Routes/user.js");
 const reportRoutes = require("./Routes/reports.js");
 const taskRoutes = require("./Routes/tasks.js");
 const projectRoutes = require("./Routes/projects.js");
+const chefRoutes = require("./Routes/chef.js");
 const mongoose = require("mongoose"); // Import the mongoose package
 //middleware
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/chef", chefRoutes);
 
 // THE TWO FUNCTIONS BELOW ARE FOR TESTING
 
