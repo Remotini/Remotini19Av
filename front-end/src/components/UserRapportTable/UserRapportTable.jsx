@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
-const UserRapportTable = () => {
+const UserRapportTable = ({ employeeId,clickedUser,setClickedUser,setEmployeeId ,userFullName}) => {
   // State to store user rapports array
   const [userRapportsArray, setUserRapportsArray] = useState([]);
+  const { user } = useContext(AuthContext);
 
   // Fetch user rapports from server on component mount
   useEffect(() => {
@@ -16,29 +18,54 @@ const UserRapportTable = () => {
 
   useEffect(() => {
     // Fetch user rapports from server when current user is available
-    const chefId = currentUser._id;
-
-    if (chefId) {
-      axios
-        .get(`http://localhost:3001/chefhome/getreports?chefId=${chefId}`)
-        .then((response) => {
+    const chefId = user.id;
+    console.log("currentUser", user);
+    console.log("chefId", chefId);
+    console.log("employeeId", employeeId);
+    const fetchUserRapports = async () => {
+      try {
+        if (chefId) {
+          const response = await axios.get(
+            `http://localhost:5001/api/chef/getreports`,
+            {
+              params: {
+                chefId: chefId,
+                employeeId: employeeId,
+              },
+            }
+          );
           const data = response.data;
           setUserRapportsArray(data);
+          console.log("Rapports fetched successfully:", data);
           // Store fetched data in local storage
           localStorage.setItem("rapportsArray", JSON.stringify(data));
-        })
-        .catch((error) => {
-          console.error("Error fetching rapports:", error);
-        });
-    }
-  }, []); // This effect runs only on component mount
+        }
+      } catch (error) {
+        console.error("Error fetching rapports:", error);
+      }
+    };
+
+    fetchUserRapports();
+  }, [user]); // This effect runs when currentUser.id changes
 
   return (
     <div className="wrapperTable">
-      <div className="rapport-desc"></div>
+      <div className="rapport-desc">
+      <div
+            className="back-button"
+            onClick={() => {
+              setClickedUser(!clickedUser);
+              setEmployeeId(null);
+              
+            }}
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </div>
+        <span>Rapports de {userFullName}</span>
+      </div>
 
       <div className="table-head">
-        <div className="left">Rapport</div>
+        <div className="left">Rapports</div>
         <div className="search">
           <input
             type="search"

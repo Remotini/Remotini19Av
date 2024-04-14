@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "../src/hooks/useAuthContext";
 import HomeChef from "./pages/HomeChef";
+import.meta.hot;
 
 function App() {
   const { user } = useAuthContext();
@@ -26,8 +27,8 @@ function App() {
       <Route path="/Login" element={!user ? <Login /> : <Navigate to="/" />} />
       {/* Route for the /SignUp path */}
       <Route path="/SignUp" element={!user ? <SignUp /> : <Navigate to="/" />} />
-      {/* Route for the /chef path */}
-      <Route path="/chef" element={user && user.role === 'Chef' ? <HomeChef /> : <Navigate to="/Login" />} />
+      
+      
     </Routes>
   );
 }

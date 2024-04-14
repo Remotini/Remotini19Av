@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 
 import Footer from "../components/Footer/Footer";
-import UserTable from "../components/userTable/userTable";
+import UserTable from "../components/UserTable/UserTable";
 
 const HomeChef = () => {
   console.log("HomeChef");

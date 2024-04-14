@@ -3,7 +3,7 @@ const router = express.Router();
 const { getUsers, getReports, sendReport, discardReport } = require("../controllers/chefController.js");
 
 
-router.get("/", getReports);
+router.get("/getreports", getReports);
 router.patch("/sendreport", sendReport);
 router.patch("/", discardReport);
 router.get("/getusers", getUsers);

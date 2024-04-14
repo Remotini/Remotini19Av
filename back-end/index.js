@@ -92,6 +92,57 @@ app.patch("/addUser", async (req, res) => {
     res.status(500).json({ error: "Failed to add user" });
   }
 });
+app.patch("/removeUser", async (req, res) => {
+  try {
+    const { userId, chefId } = req.body;
+    if (!userId || !chefId) return res.sendStatus(400);
+
+    const chef = await User.findById(chefId);
+    if (!chef) {
+      return res.status(404).json({ message: "Chef not found!" });
+    }
+
+    // Remove the user from the chef's employees array
+    chef.employee = chef.employee.filter((emp) => emp._id != userId);
+    await chef.save();
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { ChefId: null },
+      { new: true }
+    );
+
+    res.json({ user, chef });
+  } catch (err) {
+    console.error("Error removing user:", error);
+    res.status(500).json({ error: "Failed to remove user" });
+  }
+});
+app.patch("/addReport", async (req, res) => {
+  try {
+    const { chefId, userId, rapportId } = req.body;
+
+    const chef = await User.findById(chefId);
+    if (!chef) {
+      return res.status(404).json({ message: "Chef not found!" });
+    }
+
+    // Find the employee (sender) by id in the chef's employees array
+    const employeeIndex = chef.employee.findIndex((emp) => emp._id == userId);
+    if (employeeIndex === -1) {
+      return res.status(404).json(userId);
+    }
+
+    // Push the rapportId to the employee's workersReports array
+    chef.employee[employeeIndex].workersReports.push(rapportId);
+    await chef.save();
+
+    res.json({ message: "Rapport added to employee successfully" });
+  } catch (error) {
+    console.error("Error adding rapport to employee:", error);
+    res.status(500).json({ error: "Failed to add rapport to employee" });
+  }
+});
 mongoose
   .connect(process.env.MONGO_URI1)
   .then(() => {

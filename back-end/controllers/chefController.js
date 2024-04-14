@@ -46,8 +46,8 @@ const getUsers = async (req, res) => {
  */
 const getReports = async (req, res) => {
   try {
-    const { chefId } = req.query;
-    const { employeeId } = req.body;
+    const { chefId,employeeId } = req.query;
+    
 
     // Find the chef by id
     const chef = await User.findById(chefId).populate("employee");
