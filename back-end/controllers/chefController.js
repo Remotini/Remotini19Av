@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/userModel");
 const Corbeille =require("../models/corbeilleModel");
+const Task = require("../models/taskModel");
 
 /**
  * GET /users - Get all users by id of chef.
@@ -68,7 +69,7 @@ const getReports = async (req, res) => {
 
     // Extract the reports of the specified employee
     const employeeReports = populatedEmployee.workersReports;
-
+    console.log(employeeReports)
     res.json(employeeReports);
   } catch (error) {
     console.error("Error fetching reports:", error);
@@ -151,4 +152,34 @@ const discardReport = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, getReports, sendReport, discardReport };
+//Approve a task by Chef and adding comment to it
+
+const approveTask = async (req, res) => {
+  try{
+    const {chefId} = req.query;
+    const {taskId,comment,status} = req.body;
+    if (!chefId || !taskId) {
+      return res.sendStatus(400);
+    }
+    const chef = await User.findById(chefId);
+    if (!chef) {
+      return res.status(404).json({ message: "Chef not found!" });
+    }
+    const task = await Task.findById(taskId);
+    if (!task) {
+      return res.status(404).json({ message: "Task not found!" });
+    }
+    task.status = status;
+    task.comments.push({text:comment,postedBy:chef.firstName+" "+chef.lastName,createdAt:Date.now()});
+    await task.save();
+    res.json({ message: "Task approved successfully" });
+  }
+  catch (error) {
+    console.error("Error approving task:", error);
+    res.status(500).json({ error: "Failed to approve task" });
+
+  }
+}
+    
+
+module.exports = { getUsers, getReports, sendReport, discardReport,approveTask };

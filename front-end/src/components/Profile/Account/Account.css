@@ -324,3 +324,44 @@
   height: 33px;
   width: 100%;
 }
+
+.user-row td{
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  
+}
+
+.user-row:hover{
+  background-color: rgb(222, 226, 230);
+  box-shadow: 0 0 10px 0 rgb(222, 226, 230);
+  transition: 0.5s;
+}
+.footer-table{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  
+}
+.footer-table button{
+  background-color: hsl(216, 70%, 55%,0.87);
+  appearance: button;
+  border: 1px solid rgb(79, 138, 224);
+  border-radius: 3.2px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-weight: 400;
+  height: 35px;
+  margin-top: 1rem;
+  
+  width: clamp(100px, 15vw, 150px);
+  font-size: 15px;
+}
+
+.footer-table button:hover{
+  background-color: hsl(216, 70%, 55%,1);
+  transition: 500ms;
+}

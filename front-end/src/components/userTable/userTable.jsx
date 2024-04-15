@@ -101,7 +101,9 @@ const UserTable = () => {
             </table>
           </div>
 
-          <div className="footer-table"></div>
+          <div className="footer-table">
+            {/* <button> click </button> */}
+          </div>
         </div>
       ) : (
         <UserRapportTable
