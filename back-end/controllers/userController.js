@@ -19,7 +19,8 @@ const loginUser = async (req, res) => {
     const firstName = user.firstName;
     const lastName = user.lastName;
     const role = user.role;
-    res.status(200).json({ id, email, token, firstName, lastName ,role });
+    const chefId=user.ChefId;
+    res.status(200).json({ id, email, token, firstName, lastName ,role ,chefId});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

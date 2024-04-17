@@ -1,32 +1,15 @@
 import React from "react";
 import "./TaskCard.css";
+//
+import CommentsUser from "../CommentsUser/CommentsUser";
 
 const TaskCard = ({ task, onClose }) => {
   return (
-    <div className="card">
-      <div className="header">
-        <div>
-          <a className="title" href="#">
-            {task.nom}
-          </a>
-          <p className="name">By John Doe</p>
-        </div>
-        <span className="image"></span>
-      </div>
-      <p className="description">
-        {task.description}
-      </p>
-      <dl className="post-info">
-        <div className="cr">
-          <dt className="dt">Published</dt>
-          <dd className="dd">{task.datePub}</dd>
-        </div>
-        <div className="cr">
-          <dt className="dt">Reading time</dt>
-          <dd className="dd">{task.dateComp}</dd>
-        </div>
-      </dl>
-    </div>
+    <>
+      <div className="task-card">
+        <CommentsUser />
+      </div> // maghyr el css khater / ken bech njibou el css bech tet
+    </>
   );
 };
 

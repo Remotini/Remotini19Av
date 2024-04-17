@@ -33,6 +33,7 @@ function Rapport({
     id: "",
     name: "",
   });
+  const [nomRapRecherche, setNomRapRecherche] = useState("");
   const myRef = useRef(null);
   const containerRef = useRef(null);
   const date = new Date();
@@ -212,6 +213,33 @@ function Rapport({
       scrollToBottom();
     }
   }, [triggerScroll]);
+  const handleSearch = (e) => {
+    setNomRapRecherche(e.target.value);
+    // if (e.target.value) {
+    //   const filteredRapports = rapports.filter((rapport) =>
+    //     rapport.name.toLowerCase().includes(e.target.value.toLowerCase())
+    //   );
+    //   setRapports(filteredRapports);
+    // } else {
+    //   const fetchReports = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //     `http://localhost:5001/api/reports?userId=${user.id}`
+    //     );
+    //     if (response.data) {
+    //     setRapports(response.data);
+    //     console.log("Reports fetched successfully:", response.data);
+    //     } else {
+    //     console.log("Error fetching reports");
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching reports:", error);
+    //   }
+    //   };
+    //   fetchReports();
+    // }
+
+  }
   return (
     <>
       {!clickedTask ? (
@@ -224,6 +252,7 @@ function Rapport({
                 type="search"
                 className="rap-search-input"
                 placeholder="Rechercher..."
+                onChange={(e)=>handleSearch(e)}
               ></input>
               <span
                 className="rap-plus-icon"
@@ -257,7 +286,13 @@ function Rapport({
                   {/* <th>Actions</th> */}
                 </tr>
                 {rapports
-                  .filter((rapport) => rapport.active)
+                  .filter((rapport) => {
+                    return nomRapRecherche.toLowerCase()==="" ?
+                    rapport.active : 
+                    rapport.name.toLowerCase().startsWith(nomRapRecherche.toLowerCase()) && rapport.active
+      
+                            
+                    })
                   .map((rapport, index) => (
                     <tr
                       key={index}

@@ -116,7 +116,7 @@ const UserRapportTable = ({
                 {userRapportsArray.map((rapport, index) => (
                   <tr key={index} className="user-row">
                     <td onClick={() => handleTaskClick(rapport)}>{rapport.name}</td>
-                    <td onClick={() => handleTaskClick(rapport)}>{rapport.createdAt}</td>
+                    <td onClick={() => handleTaskClick(rapport)}>{new Date(rapport.createdAt).toLocaleString()}</td>
                     <td onClick={() => handleTaskClick(rapport)}>{rapport.tasks.length}</td>
                   </tr>
                 ))}

@@ -1,13 +1,58 @@
-import React from "react";
+import React,{useState} from "react";
 import "./Account.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import unknown from "../../../assets/unknown-user.png";
 import { FaUpload } from "react-icons/fa";
 import EditAccount from '../../../components/Profile/Account/EditAccount';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 
-const Account = () => {
+const Account = () => { 
+  // const [info, setNewInfo] = useState({ 
+  //     prenom: user.firstName,
+  //     nom: user.lastName,
+  //     photo: user.picturePath,
+  //     cin: user.cin,
+  // });
+
+  // const handleEditAccount = async (e) => { 
+  //     e.preventDefault();
+
+  //     try {
+  //         const response = await axios.put( 
+  //             `http://localhost:5001/api/account/${user._id}`,
+  //             {
+  //                 firstName: info.prenom,
+  //                 lastName: info.nom,
+  //                 picturePath: info.photo,
+  //                 cin: info.cin
+  //             },
+  //             {
+  //                 headers: {
+  //                     "Content-Type": "application/json",
+  //                 },
+  //             }
+  //         );
+
+  //         if (response.status === 200) { 
+  //             const data = response.data;
+  //             console.log("Info updated successfully:", data);
+  //             setUpdatedUser(!updatedUser); 
+  //             setNewInfo({ 
+  //                 prenom: "",
+  //                 nom: "",
+  //                 photo: "",
+  //                 cin: "",
+  //             });
+  //             Swal.fire({ icon: "success", title: "info modifiée avec succès" }); 
+  //         }
+  //     } catch (error) { 
+  //         console.error("Error updating user info", error);
+  //         Swal.fire({ icon: "error", title: "Une erreur est survenue lors de la mise à jour des informations" }); 
+  //     }
+  // };
 
   return (
     <div className="account">
@@ -47,6 +92,7 @@ const Account = () => {
           </div>
         </div>
       </div> */}
+      <form >
       <div className="second-div">
         <div className="left-second-div">
           <div className="heading">
@@ -107,14 +153,14 @@ const Account = () => {
                 <input type="text" placeholder="Adresse" />
               </span>
             </div>
-            <button type="submit" className="save-changes" >
+            <button type="submit" className="save-changes">
               Sauvegarder
             </button>
           </div>
         </div>
       </div>
+      </form>
     </div>
   );
 };
-
 export default Account;

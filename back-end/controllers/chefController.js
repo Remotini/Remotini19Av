@@ -93,13 +93,16 @@ const sendReport = async (req, res) => {
     if (employeeIndex === -1) {
       return res.status(404).json(userId);
     }
-    console.log(chef.employee[employeeIndex].workersReports);
+    // Check if the report is already sent
+    if (chef.employee[employeeIndex].workersReports.includes(rapportId)) {
+      return res.status(400).json({ message: "Report already sent!" });
+    }
 
     // Push the rapportId to the employee's workersReports array
     chef.employee[employeeIndex].workersReports.push(rapportId);
     await chef.save();
 
-    res.json({ message: "Rapport added to employee successfully" });
+    res.json({ message: "Report added to employee successfully" });
   } catch (error) {
     console.error("Error adding rapport to employee:", error);
     res.status(500).json({ error: "Failed to add rapport to employee" });
