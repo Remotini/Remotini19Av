@@ -55,6 +55,9 @@
   border-radius: 50px;
   opacity: 0.8;
 }
+ .footer-table button:nth-child(2){
+  background-color: #00a36d !important;
+ }
 .tableaux-rapport .elhead {
   position: sticky;
   top: 0rem;
@@ -216,8 +219,8 @@ button {
 
 }
 .footer-table {
-  
-   
+ 
+  position: relative;
   z-index: 4;
   display: flex;
   justify-content: center; 
@@ -225,6 +228,7 @@ button {
   box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1);
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  /* height: 50px; */
 }
 .button {
   width: 170px;
@@ -273,7 +277,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-   
+  margin-left: 2rem;
 }
 .button__icon{
   position: absolute;
@@ -282,7 +286,7 @@ button {
   height: 30px;
   padding-top: 5px;
   width: 30px;
-  background-color: #1663d6;
+  /* background-color: #1663d6; */
    
   display: flex;
   justify-content: center;
@@ -307,11 +311,76 @@ button {
 }
 .button:hover .button__icon {
   width: 30px;
-  transform: translateX(-130px);
+  transform: translateX(-70px);
 }
 .button:active .button__icon {
   background-color: #173d77;
 }
 .button:active {
   border: 1px solid #173d77;
+}
+
+/* trying new button css */
+.btn-send {
+   height:55px;
+   
+  display: flex;
+  align-items: center;
+ 
+  margin-left: 2rem;
+}
+.btn-send button {
+  font-family: inherit;
+  font-size: 20px;
+  background:  hsl(160, 100%, 37%);;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 0px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 181px;
+}
+
+.btn-send span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+  font-size: .95rem;
+}
+
+.btn-send svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+ .btn-send button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+ .btn-send button:hover svg {
+  transform: translateX(3.2em) rotate(45deg) scale(1.1);
+}
+
+.btn-send button:hover span {
+  transform: translateX(10em);
+}
+
+.btn-send button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
 }
