@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import './UserTaskTable.css';
+import "./UserTaskTable.css";
+import Swal from "sweetalert2";
 
 const UserTaskTable = ({
   taskClicked,
@@ -11,7 +12,8 @@ const UserTaskTable = ({
   const [Tasks, setTasks] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openOptions, setOpenOptions] = useState(null);
-
+  const [update, setUpdate] = useState(false);
+  
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -25,33 +27,37 @@ const UserTaskTable = ({
       }
     };
     fetchTasks();
-  }, []);
-  // const handleApproveTask = async (id) => {
-  //   const result = await Swal.fire({
-  //     title: "Vous allez approuver cette tache",
-  //     text: "Vous ne pourrez pas revenir en arrière!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "approuver",
-  //     cancelButtonText: "Annuler",
-  //   });
+  }, [update]);
+  const handleStatusTask = async (status, id) => {
+    const result = await Swal.fire({
+      title: status==="Validé" ? "Approuver la tache" : "Refuser la tache",
+      text: "Vous ne pourrez pas revenir en arrière!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui",
+      cancelButtonText: "Annuler",
+    });
 
-  //   if (result.isConfirmed) {
-  //     // console.log(id);
-  //     const response = await axios.delete(
-  //       `http://localhost:5001/api/tasks/${id}?rapportId=${rapport_id}`
-  //     );
-  //     if (response.status === 200) {
-  //       const newTasks = Tasks.filter((task) => task._id !== id);
-  //       setTasks(newTasks);
-  //       console.log("task deleted successfully");
-  //     } else {
-  //       console.log("error");
-  //     }
-  //   }
-  // };
+    if (result.isConfirmed) {
+      const response = await axios.patch(
+        `http://localhost:5001/api/chef/changeStatusTask`,
+        {
+          taskId: id,
+          status: status,
+        }
+      );
+      if (response.status === 200) {
+        console.log("task changed");
+        setUpdate(!update);
+        Swal.fire("Approuvé!", "La tache a été approuvée.", "success");
+        
+      } else {
+        console.log("error");
+      }
+    }
+  };
   return (
     <>
       <div className="wrapperTable">
@@ -108,10 +114,10 @@ const UserTaskTable = ({
                   onMouseLeave={() => setHoveredRow(null)}
                   className="user-row"
                 >
-                  <td onClick={() => handleTaskCard(task)}>{task.project}</td>
-                  <td onClick={() => handleTaskCard(task)}>{task.name}</td>
+                  <td >{task.project}</td>
+                  <td >{task.name}</td>
 
-                  <td onClick={() => handleTaskCard(task)}>
+                  <td >
                     {new Date(task.createdAt).toLocaleDateString()}
                   </td>
 
@@ -120,7 +126,7 @@ const UserTaskTable = ({
                     <div className="btn-edit-user">
                       <div
                         className="button-container"
-                        onClick={() => handleTaskCard(task)}
+                        
                       >
                         <button
                           style={{
@@ -137,41 +143,42 @@ const UserTaskTable = ({
                           {task.status}
                         </button>
                       </div>
-                      <div className='rapped-icons'>
-                      {hoveredRow === index && (
-                        <div
-                          className="approve-icon"
-                          onClick={() =>
-                            setOpenOptions()
-                          }
-                          onMouseLeave={() => setOpenOptions(null)}
-                        >
-                          <button>
-                            
-                            <span class="material-symbols-outlined">
-                              done
-                            </span>
-                          </button>
-                          
-                        </div>
-                      )}
-                      {hoveredRow === index && (
-                        <div
-                          className="desapprove-icon"
-                          onClick={() =>
-                            setOpenOptions()
-                          }
-                          onMouseLeave={() => setOpenOptions(null)}
-                        >
-                          <button>
-                            
-                            <span class="material-symbols-outlined">
-                              close
-                            </span>
-                          </button>
-                          
-                        </div>
-                      )}
+                      <div className="rapped-icons">
+                        {hoveredRow === index && (
+                          <div
+                            className="approve-icon"
+                            onClick={() => setOpenOptions()}
+                            onMouseLeave={() => setOpenOptions(null)}
+                          >
+                            <button
+                              onClick={() =>
+                                handleStatusTask("Validé", task._id)
+                              }
+                            >
+                              <span class="material-symbols-outlined">
+                                done
+                              </span>
+                            </button>
+                          </div>
+                        )}
+                        {hoveredRow === index && (
+                          <div
+                            className="desapprove-icon"
+                            onClick={() => setOpenOptions()}
+                            onMouseLeave={() => setOpenOptions(null)}
+                          >
+                            <button
+                              onClick={() =>
+
+                                handleStatusTask("Refusé", task._id)
+                              }
+                            >
+                              <span class="material-symbols-outlined">
+                                close
+                              </span>
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </td>

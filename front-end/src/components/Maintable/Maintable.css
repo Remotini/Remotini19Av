@@ -26,7 +26,7 @@
   position: relative;
   margin-bottom: 5rem;
   overflow-x: auto;
-   /* overflow-y: hidden; */
+  overflow-y: hidden;
   min-height: 800px;
  
   
@@ -219,13 +219,8 @@ button {
 
 }
 .footer-table {
-<<<<<<< HEAD
   position: relative;
   height: 4rem;
-=======
- 
-  position: relative;
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
   z-index: 4;
   display: flex;
   justify-content: center; 
@@ -333,13 +328,8 @@ button {
   margin-left: 2rem;
 }
 .btn-send button {
-<<<<<<< HEAD
   font-size: 20px;
   font-weight: 600;
-=======
-  font-family: inherit;
-  font-size: 20px;
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
   background:  hsl(160, 100%, 37%);;
   color: white;
   padding: 0.7em 1em;
@@ -351,28 +341,17 @@ button {
   overflow: hidden;
   transition: all 0.2s;
   cursor: pointer;
-<<<<<<< HEAD
   width: 130px;
   border-radius: 50px;
 }
-.btn-send button p{
-  
-}
-=======
-  width: 181px;
-}
 
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
 .btn-send span {
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
   font-size: .95rem;
-<<<<<<< HEAD
   font-weight: semibold;
    
-=======
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
 }
 
 .btn-send svg {
@@ -386,11 +365,7 @@ button {
 }
 
  .btn-send button:hover svg {
-<<<<<<< HEAD
   transform: translateX(1.85em) rotate(45deg) scale(1.1);
-=======
-  transform: translateX(3.2em) rotate(45deg) scale(1.1);
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
 }
 
 .btn-send button:hover span {
@@ -400,7 +375,6 @@ button {
 .btn-send button:active {
   transform: scale(0.95);
 }
-<<<<<<< HEAD
 .reportName{
   position: relative;
   margin-left: 1.8rem;
@@ -408,9 +382,6 @@ button {
   display: flex;
   align-items: center;
 }
-=======
-
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d
 @keyframes fly-1 {
   from {
     transform: translateY(0.1em);
@@ -419,9 +390,5 @@ button {
   to {
     transform: translateY(-0.1em);
   }
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> e01bea00a44d1cb95cacd3c62f7a909192ce859d

@@ -1,47 +1,41 @@
-/* @import url("https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"); */
-
 .task-card {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  /* position: absolute; */
-
-
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.task-card-header {
+.task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.task-card-header h2 {
+.task-name {
+  color: #3e3f42;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.divider {
+  width: 100%;
   margin: 0;
-  font-size: 20px;
-  color: #333;
+  border-top: 1px solid #ced4da;
 }
 
-.task-card-header button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
+.task-info {
+  color: #6c757d;
 }
 
-.task-card-body {
-  display: flex;
+.task-description {
+  margin-bottom: 10px;
 }
 
-.task-card-body-left,
-.task-card-body-right {
-  width: 50%;
+.publication-date {
+  font-size: 0.9rem;
 }
 
-.task-card-body-right-top,
-.task-card-body-right-bottom {
-  display: flex;
-  justify-content: space-between;
-}
+/* Add more styling as needed */

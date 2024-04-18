@@ -9,6 +9,7 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 // import { useReportContext } from "../../hooks/useReportContext";
 import LineGraph from "../LineChart/Line";
 import BarGraph from "../Bar/BarGraph";
+// import Calendar from "../CalendarStats/CalendarStats.jsx";
 const Statistique = ({ tasksData, reportsData }) => {
   console.log("rap data ", reportsData);
   const daysOfWeek = [
@@ -139,6 +140,7 @@ const Statistique = ({ tasksData, reportsData }) => {
       <Title page="Dashboard" />
       <div className="gridding-container">
         <div className="Cards-containerStat">
+          <Calendar/>
           {/* <div className="doubled-cards">
             <div className="two-cards"> */}
           <Mcard

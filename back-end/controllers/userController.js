@@ -20,7 +20,8 @@ const loginUser = async (req, res) => {
     const lastName = user.lastName;
     const role = user.role;
     const chefId=user.ChefId;
-    res.status(200).json({ id, email, token, firstName, lastName ,role ,chefId});
+    const cin=user.cin;
+    res.status(200).json({ id, email, token, firstName, lastName ,role ,chefId,cin});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -41,8 +42,21 @@ const signupUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+// get user by id
+const getUserById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await User.findById(id);
+    res.status(200).json({nom:user.firstName,prenom:user.lastName,email:user.email,role:user.role,ChefId:user.ChefId,cin:user.cin});
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+
+}
 
 module.exports = {
   loginUser,
   signupUser,
+  getUserById,
 };

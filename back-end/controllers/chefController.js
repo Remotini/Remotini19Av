@@ -157,32 +157,27 @@ const discardReport = async (req, res) => {
 
 //Approve a task by Chef and adding comment to it
 
-const approveTask = async (req, res) => {
+const statusTask = async (req, res) => {
   try{
-    const {chefId} = req.query;
-    const {taskId,comment,status} = req.body;
-    if (!chefId || !taskId) {
+    const {taskId,status} = req.body;
+    if (!taskId) {
       return res.sendStatus(400);
     }
-    const chef = await User.findById(chefId);
-    if (!chef) {
-      return res.status(404).json({ message: "Chef not found!" });
-    }
+   
     const task = await Task.findById(taskId);
     if (!task) {
       return res.status(404).json({ message: "Task not found!" });
     }
     task.status = status;
-    task.comments.push({text:comment,postedBy:chef.firstName+" "+chef.lastName,createdAt:Date.now()});
     await task.save();
-    res.json({ message: "Task approved successfully" });
+    res.json({ message: "Task status changed" });
   }
   catch (error) {
     console.error("Error approving task:", error);
-    res.status(500).json({ error: "Failed to approve task" });
+    res.status(500).json({ error: "Failed to change status" });
 
   }
 }
     
 
-module.exports = { getUsers, getReports, sendReport, discardReport,approveTask };
+module.exports = { getUsers, getReports, sendReport, discardReport,statusTask };

@@ -25,7 +25,9 @@ function Home() {
   return (
     <>
       {taskCard ? (
+        <div className='TaskCard'>
         <TaskCard task={task} onClose={() => setTaskCard(false)} />
+        </div>
       ) : null}
       {addTask ? (
         <AddTaks
@@ -71,11 +73,12 @@ function Home() {
             setTask={setTask}
             setTaskCard={setTaskCard}
           />
-          {/* <UserTable /> */}
+          
         </div>
         {addTask && <div className="All-b"></div>}
         {editReport && <div className="All-b"></div>}
         {editTask && <div className="All-b"></div>}
+        {taskCard && <div className="All-b"></div>}
         <div className="ft">
           <Footer />
         </div>

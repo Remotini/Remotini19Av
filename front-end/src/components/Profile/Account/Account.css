@@ -109,7 +109,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 7rem;
+  margin-left: 25rem;
 }
 
 .upload-btn {
@@ -143,7 +143,7 @@
   justify-content: space-between;
   background: white;
   min-width: 390px;
-  height: clamp(640px, 40vh, 700px);
+  height: clamp(450px, 40vh, 700px);
   border-radius: 0.5rem;
 }
 
@@ -179,7 +179,7 @@
 
 .first-row{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .inputs-names {
@@ -188,8 +188,8 @@
   
 }
 .inputs-names input{
-  transition: 0.5s ease-in width;
-  width: clamp(10.5rem, 35vw, 300px);
+  transition: 0.5s ease-in-out width;
+  width: clamp(10rem, 30vw, 20rem);
   cursor: auto;
   height: 33px;
   font-size: 15px;
