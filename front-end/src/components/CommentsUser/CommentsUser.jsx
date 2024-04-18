@@ -1,87 +1,80 @@
-import React from 'react'
-import { CommentGroup, Comment, CommentAvatar, CommentContent, CommentAuthor, CommentMetadata, CommentText, CommentActions, CommentAction, Form, FormTextArea, Button, Header } from "semantic-ui-react";
+import React, { useState } from "react";
+import "./CommentsUser.css";
+import { IoIosArrowDropdownCircle,IoIosArrowDropupCircle } from "react-icons/io";
+
 function CommentsUser() {
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      user: "John Doe",
+      date: "12/12/2021",
+      content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    },
+    {
+      id: 2,
+      user: "Jane Doe",
+      date: "13/12/2021",
+      content: "Quo dolores, fugit perspiciatis officia corporis molestiae.",
+    },
+    {
+      id: 3,
+      user: "Hmed Satour",
+      date: "13/12/2021",
+      content: "Quo dolores, fugit perspiciatis officia corporis molestiae.",
+    },
+  ]);
+
+  const [newComment, setNewComment] = useState("");
+  // const {insertNode,editNode}=useNode();
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    const newCommentData = {
+      id: comments.length + 1,
+      user: "New User",
+      date: new Date().toLocaleDateString(),
+      content: newComment,
+    };
+    setComments([...comments, newCommentData]);
+    setNewComment("");
+  };
+
   return (
-    <div>
-       <CommentGroup>
-          <Header as="h3" dividing>
-            Comments
-          </Header>
-
-          <Comment>
-            <CommentAvatar src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
-            <CommentContent>
-              <CommentAuthor as="a">Matt</CommentAuthor>
-              <CommentMetadata>
-                <div>Today at 5:42PM</div>
-              </CommentMetadata>
-              <CommentText>How artistic!</CommentText>
-              <CommentActions>
-                <CommentAction>Reply</CommentAction>
-              </CommentActions>
-            </CommentContent>
-          </Comment>
-
-          <Comment>
-            <CommentAvatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
-            <CommentContent>
-              <CommentAuthor as="a">Elliot Fu</CommentAuthor>
-              <CommentMetadata>
-                <div>Yesterday at 12:30AM</div>
-              </CommentMetadata>
-              <CommentText>
-                <p>
-                  This has been very useful for my research. Thanks as well!
-                </p>
-              </CommentText>
-              <CommentActions>
-                <CommentAction>Reply</CommentAction>
-              </CommentActions>
-            </CommentContent>
-            <CommentGroup>
-              <Comment>
-                <CommentAvatar src="https://react.semantic-ui.com/images/avatar/small/jenny.jpg" />
-                <CommentContent>
-                  <CommentAuthor as="a">Jenny Hess</CommentAuthor>
-                  <CommentMetadata>
-                    <div>Just now</div>
-                  </CommentMetadata>
-                  <CommentText>Elliot you are always so right :)</CommentText>
-                  <CommentActions>
-                    <CommentAction>Reply</CommentAction>
-                  </CommentActions>
-                </CommentContent>
-              </Comment>
-            </CommentGroup>
-          </Comment>
-
-          <Comment>
-            <CommentAvatar src="https://react.semantic-ui.com/images/avatar/small/joe.jpg" />
-            <CommentContent>
-              <CommentAuthor as="a">Joe Henderson</CommentAuthor>
-              <CommentMetadata>
-                <div>5 days ago</div>
-              </CommentMetadata>
-              <CommentText>Dude, this is awesome. Thanks so much</CommentText>
-              <CommentActions>
-                <CommentAction>Reply</CommentAction>
-              </CommentActions>
-            </CommentContent>
-          </Comment>
-
-          <Form reply>
-            <FormTextArea />
-            <Button
-              content="Add Reply"
-              labelPosition="left"
-              icon="edit"
-              primary
-              
+    <div className="rap-comments">
+      {comments.map((comment) => (
+        <div className="comment" key={comment.id}>
+          <div className="comment-user">
+            <img
+              src="https://www.w3schools.com/howto/img_avatar.png"
+              alt="avatar"
             />
-          </Form>
-        </CommentGroup>
+            <div className="comment-user-info">
+              <h5>{comment.user}</h5>
+              <p>{comment.date}</p>
+            </div>
+          </div>
+          <div>
+          <p className="comment-content"> <p>{comment.content}</p> <span><IoIosArrowDropdownCircle/> </span></p>
+          <div className="options">
+            <h4 >reply</h4> 
+            <h4>Edit</h4>
+          </div>
+          
+          </div>
+        </div>
+      ))}
+      <form onSubmit={handleCommentSubmit} className="comment-form">
+        <textarea
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          required
+          className="comment-textarea"
+        />
+        <button type="submit" className="comment-button">
+          Commenter
+        </button>
+      </form>
     </div>
-  )
+  );
 }
 
-export default CommentsUser
+export default CommentsUser;

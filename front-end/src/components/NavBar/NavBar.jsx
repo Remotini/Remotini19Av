@@ -14,6 +14,7 @@ function NavBar() {
   const [isActiveHamburger, setisActiveHamburger] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const storedUser = JSON.parse(localStorage.getItem("user"));
 
   //generate handle function
   const handleHamburger = () => {
@@ -26,6 +27,9 @@ function NavBar() {
   useEffect(() => {
     setActivePage(location.pathname);
   }, [location.pathname]);
+  
+  
+  
   return (
     <>
       <div
@@ -49,7 +53,7 @@ function NavBar() {
               {/* name et Family name java elements */}
               {/* <span>iyed </span> <span>grassi </span> */}
               <span>
-                {user.firstName} {user.lastName}{" "}
+                {storedUser.firstName} {storedUser.lastName}{" "}
               </span>
             </span>
             <span className="secondaryText desc">{user.email} </span>

@@ -9,23 +9,27 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const Account = () => {
   const { user } = useContext(AuthContext);
-  
   const [info, setNewInfo] = useState({
-    prenom: user.firstName,
-    nom: user.lastName,
+    id : user.id,
+    email : user.email,
+    token : user.token,
+    firstName: user.firstName,
+    lastName: user.lastName,
     photo: user.picturePath,
     cin: user.cin,
+    role: user.role,
+
   });
 
   const handleEditAccount = async (e) => {
     e.preventDefault();
-    console.log("user", user);
+    
     try {
       const response = await axios.post(
         `http://localhost:5001/api/profile/updateInfos/${user.id}`,
         {
-          firstName: info.prenom,
-          lastName: info.nom,
+          firstName: info.firstNmae,
+          lastName: info.lastName,
           picturePath: info.photo,
         },
         {
@@ -39,13 +43,23 @@ const Account = () => {
         const data = response.data;
         console.log("Info updated successfully:", data);
         setNewInfo({
-          prenom: "",
-          nom: "",
+          lastName: "",
+          firstName: "",
         });
         const responseUser = await axios.get( `http://localhost:5001/api/user/${user.id}`);
         const dataUser = responseUser.data;
-        localStorage.setItem("user", JSON.stringify(dataUser));
-        Swal.fire({ icon: "success", title: "info modifiée avec succès" });
+        const updatedUser = { ...user, firstName: info.firstName, lastName: info.lastName };
+        console.log("updated user:", updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+
+    // Update the state with the new information
+    setNewInfo(updatedUser);
+        
+        Swal.fire({ icon: "success", title: "info modifiée avec succès" })
+        .then(()=>{
+          window.location.reload();
+        });
+        
       }
     } catch (error) {
       console.error("Error updating user info", error);
@@ -56,7 +70,7 @@ const Account = () => {
       });
     }
   };
-
+  
   return (
     <div className="account">
       {/* <div className="first-div">
@@ -115,7 +129,7 @@ const Account = () => {
                       type="text"
                       placeholder={user.firstName}
                       onChange={(e) =>
-                        setNewInfo({ ...info, prenom: e.target.value })
+                        setNewInfo({ ...info, firstName: e.target.value })
                       }
                     />
                   </div>
@@ -125,7 +139,7 @@ const Account = () => {
                       type="text"
                       placeholder={user.lastName}
                       onChange={(e) =>
-                        setNewInfo({ ...info, nom: e.target.value })
+                        setNewInfo({ ...info, lastName: e.target.value })
                       }
                     />
                   </div>
@@ -152,7 +166,7 @@ const Account = () => {
                   <input type="text" placeholder={user.cin} disabled />
                 </div>
               </span>
-              <button type="submit" className="save-changes">
+              <button type="submit" className="save-changes"   >
                 Sauvegarder
               </button>
             </div>

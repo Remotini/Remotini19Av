@@ -129,7 +129,14 @@
 }
 .TaskCard{
   position: absolute;
-  left: 90vh;
-  top: 16rem;
+  /* left: 90vh; */
+  /* top: 16rem; */
   z-index: 10000;
+  width: 40%;
+  left : 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 65%;
+  overflow: hidden;
+
 }

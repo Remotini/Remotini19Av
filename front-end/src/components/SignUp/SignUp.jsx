@@ -14,7 +14,7 @@ function SignUpp() {
   const { signup, isLoading, error } = useSignup();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(nom, prenom, email, password);
+    await signup(nom, prenom, email, password,cin);
     if (error) return;
   };
   return (

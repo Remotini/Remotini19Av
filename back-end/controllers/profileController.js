@@ -95,7 +95,6 @@ const resetPassword = async (req, res) => {
       return res.status(400).json({
         message: "Wrong Password",
       });
-    console.log("entiiiiiii");
     } else if (newPassword !== confirmNewPassword) {
       return res.status(400).json({
         message: "Please make sure your password and confirmation match!",
