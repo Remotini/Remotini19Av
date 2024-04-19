@@ -3,7 +3,7 @@ import { useContext } from "react";
 export const useReportContext = () => {
   const context = useContext(ReportCotne);
   if (!context) {
-    throw Error("el report provide ya wlidiii");
+    throw Error("There's an error in the fetching of reports");
   }
   return context;
 };

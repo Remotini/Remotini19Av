@@ -2,12 +2,12 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
-  
+  display: block;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   height: 100%;
   overflow-y: scroll;
-
+  
   /* The emerging W3C standard that is currently Firefox-only */
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
@@ -46,8 +46,12 @@
   border-top: 1px solid #ced4da;
 }
 
-.task-info {
-  color: #6c757d;
+.task-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #3e3f42;
 }
 
 .task-description {

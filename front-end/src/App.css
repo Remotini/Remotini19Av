@@ -132,11 +132,21 @@
   /* left: 90vh; */
   /* top: 16rem; */
   z-index: 10000;
-  width: 40%;
+  width: 50%;
   left : 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 65%;
+  height: 80%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
 
 }
+
+/* @media screen and (width<=620px){
+  .TaskCard{
+    border: 5px solid green;
+    width: 200px;
+  }
+ }  it was for the TaskCard */

@@ -23,10 +23,8 @@ function Stat() {
 
   //   fetchTasks();
   // }, []);
-
   const [tasksData, setTasksData] = useState([]);
   const rapports = useReportContext();
-
   const allReportIds = rapports.map((report) => report._id);
   useEffect(() => {
     const fetchTasksData = async () => {
@@ -41,6 +39,7 @@ function Stat() {
     };
     fetchTasksData();
   }, []);
+ 
   return (
     <div className="All">
       <div className="App" />

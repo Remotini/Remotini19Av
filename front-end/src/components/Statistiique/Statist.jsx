@@ -5,13 +5,14 @@ import Mcard from "../mini-card/Mcard";
 import { LuAlertOctagon } from "react-icons/lu";
 import { FaTasks } from "react-icons/fa";
 import { HiOutlineDocumentReport } from "react-icons/hi";
+import CardProject from "../CardProject/CardProject.jsx";
+// import { useTaskContext } from "../../hooks/useTaskContext";
 // import { useReportContext } from "../../hooks/useReportContext";
 // import { useReportContext } from "../../hooks/useReportContext";
 import LineGraph from "../LineChart/Line";
 import BarGraph from "../Bar/BarGraph";
-// import Calendar from "../CalendarStats/CalendarStats.jsx";
+import Calendar from "../CalendarStats/CalendarStats.jsx";
 const Statistique = ({ tasksData, reportsData }) => {
-  console.log("rap data ", reportsData);
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -21,6 +22,7 @@ const Statistique = ({ tasksData, reportsData }) => {
     "Friday",
     "Saturday",
   ];
+  
   // console.log("this is rapport ", rapports);
   const statusCounts = tasksData.reduce(
     (counts, task) => {
@@ -45,7 +47,6 @@ const Statistique = ({ tasksData, reportsData }) => {
     counts[day] += 1;
     return counts;
   }, {});
-
   const monthNames = [
     "Janvier",
     "Février",
@@ -60,6 +61,8 @@ const Statistique = ({ tasksData, reportsData }) => {
     "Novembre",
     "Décembre",
   ];
+
+
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
   const reportsThisMonth = reportsData.filter((report) => {
@@ -78,7 +81,48 @@ const Statistique = ({ tasksData, reportsData }) => {
       taskDate.getFullYear() === currentYear
     );
   });
-  const totalTasks = tasksData.length;
+ 
+  
+  // ! this is for another time
+  // const monthOfYear={
+  //   "0": { month: "Janvier", tasks:[] },
+  //   "1": { month: "Février", tasks: [] },
+  //   "2": { month: "Mars", tasks: [] },
+  //   "3": { month: "Avril", tasks: [] },
+  //   "4": { month: "Mai", tasks: [] },
+  //   "5": { month: "Juin", tasks: [] },
+  //   "6": { month: "Juillet", tasks: [] },
+  //   "7": { month: "Août", tasks: [] },
+  //   "8": { month: "Septembre", tasks: [] },
+  //   "9": { month: "Octobre", tasks: [] },
+  //   "10": { month: "Novembre", tasks: [] },
+  //   "11": { month: "Décembre", tasks: [] },
+  // }
+  const daysOf4weeks = {
+    "0": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "1": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "2": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "3": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "4": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "5": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    "6": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+  };
+  
+  const taskPerMonth = tasksData.reduce((countM, task) => {
+    const date = new Date(task.createdAt);
+    const dayOfMonth = date.getDate();
+   
+    const dayOfWeek = ["0", "1", "2", "3", "4", "5", "6"][date.getDay()];
+  
+    // Calculate the week of the month
+    const weekOfMonth = Math.ceil(dayOfMonth / 7);
+  
+    countM[dayOfWeek]["week" + weekOfMonth] += 1;
+  
+    return countM;
+  }, daysOf4weeks);
+  
+  console.log('this is the 2nd try: ',taskPerMonth[0])
 
   const lineChardata1 = {
     labels: [
@@ -135,55 +179,48 @@ const Statistique = ({ tasksData, reportsData }) => {
       },
     ],
   };
+
+  
   return (
     <>
       <Title page="Dashboard" />
       <div className="gridding-container">
-        <div className="Cards-containerStat">
-          <Calendar/>
+      
+        <div className="leftCalendar-rightCard">
+          
           {/* <div className="doubled-cards">
             <div className="two-cards"> */}
-          <Mcard
-            label={"Tâches "}
-            color={"lightblue"}
-            data={tasksThisMonth}
-            per={"Mois"}
-            icon={<FaTasks />}
-            currentMonth={monthNames[currentMonth]}
-          />
-          <Mcard
-            color={"lightpink"}
-            data={tasksData}
-            label={"Tâches"}
-            per={"Semaine"}
-            icon={<FaTasks />}
-            currentMonth={""}
-            /* thsi need to be fixed get the exact tasks for a week  */
-          />
-          {/* </div>
-            <div className="two-cards"> */}
-          <Mcard
-            color={"lightgreen"}
-            data={tasksData}
-            label={"Rapports"}
-            per={"Semaine"}
-            icon={<HiOutlineDocumentReport />}
-            currentMonth={""}
-            /* thsi need to be fixed get the exact tasks for a week  */
-          />
-          <Mcard
-            color={""}
-            data={tasksData}
-            label={"Rapports"}
-            per={"Mois"}
-            icon={<HiOutlineDocumentReport />}
-            currentMonth={monthNames[currentMonth]}
-          />
+            <div className="leftCard" > <Calendar taskPerMonth={taskPerMonth}/></div>
+            
+            <div className="twoCards">
+              <Mcard
+              label={"Tâches "}
+              color={""}
+              data={tasksThisMonth}
+              per={"Mois"}
+              icon={<span class="material-symbols-outlined">
+              task
+              </span>}
+              currentMonth={monthNames[currentMonth]}
+            />
+            
+            <Mcard
+              color={""}
+              data={tasksData}
+              label={"Rapports"}
+              per={"Mois"}
+              icon={<span class="material-symbols-outlined">
+              folder_open
+              </span>}
+              currentMonth={monthNames[currentMonth]}
+            />
+            </div>
+          
           {/* </div>
           </div> */}
         </div>
         <div className="charts">
-          <div className="left-chart">
+          <div className="left-chart"  >
             <BarGraph
               Title={`taux d'acceptation ${Math.floor(
                 (statusCounts.valide / tasksData.length) * 100
@@ -192,11 +229,12 @@ const Statistique = ({ tasksData, reportsData }) => {
             />
           </div>
           <div className="right-chart">
-            <BarGraph
+            {/* <BarGraph
               Title={`Nb Tâches Par Jour `}
               data={lineChardata1}
               averagePerDay={5}
-            />
+            /> */}
+            <CardProject/>
           </div>
         </div>
       </div>

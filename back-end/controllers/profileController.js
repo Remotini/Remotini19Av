@@ -15,9 +15,9 @@ const updateAccount = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const { firstName, lastName, picturePath} = req.body;
+    const { firstName, lastName, picturePath } = req.body;
 
-    if (!firstName && !lastName && !picturePath ) {
+    if (!firstName && !lastName && !picturePath) {
       return res.status(400).json({
         message: "Cant update if everything is empty",
       });
@@ -25,7 +25,6 @@ const updateAccount = async (req, res) => {
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
     if (picturePath) user.picturePath = picturePath;
-    
 
     await user.save();
 
@@ -77,7 +76,7 @@ const updateAccount = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    const  userId  = req.params.id;
+    const userId = req.params.id;
     if (!userId) {
       return res
         .status(400)
@@ -89,8 +88,9 @@ const resetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
     const { password, newPassword, confirmNewPassword } = req.body;
-    console.log("enaaaaa");
+
     const isMatch = await bcrypt.compare(password, user.password);
+
     if (!isMatch) {
       return res.status(400).json({
         message: "Wrong Password",
@@ -102,7 +102,7 @@ const resetPassword = async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(newPassword, salt);
-    user.password = hash
+    user.password = hash;
 
     await user.save();
 

@@ -10,6 +10,7 @@
    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
  
+ 
   }
   .form {
      
@@ -172,7 +173,7 @@
   .file-label:hover {
     background-color: #0066ff; /* Change color on hover */
   }
-
+  
   @media screen and (max-height:549px) {
     .form{
       max-height: 600px;

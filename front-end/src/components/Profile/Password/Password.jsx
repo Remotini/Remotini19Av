@@ -3,9 +3,11 @@ import "./Password.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthContext";
-
+import { useLogout } from "../../../hooks/useLogOut";
+ 
 const Password = () => {
   const {user}=useContext(AuthContext);
+  const { logout } = useLogout();
   const [pass, setNewPass]=useState({
     pass: "",
     newPassword:"",
@@ -34,7 +36,12 @@ const Password = () => {
         const responseUser= await axios.get(`http://localhost:5001/api/user/${user.id}`);
         const dataUser=responseUser.data;
         localStorage.setItem("user", JSON.stringify(dataUser));
-        Swal.fire({icon: "success", title: "mot de passe modifié avec succès"})
+
+        Swal.fire({icon: "success", title: "mot de passe modifié avec succès",text: "Veuillez vous reconnecter avec votre nouveau mot de passe." })
+        .then(() => {
+          logout();
+          window.location.href = '/login';
+        });
       }
     }catch(error){
       console.error("Error updating user password", error);
