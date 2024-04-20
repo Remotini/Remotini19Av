@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import "./Maintable.css";
 import axios from "axios";
@@ -23,8 +22,8 @@ function Maintable(props) {
   const [Tasks, setTasks] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openOptions, setOpenOptions] = useState(null);
-  const {user} = useContext(AuthContext);
-  
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -75,7 +74,7 @@ function Maintable(props) {
       confirmButtonText: "Envoyer",
       cancelButtonText: "Annuler",
     });
-  
+
     if (result.isConfirmed) {
       try {
         const response = await axios.patch(
@@ -85,7 +84,7 @@ function Maintable(props) {
             rapportId: rapport_id,
           }
         );
-      
+
         if (response.status === 200) {
           console.log("report sent successfully");
           Swal.fire("Rapport envoyé avec succès!", "", "success");
@@ -93,15 +92,18 @@ function Maintable(props) {
       } catch (error) {
         console.error("Error:", error);
         let errorMessage = "Erreur lors de l'envoi du rapport";
-        if (error.response && error.response.data && error.response.data.message) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
           errorMessage = error.response.data.message;
         }
         Swal.fire(errorMessage, "", "error");
       }
-      
     }
   };
-  
+
   const handleEditTask = (task) => {
     setTaskToEdit(task);
     setEditTask(true);
@@ -112,8 +114,8 @@ function Maintable(props) {
   };
   const [search, setSearch] = useState("");
   const hanleSearchTask = (value) => {
-   setSearch(value);
-  }
+    setSearch(value);
+  };
   return (
     <>
       <div className="wrapperTable">
@@ -128,41 +130,45 @@ function Maintable(props) {
           >
             <span className="material-symbols-outlined">arrow_back</span>
           </div>
-          <div className="reportName"><p>Nom Rapport : <a style={{ fontWeight: "bold" }}>{rapport_nom}</a> </p>
+          <div className="reportName">
+            <p>
+              Nom Rapport : <a style={{ fontWeight: "bold" }}>{rapport_nom}</a>{" "}
+            </p>
 
-          <div className="btn-send">  
-          <button onClick={()=>handleSendReport()}>
-              <div className="svg-wrapper-1">
-                <div className="svg-wrapper">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path
-                      fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                    ></path>
-                  </svg>
+            <div className="btn-send">
+              <button onClick={() => handleSendReport()}>
+                <div className="svg-wrapper-1">
+                  <div className="svg-wrapper">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path
+                        fill="currentColor"
+                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                      ></path>
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <span>Envoyer</span>
-            </button></div>
-          
-          
+                <span>Envoyer</span>
+              </button>
+            </div>
           </div>
         </div>
         <div className="table-head">
-          <div className="left">Taches</div>
+          <div className="left">Tâche</div>
 
           <div className="search">
             <input
               type="search"
               className="search-input"
               placeholder="Rechercher..."
-              onChange={(e) => {hanleSearchTask(e.target.value)}}
+              onChange={(e) => {
+                hanleSearchTask(e.target.value);
+              }}
             ></input>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -190,12 +196,11 @@ function Maintable(props) {
               </tr>
             </thead>
             <tbody>
-              {Tasks?.filter((task) => { 
-               return  search.toLowerCase() === "" ?
-                task : 
-                task.name.toLowerCase().startsWith(search.toLowerCase()) 
-                
-               }).map((task, index) => (
+              {Tasks?.filter((task) => {
+                return search.toLowerCase() === ""
+                  ? task
+                  : task.name.toLowerCase().startsWith(search.toLowerCase());
+              }).map((task, index) => (
                 <tr
                   key={index}
                   onMouseEnter={() => setHoveredRow(index)}
@@ -293,19 +298,7 @@ function Maintable(props) {
               </span>
             </span>
           </button>
-          
         </div>
-
-        {/* <div
-          className="back-button"
-          onClick={() => {
-            back_button(!state);
-            setRapportId("");
-            setRapportNom("");
-          }}
-        >
-          <span className="material-symbols-outlined">arrow_back_ios_new</span>
-        </div> */}
       </div>
     </>
   );

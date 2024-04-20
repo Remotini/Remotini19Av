@@ -24,19 +24,22 @@ function CommentsUser() {
               id: 3,
               user: "Dabbech",
               date: "12/12/2021",
-              content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+              content:
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
               children: [
                 {
                   id: 4,
                   user: "Didosa",
                   date: "12/12/2021",
-                  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                  content:
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
                   children: [
                     {
                       id: 5,
                       user: "DabbechDiddosaa",
                       date: "12/12/2021",
-                      content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                      content:
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
                     },
                   ],
                 },
@@ -63,27 +66,27 @@ function CommentsUser() {
   };
 
   return (
-
-
     <div className="rap-comments">
-  {comments.map((comment) => (
-    <div className="allIn" >
-      <Com comment={comment} isChild={false} />
+      <form onSubmit={handleCommentSubmit} className="comment-form">
+        <textarea
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          required
+          className="comment-textarea"
+          placeholder="Ecrivez votre commentaire ici..."
+          maxLength={75}
+        />
+        <button type="submit" className="comment-button">
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </form>
+      {comments.map((comment) => (
+        <div className="allIn">
+          <Com comment={comment} isChild={false} />
+        </div>
+      ))}
     </div>
-  ))}
-  <form onSubmit={handleCommentSubmit} className="comment-form">
-    <textarea
-      value={newComment}
-      onChange={(e) => setNewComment(e.target.value)}
-      required
-      className="comment-textarea"
-    />
-    <button type="submit" className="comment-button">
-      Commenter
-    </button>
-  </form>
-</div>
-    //hedha el nesting children kifeh bech ykoun ya dabbouch 
+    //hedha el nesting children kifeh bech ykoun ya dabbouch
     // {comments.map((comment) => (
     //   <div key={comment.id}>
     //     <h2>{comment.user}</h2>
@@ -99,7 +102,7 @@ function CommentsUser() {
     //   </div>
     // ))}
 
-/* <div className="rap-comments">
+    /* <div className="rap-comments">
   {comments.map((comment) => (
     <div className="comment" key={comment.id}>
       <div className="comment-user">
@@ -166,10 +169,6 @@ function CommentsUser() {
     </button>
   </form>
 </div> */
-
-
-
-
 
     // <div className="rap-comments">
     //   {comments.map((comment) => (

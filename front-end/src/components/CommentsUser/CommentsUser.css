@@ -4,14 +4,13 @@
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
-   
+  margin-bottom: 3rem;
   min-width: 500px;
- 
 }
 .comment {
   width: 100%;
   background-color: #f2f2f2;
-  
+
   display: flex;
   /* padding: 10px 40px; */
   padding-left: 10px;
@@ -22,17 +21,13 @@
   height: 100%;
   padding-top: 1rem;
   padding-bottom: 20px;
-  
- 
 }
 .comment-user {
   display: flex;
   align-items: center;
-  
+
   /* margin-bottom: 5px; */
   margin-right: 2rem;
-  
-    
 }
 .comment-user img {
   width: 50px;
@@ -44,7 +39,6 @@
   margin: 0;
   font-size: 14px;
   color: #333;
-
 }
 .comment-user-info p {
   margin: 0;
@@ -63,71 +57,86 @@
   color: #333;
 }
 .comment-content span {
-    margin-right: 1rem;
-    font-size: 1.5rem;
+  margin-right: 1rem;
+  font-size: 1.5rem;
 }
 .comment-form {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 3rem;
 }
 .comment-form textarea {
-  height: 80px;
+  height: 40px;
+  width: 93%;
   margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
+  border: 1px solid;
+  border-radius: 15px;
 }
 
 .comment-form button {
-  background-color: #4caf50; /* Green */
+  background-color: royalblue; /* Green */
   border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
   cursor: pointer;
-  border-radius: 4px;   
+  width: 35px;
+  height: 35px;
+  border-radius: 15px;
+  position: relative;
+  top: 0.2rem;
+  left: -2.4rem;
 }
-.options{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    font-size: 1.1rem;
-    padding: 10px 0;    
-    
-    position: relative;
-    left: 1.4rem;
+.comment-form span {
+  color: white !important;
+  font-size: 1.2rem;
 }
-.options h4:hover{
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.829);
-    transition: all 0.3s ease;
+.comment-form button:hover {
+  opacity: 0.5;
 }
-.comment-child{
+
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 1rem;
+  padding: 10px 0;
+
+  position: relative;
+  left: 1.4rem;
+}
+.options h4:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.829);
+  transition: all 0.3s ease;
+}
+.comment-child {
   padding-left: 2rem;
   padding-top: 1rem;
 }
 
-.child{
+.child {
   padding-left: 2rem;
 }
-.allIn{
+.allIn {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
-  width:90%;
+
+  width: 90%;
   min-width: 300px;
   position: relative;
 }
 
-.child-comment .comment-user{
+.child-comment .comment-user {
   position: relative;
   left: 1.2rem;
   padding-top: 0.8rem;
-
 }
-
- 

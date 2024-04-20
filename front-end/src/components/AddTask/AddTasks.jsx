@@ -10,6 +10,7 @@ const AddTasks = ({
   getrapportId,
   setUpdatedTask,
   updatedTask,
+  nameReport,
 }) => {
   const { user } = useAuthContext();
   const [project, setProject] = useState([]);
@@ -79,7 +80,7 @@ const AddTasks = ({
             type="text"
             className="input"
             id="reportName"
-            defaultValue={"Rapport 1"}
+            defaultValue={nameReport}
             readOnly
           />
         </label>

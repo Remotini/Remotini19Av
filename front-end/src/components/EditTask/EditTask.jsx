@@ -1,18 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./EditTask.css";
 import { FaUpload } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
-const EditTask = ({ task, setEditTask, setUpdatedTask, updatedTask }) => {
+import { AuthContext } from "../../context/AuthContext";
+const EditTask = ({
+  task,
+  setEditTask,
+  setUpdatedTask,
+  updatedTask,
+  nameReport,
+}) => {
   const date = new Date();
-
+  const [projects, setProjects] = useState([]);
+  const { user } = useContext(AuthContext);
   const [newTask, setNewTask] = useState({
     nom: task.name,
     date: new Date(),
     description: task.description,
-    project: "projet1",
+    project: task.project,
   });
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5001/api/projects?userId=${user.id}`
+        );
+        if (response.status === 200) {
+          const data = response.data;
+          console.log("Projects fetched successfully:", data);
+          setProjects(data);
+        }
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+    fetchProjects();
+  }, []);
   const handleEditTask = async (e) => {
     e.preventDefault();
 
@@ -73,7 +98,7 @@ const EditTask = ({ task, setEditTask, setUpdatedTask, updatedTask }) => {
             type="text"
             className="input"
             id="reportName"
-            defaultValue={"Rapport 1"}
+            defaultValue={nameReport}
             readOnly // Make it read-only if it's set by default
           />
         </label>
@@ -100,11 +125,11 @@ const EditTask = ({ task, setEditTask, setUpdatedTask, updatedTask }) => {
                 setNewTask({ ...newTask, project: e.target.value })
               }
             >
-              <option value="projet1">projet1</option>
-              <option value="projet2">projet2</option>
-              <option value="projet3">projet3</option>
-              <option value="projet4">projet4</option>
-              <option value="projet5">projet5</option>
+              {projects.map((project) => (
+                <option key={project._id} value={project.name}>
+                  {project.name}
+                </option>
+              ))}
             </select>
           </label>
         </div>

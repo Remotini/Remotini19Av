@@ -1,13 +1,13 @@
 .task-card {
   background-color: #f8f9fa;
   border-radius: 8px;
-  padding: 20px;
+
   display: block;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   height: 100%;
   overflow-y: scroll;
-  
+
   /* The emerging W3C standard that is currently Firefox-only */
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
@@ -27,17 +27,61 @@
     border: 3px solid transparent;
   }
 }
-.task-header {
+.header-TaskCard {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
-}
+  position: sticky;
+  top: -10px;
 
+  background-color: #f8f9fa;
+  z-index: 10000;
+}
+.header-TaskCard hr {
+  width: 93%;
+  margin: 0;
+  border-top: 4.5px solid #ced4da;
+  border-radius: 15px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
 .task-name {
   color: #3e3f42;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   font-weight: bold;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 30rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+.task-wrap-name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 0;
+}
+
+.task-wrap-name :nth-child(1) {
+  font-size: 2.5rem !important;
+  padding-top: 1rem;
+  color: royalblue !important;
+}
+.task-card h3 {
+  margin-top: 20px;
+  color: #3e3f42;
+}
+.close-icon {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  cursor: pointer;
+}
+.close-icon span {
+  font-size: 2rem;
 }
 
 .divider {
@@ -46,33 +90,50 @@
   border-top: 1px solid #ced4da;
 }
 
-.task-info{
+.task-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  gap: 1.5rem;
   color: #3e3f42;
+  width: 95%;
+}
+
+.task-info p {
+  margin-left: 4rem;
+  font-size: 1.35rem;
 }
 
 .task-description {
   margin-bottom: 10px;
 }
 
+.task-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+.task-card h3 {
+  color: #3e3f42;
+}
+
 .publication-date {
   font-size: 0.9rem;
+  margin-left: 2rem;
 }
 
 /* Add more styling as needed */
-.header-TaskCard{
+/* .header-TaskCard {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
-}
-.header-TaskCard span{
+} */
+.header-TaskCard span {
   cursor: pointer;
 }
-.header-TaskCard span:hover{
+.header-TaskCard span:hover {
   color: #007bff;
-  scale: 1.3;
 }

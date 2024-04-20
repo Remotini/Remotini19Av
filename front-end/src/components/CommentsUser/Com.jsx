@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io";
+import React, { useState } from "react";
+import {
+  IoIosArrowDropdownCircle,
+  IoIosArrowDropupCircle,
+} from "react-icons/io";
+import unknown from "../../assets/unknown-user.png";
 import "./Com.css";
-function Com({ comment,isChild  }) {
+function Com({ comment, isChild }) {
   const [showReplies, setShowReplies] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
 
@@ -12,14 +16,11 @@ function Com({ comment,isChild  }) {
   const toggleReplyForm = () => {
     setShowReplyForm(!showReplyForm);
   };
-  console.log("is children, ", isChild)
+  console.log("is children, ", isChild);
   return (
-    <div className= { isChild? "child-comment" :"comment" } key={comment.id}>
+    <div className={isChild ? "child-comment" : "comment"} key={comment.id}>
       <div className="comment-user">
-        <img
-          src="https://www.w3schools.com/howto/img_avatar.png"
-          alt="avatar"
-        />
+        <img src={unknown} alt="" />
         <div className="comment-user-info">
           <span className="comment-user-name">{comment.user}</span>
           <p>{comment.date}</p>
@@ -41,8 +42,8 @@ function Com({ comment,isChild  }) {
           <h4>Edit</h4>
         </div>
         {showReplyForm && (
-          <form className='reply-form'>
-            <input type="text" placeholder="Write a reply..."  />
+          <form className="reply-form">
+            <input type="text" placeholder="Write a reply..." />
             <button type="submit">Submit</button>
           </form>
         )}

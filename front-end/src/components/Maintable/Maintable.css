@@ -5,20 +5,17 @@
   scrollbar-width: none;
   background-color: white;
   position: relative;
-  height: clamp(500px,60%,700px);
- 
+  height: clamp(500px, 60%, 700px);
 }
-.ena{
-    background-color: white;
-    height: 40px;
-
+.ena {
+  background-color: white;
+  height: 40px;
 }
 .tableaux-rapport {
   background-color: #e8e8e8;
   width: 100%;
   border-collapse: collapse;
   table-layout: auto; /* Add this line */
-   
 }
 .wrapperTable {
   margin: 0rem auto;
@@ -28,8 +25,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   min-height: 800px;
- 
-  
 }
 .table::-webkit-scrollbar {
   display: none;
@@ -55,9 +50,9 @@
   border-radius: 50px;
   opacity: 0.8;
 }
- .footer-table button:nth-child(2){
+.footer-table button:nth-child(2) {
   background-color: #00a36d !important;
- }
+}
 .tableaux-rapport .elhead {
   position: sticky;
   top: 0rem;
@@ -145,8 +140,8 @@ button {
 .left {
   position: relative;
   text-align: left;
-  left: 1rem;
-  font-size: 1.6rem;
+  left: 2rem;
+  font-size: 1.8rem;
 }
 .rapport-desc {
   color: white;
@@ -157,13 +152,12 @@ button {
   justify-content: flex-start;
   align-items: center;
 }
-.rapport-desc>span {
+.rapport-desc > span {
   margin: 1rem 2rem;
 }
-.task-row{
+.task-row {
   text-align: center;
 }
-
 
 @media screen and(min-height:500px ) {
 }
@@ -182,28 +176,34 @@ button {
   bottom: 1%;
   height: 5rem;
   padding: 0.5rem;
-  color: #ececec;
 }
+
 .back-button :nth-child(1) {
-     border: 1px solid #ececec;
-   padding: 0.3rem;
-   border-radius: 50%; 
-   
+  border: 2px solid #ececec;
+  padding: 0.3rem;
+  border-radius: 50%;
+  color: #ececec !important;
 }
 .back-button:hover {
   opacity: 0.8;
+  transition: 0.3s;
 }
+.back-button:hover > span {
+  font-size: 4.5rem;
+  transition: 0.3s;
+}
+
 .back-button > span {
   font-size: 4rem;
 }
-.btn-edit{
+.btn-edit {
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0.5rem;
 }
-.edit-icon{
+.edit-icon {
   display: flex;
   cursor: pointer;
   position: absolute;
@@ -216,15 +216,14 @@ button {
   padding: 3px 0;
   text-align: center;
   color: #3e4676;
-
 }
 .footer-table {
   position: relative;
   height: 4rem;
   z-index: 4;
   display: flex;
-  justify-content: center; 
-  background-color: white; 
+  justify-content: center;
+  background-color: white;
   box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1);
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -239,11 +238,11 @@ button {
   align-items: center;
   border: 1px solid #3875d1;
   background-color: #3875d1;
-}  
+}
 
-.button_text{
+.button_text {
   color: white;
-  
+
   font-weight: 600;
 }
 
@@ -269,7 +268,7 @@ button {
   justify-content: center;
 } */
 
-.button{
+.button {
   position: relative;
   background-color: #1663d6;
   display: flex;
@@ -277,7 +276,7 @@ button {
   justify-content: center;
   margin-left: 2rem;
 }
-.button__icon{
+.button__icon {
   position: absolute;
   right: 0;
   top: 8px;
@@ -285,7 +284,7 @@ button {
   /* padding-top: 5px; */
   width: 30px;
   /* background-color: #1663d6; */
-   
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,7 +296,6 @@ button {
   width: 30px;
   stroke: #fff;
   padding-bottom: 0.4rem;
-  
 }
 .button:hover {
   background: #1663d6;
@@ -320,17 +318,17 @@ button {
 
 /* trying new button css */
 .btn-send {
-   height:55px;
-   
+  height: 55px;
+
   display: flex;
   align-items: center;
- 
+
   margin-left: 2rem;
 }
 .btn-send button {
   font-size: 20px;
   font-weight: 600;
-  background:  hsl(160, 100%, 37%);;
+  background: hsl(160, 100%, 37%);
   color: white;
   padding: 0.7em 1em;
   padding-left: 0.9em;
@@ -349,9 +347,8 @@ button {
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
-  font-size: .95rem;
+  font-size: 0.95rem;
   font-weight: semibold;
-   
 }
 
 .btn-send svg {
@@ -360,11 +357,11 @@ button {
   transition: transform 0.3s ease-in-out;
 }
 
- .btn-send button:hover .svg-wrapper {
+.btn-send button:hover .svg-wrapper {
   animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
- .btn-send button:hover svg {
+.btn-send button:hover svg {
   transform: translateX(1.85em) rotate(45deg) scale(1.1);
 }
 
@@ -375,9 +372,9 @@ button {
 .btn-send button:active {
   transform: scale(0.95);
 }
-.reportName{
+.reportName {
   position: relative;
-  margin-left: 1.8rem;
+  margin-left: 1.9rem;
   top: 2rem;
   display: flex;
   align-items: center;
@@ -391,4 +388,6 @@ button {
     transform: translateY(-0.1em);
   }
 }
-
+td {
+  cursor: pointer;
+}

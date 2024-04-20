@@ -17,7 +17,7 @@ const Profile = () => {
         <div className="profile-settings">
           <h5>Paramètres de profil</h5>
         </div>
-
+        <hr className="br1" />
         <div className="list-settings" role="tablist">
           <div className="settings-account">
             <a onClick={() => handleButtonClick(<Account />)}>Compte</a>
@@ -43,7 +43,6 @@ const Profile = () => {
               Delete Account
             </Link>
           </div>
-          <hr className="br" />
         </div>
       </div>
       <div className="scrollable">{currentComponent}</div>

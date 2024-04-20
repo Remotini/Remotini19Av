@@ -1,6 +1,6 @@
 export const data1 = [
     {
-      name: "Website Redesign",
+      name: "Web Redesign",
       startDate: "2024-03-01",
       deadline: "2024-04-15",
     },

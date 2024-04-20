@@ -17,6 +17,7 @@ function Rapport({
   setEditTask,
   setTask,
   setTaskCard,
+  setNameReport,
 }) {
   const [clickedTask, setClickedTask] = useState(false);
   const [rapports, setRapports] = useState([]);
@@ -123,6 +124,7 @@ function Rapport({
   const handleTaskRapport = (rap) => {
     setRapportId(rap._id);
     setRapportNom(rap.name);
+    setNameReport(rap.name);
   };
 
   const handleRowRapport = (id) => {
@@ -204,6 +206,7 @@ function Rapport({
   useEffect(() => {
     if (rapportId) {
       getRapportId(rapportId);
+
       setClickedTask(true);
       setAddReport(false);
     }
@@ -238,8 +241,7 @@ function Rapport({
     //   };
     //   fetchReports();
     // }
-
-  }
+  };
   return (
     <>
       {!clickedTask ? (
@@ -252,7 +254,7 @@ function Rapport({
                 type="search"
                 className="rap-search-input"
                 placeholder="Rechercher..."
-                onChange={(e)=>handleSearch(e)}
+                onChange={(e) => handleSearch(e)}
               ></input>
               <span
                 className="rap-plus-icon"
@@ -287,12 +289,13 @@ function Rapport({
                 </tr>
                 {rapports
                   .filter((rapport) => {
-                    return nomRapRecherche.toLowerCase()==="" ?
-                    rapport.active : 
-                    rapport.name.toLowerCase().startsWith(nomRapRecherche.toLowerCase()) && rapport.active
-      
-                            
-                    })
+                    return nomRapRecherche.toLowerCase() === ""
+                      ? rapport.active
+                      : rapport.name
+                          .toLowerCase()
+                          .startsWith(nomRapRecherche.toLowerCase()) &&
+                          rapport.active;
+                  })
                   .map((rapport, index) => (
                     <tr
                       key={index}

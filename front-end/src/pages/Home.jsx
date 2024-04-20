@@ -20,13 +20,14 @@ function Home() {
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [task, setTask] = useState(null);
   const [taskCard, setTaskCard] = useState(false);
-  const { user }=useContext(AuthContext);
+  const [nameReport, setNameReport] = useState("");
+  const { user } = useContext(AuthContext);
 
   return (
     <>
       {taskCard ? (
-        <div className='TaskCard'>
-        <TaskCard task={task} onClose={() => setTaskCard(false)} />
+        <div className="TaskCard">
+          <TaskCard task={task} onClose={() => setTaskCard(false)} />
         </div>
       ) : null}
       {addTask ? (
@@ -36,6 +37,7 @@ function Home() {
           getrapportId={getrapportId}
           setUpdatedTask={setUpdatedTask}
           updatedTask={updatedTask}
+          nameReport={nameReport}
         />
       ) : null}
       {editReport ? (
@@ -51,6 +53,7 @@ function Home() {
           setEditTask={setEditTask}
           setUpdatedTask={setUpdatedTask}
           updatedTask={updatedTask}
+          nameReport={nameReport}
         />
       ) : null}
       <div className={"All"}>
@@ -72,8 +75,8 @@ function Home() {
             setTaskToEdit={setTaskToEdit}
             setTask={setTask}
             setTaskCard={setTaskCard}
+            setNameReport={setNameReport}
           />
-          
         </div>
         {addTask && <div className="All-b"></div>}
         {editReport && <div className="All-b"></div>}
