@@ -1,0 +1,21 @@
+.container-grid{
+    border: 5px solid;
+    display: grid;
+    grid-template-columns: 2fr 4fr ;
+    height: 100vh;
+    min-height: 450px;
+    grid-gap: 10px;
+}
+.item1{
+    border: 5px solid springgreen;
+}.item2{
+    border: 5px solid azure;
+    
+}.item3{
+    border: 5px solid violet;
+    grid-column: span 2;
+}.item4{
+    border: 5px solid chocolate;
+    width: 500px;
+    justify-self: end;
+}
