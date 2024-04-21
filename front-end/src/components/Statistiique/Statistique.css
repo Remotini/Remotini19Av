@@ -24,19 +24,21 @@
   /* border: 5px solid  hsl(0, 0%, 60%); */
   /*   
    background-color: hsl(0, 0%, 98%,0.99); */
-  width: 80%;
+  width: 72%;
   margin-bottom: 4rem;
   display: flex;
   flex-direction: row;
-  gap: 3.5rem;
-
+   
+ 
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .gridding-container {
+   
   width: 100%;
   padding-top: 1rem;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 3rem;
   justify-content: center;
   align-items: center;
@@ -44,13 +46,17 @@
 }
 .leftCalendar-rightCard {
   display: flex;
-  gap: 3.5rem;
+   
   align-items: center;
-  width: 80%;
+  width: 71%;
   flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: space-between;
 }
 .leftCard {
   border: 5px solid transparent;
+ 
+   
   /* width: 50%; */
 }
 
@@ -60,10 +66,15 @@
   gap: 3rem;
   align-items: end;
   justify-content: space-between;
-  width: 40%;
+  width: 50%;
+  
+ 
+
+  
 }
 
 .left-chart {
+
   background-color: white;
   border-radius: 15px;
   padding: 1rem;
@@ -75,10 +86,13 @@
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .right-chart {
+ 
   display: block;
   border-radius: 5px;
   background-color: transparent;
-  width: 33.3%;
+  width: 45%;
+  min-width: 350px;
+   
 }
 
 @media (max-width: 880px) {
@@ -101,3 +115,4 @@
     width: 100%;
   }
 }
+ 

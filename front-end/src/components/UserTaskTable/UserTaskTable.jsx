@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./UserTaskTable.css";
 import Swal from "sweetalert2";
 
-
 const UserTaskTable = ({
   taskClicked,
   setTaskClicked,
@@ -11,12 +10,13 @@ const UserTaskTable = ({
   setRapportId,
   setTask,
   openTaskCard,
+  update,
+  setUpdate,
 }) => {
   const [Tasks, setTasks] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openOptions, setOpenOptions] = useState(null);
-  const [update, setUpdate] = useState(false);
-  
+
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await axios.get(
@@ -33,7 +33,7 @@ const UserTaskTable = ({
   }, [update]);
   const handleStatusTask = async (status, id) => {
     const result = await Swal.fire({
-      title: status==="Validé" ? "Approuver la tache" : "Refuser la tache",
+      title: status === "Validé" ? "Approuver la tache" : "Refuser la tache",
       text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
@@ -55,7 +55,6 @@ const UserTaskTable = ({
         console.log("task changed");
         setUpdate(!update);
         Swal.fire("Approuvé!", "La tache a été approuvée.", "success");
-        
       } else {
         console.log("error");
       }
@@ -123,20 +122,17 @@ const UserTaskTable = ({
                   onMouseLeave={() => setHoveredRow(null)}
                   className="user-row"
                 >
-                  <td onClick={()=>handlTaskCard(task)}>{task.project}</td>
-                  <td onClick={()=>handlTaskCard(task)}>{task.name}</td>
+                  <td onClick={() => handlTaskCard(task)}>{task.project}</td>
+                  <td onClick={() => handlTaskCard(task)}>{task.name}</td>
 
-                  <td onClick={()=>handlTaskCard(task)}>
+                  <td onClick={() => handlTaskCard(task)}>
                     {new Date(task.createdAt).toLocaleDateString()}
                   </td>
 
                   {/* //change to date later */}
-                  <td onClick={()=>handlTaskCard(task)}>
+                  <td onClick={() => handlTaskCard(task)}>
                     <div className="btn-edit-user">
-                      <div
-                        className="button-container"
-                        
-                      >
+                      <div className="button-container">
                         <button
                           style={{
                             backgroundColor:
@@ -178,7 +174,6 @@ const UserTaskTable = ({
                           >
                             <button
                               onClick={() =>
-
                                 handleStatusTask("Refusé", task._id)
                               }
                             >

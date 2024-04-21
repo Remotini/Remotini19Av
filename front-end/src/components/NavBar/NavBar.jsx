@@ -28,9 +28,7 @@ function NavBar() {
   useEffect(() => {
     setActivePage(location.pathname);
   }, [location.pathname]);
-  
-  
-  
+
   return (
     <>
       <div
@@ -47,12 +45,13 @@ function NavBar() {
           <div className="img-wrapp">
             {/* el taswira bech tji source mel bara  */}
             {user.picturePath ? ( //if user has a picture
-              <img src={`http://localhost:5001/images/${user.picturePath}`} alt="user" />
+              <img
+                src={`http://localhost:5001/images/${user.picturePath}`}
+                alt="user"
+              />
             ) : (
               <img src={unknown} alt="user" />
             )}
-
-            
           </div>
           <div className="name-wrapp">
             <span className="name primaryText">
@@ -82,21 +81,23 @@ function NavBar() {
               </Link>
             </button>
           </div>
-          {user.role != "Admin" && <div className="flexStart  nav-option">
-            <span className="material-symbols-outlined">show_chart</span>
-            <button className={activePage === "/Stat" ? "activeBtn" : ""}>
-              <Link to="/Stat">
-                <div className="link_inside">
-                  Statistique
-                  <div className="arrow">
-                    <span className="material-symbols-outlined">
-                      arrow_forward_ios
-                    </span>
+          {user.role != "Admin" && (
+            <div className="flexStart  nav-option">
+              <span className="material-symbols-outlined">show_chart</span>
+              <button className={activePage === "/Stat" ? "activeBtn" : ""}>
+                <Link to="/Stat">
+                  <div className="link_inside">
+                    Statistique
+                    <div className="arrow">
+                      <span className="material-symbols-outlined">
+                        arrow_forward_ios
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </button>
-          </div>}
+                </Link>
+              </button>
+            </div>
+          )}
 
           <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">person</span>
@@ -119,14 +120,14 @@ function NavBar() {
           </div>
         </div>
 
-        <hr className="hr2" />
+        {user.role != "Admin" && <hr className="hr2" />}
         <div className=" flexStart nav-option2 ">
           <GoSignOut />
           <button onClick={handleClick}>
             <Link to="/Login">Deconnecter</Link>
           </button>
         </div>
-        <hr className="hr1" />
+        {user.role != "Admin" && <hr className="hr1" />}
       </div>
     </>
   );

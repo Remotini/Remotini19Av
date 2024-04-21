@@ -12,6 +12,7 @@ import CardProject from "../CardProject/CardProject.jsx";
 import LineGraph from "../LineChart/Line";
 import BarGraph from "../Bar/BarGraph";
 import Calendar from "../CalendarStats/CalendarStats.jsx";
+
 const Statistique = ({ tasksData, reportsData }) => {
   const daysOfWeek = [
     "Sunday",
@@ -22,7 +23,7 @@ const Statistique = ({ tasksData, reportsData }) => {
     "Friday",
     "Saturday",
   ];
-  
+
   // console.log("this is rapport ", rapports);
   const statusCounts = tasksData.reduce(
     (counts, task) => {
@@ -62,7 +63,6 @@ const Statistique = ({ tasksData, reportsData }) => {
     "Décembre",
   ];
 
-
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
   const reportsThisMonth = reportsData.filter((report) => {
@@ -81,48 +81,32 @@ const Statistique = ({ tasksData, reportsData }) => {
       taskDate.getFullYear() === currentYear
     );
   });
- 
-  
-  // ! this is for another time
-  // const monthOfYear={
-  //   "0": { month: "Janvier", tasks:[] },
-  //   "1": { month: "Février", tasks: [] },
-  //   "2": { month: "Mars", tasks: [] },
-  //   "3": { month: "Avril", tasks: [] },
-  //   "4": { month: "Mai", tasks: [] },
-  //   "5": { month: "Juin", tasks: [] },
-  //   "6": { month: "Juillet", tasks: [] },
-  //   "7": { month: "Août", tasks: [] },
-  //   "8": { month: "Septembre", tasks: [] },
-  //   "9": { month: "Octobre", tasks: [] },
-  //   "10": { month: "Novembre", tasks: [] },
-  //   "11": { month: "Décembre", tasks: [] },
-  // }
+
   const daysOf4weeks = {
-    "0": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "1": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "2": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "3": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "4": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "5": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
-    "6": { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    0: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    1: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    2: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    3: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    4: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    5: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
+    6: { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 },
   };
-  
+
   const taskPerMonth = tasksData.reduce((countM, task) => {
     const date = new Date(task.createdAt);
     const dayOfMonth = date.getDate();
-   
+
     const dayOfWeek = ["0", "1", "2", "3", "4", "5", "6"][date.getDay()];
-  
+
     // Calculate the week of the month
     const weekOfMonth = Math.ceil(dayOfMonth / 7);
-  
+
     countM[dayOfWeek]["week" + weekOfMonth] += 1;
-  
+
     return countM;
   }, daysOf4weeks);
-  
-  console.log('this is the 2nd try: ',taskPerMonth[0])
+
+  console.log("this is the 2nd try: ", taskPerMonth[0]);
 
   const lineChardata1 = {
     labels: [
@@ -154,56 +138,60 @@ const Statistique = ({ tasksData, reportsData }) => {
   };
 
   const lineChardata = {
-    labels: ["Refusé","En Cours","Validé"],
-    datasets: [{
-      label: "Tâches",
-     data:[ statusCounts.refused, statusCounts.enCours, statusCounts.valide],
-     backgroundColor: ["#FF416C", " royalblue", " #a8e063"],
-    }],
-     
+    labels: ["Refusé", "En Cours", "Validé"],
+    datasets: [
+      {
+        label: "Tâches",
+        data: [statusCounts.refused, statusCounts.enCours, statusCounts.valide],
+        backgroundColor: ["#FF416C", " royalblue", " #a8e063"],
+      },
+    ],
   };
 
-  
   return (
     <>
       <Title page="Dashboard" />
       <div className="gridding-container">
-      
         <div className="leftCalendar-rightCard">
-          
           {/* <div className="doubled-cards">
             <div className="two-cards"> */}
-            <div className="leftCard" > <Calendar taskPerMonth={taskPerMonth}/></div>
-            
-            <div className="twoCards">
-              <Mcard
+          <div className="leftCard">
+            {" "}
+            <Calendar taskPerMonth={taskPerMonth} />
+          </div>
+
+          <div className="twoCards">
+            <Mcard
               label={"Tâches "}
               color={""}
               data={tasksThisMonth}
               per={"Mois"}
-              icon={<span style={{color:'white'}} class="material-symbols-outlined">
-              task
-              </span>}
+              icon={
+                <span
+                  style={{ color: "white" }}
+                  class="material-symbols-outlined"
+                >
+                  task
+                </span>
+              }
               currentMonth={monthNames[currentMonth]}
             />
-            
+
             <Mcard
               color={""}
-              data={tasksData}
+              data={reportsThisMonth}
               label={"Rapports"}
               per={"Mois"}
-              icon={<span class="material-symbols-outlined">
-              folder_open
-              </span>}
+              icon={<span class="material-symbols-outlined">folder_open</span>}
               currentMonth={monthNames[currentMonth]}
             />
-            </div>
-          
+          </div>
+
           {/* </div>
           </div> */}
         </div>
         <div className="charts">
-          <div className="left-chart"  >
+          <div className="left-chart">
             <BarGraph
               Title={`taux d'acceptation ${Math.floor(
                 (statusCounts.valide / tasksData.length) * 100
@@ -217,7 +205,7 @@ const Statistique = ({ tasksData, reportsData }) => {
               data={lineChardata1}
               averagePerDay={5}
             /> */}
-            <CardProject/>
+            <CardProject />
           </div>
         </div>
       </div>

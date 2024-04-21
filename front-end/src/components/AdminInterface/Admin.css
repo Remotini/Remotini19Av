@@ -1,0 +1,28 @@
+ 
+.Admin-wrapper{
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    gap: 2rem;
+}
+.button-wrapper{
+    background-color: aqua;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+      height: 270px; 
+    width: 650px;
+   
+}
+.button-wrapper button{
+    padding: 15px;
+    width:auto;
+    height: auto;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+}

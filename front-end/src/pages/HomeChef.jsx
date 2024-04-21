@@ -9,12 +9,18 @@ import TaskCard from "../components/TaskCard/TaskCard";
 const HomeChef = () => {
   const [task, setTask] = useState(null);
   const [taskCard, setTaskCard] = useState(false);
-  
+  const [update, setUpdate] = useState(false);
+
   return (
     <>
       {taskCard ? (
         <div className="TaskCard">
-          <TaskCard task={task} onClose={() => setTaskCard(false)} />
+          <TaskCard
+            task={task}
+            onClose={() => setTaskCard(false)}
+            update={update}
+            setUpdate={setUpdate}
+          />
         </div>
       ) : null}
       <div className="All">
@@ -28,6 +34,8 @@ const HomeChef = () => {
             <UserTable
               openTaskCard={() => setTaskCard(true)}
               setTask={setTask}
+              update={update}
+              setUpdate={setUpdate}
             />
             {/* <PieChart /> */}
           </div>
@@ -37,7 +45,6 @@ const HomeChef = () => {
         </div>
         {taskCard && <div className="All-b"></div>}
       </div>
-      
     </>
   );
 };

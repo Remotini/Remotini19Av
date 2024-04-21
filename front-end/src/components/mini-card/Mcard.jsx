@@ -3,58 +3,10 @@ import axios from "axios";
 import "./Mcard.css";
 import CountUp from "react-countup";
 import { Bar } from "react-chartjs-2";
-import videoSrc from '../../assets/Statistique-animation.mp4';
+import videoSrc from "../../assets/Statistique-animation.mp4";
 
 function Mcard({ color, data, label, per, icon, currentMonth }) {
-  // const [rapport, setRapport] = useState([]);
-  // useEffect(() => {
-  //   const fetchRapport = async () => {
-  //     const response = await axios.get(
-  //       `http://localhost:5001/api/reports/${user_id}`
-  //     );
-  //     if (response) {
-  //       console.count(rapport);
-  //       setRapport(response.data.rapport);
-  //     } else {
-  //       console.log("error");
-  //     }
-  //   };
-  //   fetchRapport();
-  // }, []);
-
   const [reportData, setReportData] = useState([]);
-
-  // useEffect(() => {
-  //   fetchData();zc
-  // }, []);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get("/api/reports"); // Update with your API endpoint
-  //     setReportData(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // const formatChartData = () => {
-  //   const labels = reportData.map((report) => report.label);
-  //   const data = reportData.map((report) => report.value);
-
-  //   return {
-  //     labels,
-  //     datasets: [
-  //       {
-  //         label: "Report Data",
-  //         backgroundColor: "rgba(75,192,192,1)",
-  //         borderColor: "rgba(0,0,0,1)",
-  //         borderWidth: 2,
-  //         data,
-  //       },
-  //     ],
-  //   };
-  // };
-
   return (
     <div className="card-container" style={{ backgroundColor: color }}>
       <div className="Title ">
@@ -85,17 +37,19 @@ function Mcard({ color, data, label, per, icon, currentMonth }) {
               }}
             />
           </div> */}
-          <video src={videoSrc}
+          {/* <video src={videoSrc}
           autoPlay
           loop
           style={{width:'3rem'}}
           >
 
-          </video>
+          </video> */}
           <h3>
             <CountUp start={0} end={data.length} duration={4} />
           </h3>{" "}
-          <span> {currentMonth ? `En ${currentMonth}` : ""}</span>
+          <span>
+            <h4> {currentMonth ? `En ${currentMonth}` : ""}</h4>
+          </span>
         </div>
       </div>
     </div>

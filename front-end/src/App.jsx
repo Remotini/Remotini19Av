@@ -8,7 +8,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "../src/hooks/useAuthContext";
 import HomeChef from "./pages/HomeChef";
 import ErrorPage from "./pages/ErrorPage";
-
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { user } = useAuthContext();
@@ -18,18 +18,37 @@ function App() {
       {/* Route for the root path */}
       <Route
         path="/"
-        element={user ? (user.role === 'Chef' ? <HomeChef /> : <Home />) : <Navigate to="/Login" />}
+        element={
+          user ? (
+            user.role === "Chef" ? (
+              <HomeChef />
+            ) : user.role === "Admin" ? (
+              <AdminPage />
+            ) : (
+              <Home />
+            )
+          ) : (
+            <Navigate to="/Login" />
+          )
+        }
       />
+      <Route path="/Admin" element={<AdminPage />} />
       {/* Route for the /Stat path */}
-      <Route path="/Stat" element={<Stat />} />
+      <Route
+        path="/Stat"
+        element={user ? <Stat /> : <Navigate to="/Login" />}
+      />
       {/* Route for the /Profile path */}
       <Route path="/Profile" element={<Profile_Page />} />
       {/* Route for the /Login path */}
       <Route path="/Login" element={!user ? <Login /> : <Navigate to="/" />} />
       {/* Route for the /SignUp path */}
-      <Route path="/SignUp" element={!user ? <SignUp /> : <Navigate to="/" />} />
-      
-      <Route path="*" element={<ErrorPage/>} />
+      <Route
+        path="/SignUp"
+        element={!user ? <SignUp /> : <Navigate to="/" />}
+      />
+
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }

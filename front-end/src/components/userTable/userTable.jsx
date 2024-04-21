@@ -3,7 +3,7 @@ import UserRapportTable from "../UserRapportTable/UserRapportTable";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-const UserTable = ({setTask,openTaskCard}) => {
+const UserTable = ({ setTask, openTaskCard, update, setUpdate }) => {
   // const [hoveredRow, setHoveredRow] = useState(null);
   // const [openOptions, setOpenOptions] = useState(null);
   const [clickedUser, setClickedUser] = useState(false);
@@ -100,9 +100,7 @@ const UserTable = ({setTask,openTaskCard}) => {
             </table>
           </div>
 
-          <div className="footer-table">
-            {/* <button> click </button> */}
-          </div>
+          <div className="footer-table">{/* <button> click </button> */}</div>
         </div>
       ) : (
         <UserRapportTable
@@ -113,7 +111,8 @@ const UserTable = ({setTask,openTaskCard}) => {
           userFullName={userFullName}
           setTask={setTask}
           openTaskCard={openTaskCard}
-          
+          update={update}
+          setUpdate={setUpdate}
         />
       )}
     </>

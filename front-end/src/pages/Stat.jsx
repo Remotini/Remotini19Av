@@ -40,23 +40,26 @@ function Stat() {
     };
     fetchTasksData();
   }, []);
- 
+
   return (
-    <div className="All">
-      <div className="App" />
-      <Header />
-      <div className="center-stat">
-        <div className="the-nav">
-          <NavBar />
-        </div>
-        <div className="stat_page">
-          <Statistique tasksData={tasksData} reportsData={rapports} />
+    <>
+      <div className="All">
+        <div className="App" />
+        <Header />
+        <div className="center-stat">
+          <div className="the-nav">
+            <NavBar />
+          </div>
+
+          <div className="stat_page">
+            <Statistique tasksData={tasksData} reportsData={rapports} />
+          </div>
         </div>
       </div>
       <div className="ft">
         <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

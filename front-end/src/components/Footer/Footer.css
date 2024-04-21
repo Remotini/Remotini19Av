@@ -1,21 +1,39 @@
-.line {
-  color: #3e4676bf;
-  border: 1px solid transparent !important;
-  background-color: rgba(255, 255, 255, 0.78) !important;
-  /* background-color: transparent !important; */
-  height: 4rem;
-  width: auto;
+ .line-ft{
+  color: white;
+  /* border: 1px solid yellow !important; */
+  background-color: var(--blue);
+ 
+  width: 100%;
+   
   display: flex;
-  z-index: -1;
-  gap:12rem
+ 
+  height: 45px;
   
+  padding-top: 1rem;
+  padding: 1rem;
+  position: relative;
+ justify-content: space-between;
+ align-items: end;
   
-  
-}
-.line-one {
+} 
+ .line-one {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  cursor: pointer;
 }
-/* .line-two {
- } */
+.line-two {
+  
+  cursor: pointer;
+
+ }
+.icons-ft{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+}
+ 
+.insta,.fb,.tw{
+  font-size: 1.1rem;
+}

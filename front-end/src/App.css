@@ -73,9 +73,8 @@
   display: flex;
   height: 100vh;
   position: relative;
-  gap: 2rem;
-  /* overflow: auto; */
   
+  /* overflow: auto; */
    
 }
  
@@ -114,13 +113,12 @@
 }
  
 .center-stat{
- 
   display: flex;
   position: relative;
   min-height: 115vh;
   
-  gap: 2rem;
-  
+   
+  /* gap: 2rem; */
 }
  
 .stat_page{
@@ -163,9 +161,12 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  border: 5px solid;
+ 
+  
   margin: auto;
-  overflow-y: auto;
+  /* overflow: auto;
+  height: 500px; */
+  background-color: #f5f5f5;
  
    
 }
@@ -175,3 +176,10 @@
     width: 200px;
   }
  }  it was for the TaskCard */
+
+  .ft{
+  
+     background-color: #f5f5f5;
+    width: 100%;
+
+  }

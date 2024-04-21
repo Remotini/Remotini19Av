@@ -36,7 +36,7 @@ export default function Calendar({ taskPerMonth }) {
             className="calendar-nav-icon"
             onClick={() => setToday(today.month(today.month() - 1))}
           >
-            <span class="material-symbols-outlined">chevron_left</span>
+            <span className="material-symbols-outlined">chevron_left</span>
           </div>
           {/* <h1
             className="calendar-nav-today"
@@ -86,7 +86,15 @@ export default function Calendar({ taskPerMonth }) {
       </div>
       <div className="schedule">
         <h1 className="schedule-title">{selectDate.toDate().toDateString()}</h1>
-        <h4>Vous avez crée {taskPerMonth[selectDate.day()]["week" + Math.ceil(selectDate.date() / 7)]} tache(s)</h4>
+        <h4>
+          Vous avez crée{" "}
+          {
+            taskPerMonth[selectDate.day()][
+              "week" + Math.ceil(selectDate.date() / 7)
+            ]
+          }{" "}
+          tache(s)
+        </h4>
       </div>
     </div>
   );

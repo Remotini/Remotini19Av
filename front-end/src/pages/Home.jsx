@@ -87,7 +87,6 @@ function Home() {
           <Footer />
         </div>
       </div>
-      <AdminPage />
     </>
   );
 }

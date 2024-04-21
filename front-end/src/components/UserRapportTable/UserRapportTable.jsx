@@ -11,6 +11,8 @@ const UserRapportTable = ({
   userFullName,
   setTask,
   openTaskCard,
+  update,
+  setUpdate,
 }) => {
   // State to store user rapports array
   const [userRapportsArray, setUserRapportsArray] = useState([]);
@@ -64,7 +66,7 @@ const UserRapportTable = ({
     setRapportId(rapport._id);
     setRapportNom(rapport.name);
     setTaskClicked(true);
-  }
+  };
 
   return (
     <>
@@ -117,9 +119,15 @@ const UserRapportTable = ({
               <tbody>
                 {userRapportsArray.map((rapport, index) => (
                   <tr key={index} className="user-row">
-                    <td onClick={() => handleTaskClick(rapport)}>{rapport.name}</td>
-                    <td onClick={() => handleTaskClick(rapport)}>{new Date(rapport.createdAt).toLocaleString()}</td>
-                    <td onClick={() => handleTaskClick(rapport)}>{rapport.tasks.length}</td>
+                    <td onClick={() => handleTaskClick(rapport)}>
+                      {rapport.name}
+                    </td>
+                    <td onClick={() => handleTaskClick(rapport)}>
+                      {new Date(rapport.createdAt).toLocaleString()}
+                    </td>
+                    <td onClick={() => handleTaskClick(rapport)}>
+                      {rapport.tasks.length}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -138,6 +146,8 @@ const UserRapportTable = ({
           setRapportNom={setRapportNom}
           setTask={setTask}
           openTaskCard={openTaskCard}
+          update={update}
+          setUpdate={setUpdate}
         />
       )}
     </>
