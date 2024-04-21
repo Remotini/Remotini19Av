@@ -1,0 +1,135 @@
+/* .Adminwrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .adminTable {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .adminTable thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .adminTable th,
+  .adminTable td {
+    padding: 12px 15px;
+  }
+  
+  .adminTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .adminTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .adminTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  } */
+
+
+
+  .Adminwrapper {
+
+  }
+  .AdminTablewrapp{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .selRole{
+  
+    width: 15%;
+  }
+  .selRole select{
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(202, 24%, 47%);
+    
+  }
+  .titleAdmin{
+    color: #dddddd;
+    padding: 1rem;
+  }
+  
+  .adminTable {
+    border-collapse: collapse;
+    border: 5px solid;
+    font-size: 0.9em;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: clamp(300px,90%,1200px);
+    margin: 100px  auto;
+    
+    
+  }
+ 
+  .adminTable thead tr {
+    background-color: #344955;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .adminTable th,
+  .adminTable td {
+    padding: 20px;
+    word-break: break-word;
+    text-align: center;
+    position: relative;
+    
+    
+  }
+  
+  .adminTable tbody tr {
+    border-bottom: thin solid #dddddd;
+  }
+  
+  .adminTable tbody tr:hover {
+    background-color: #f3f3f3;
+  }
+  
+  .adminTable tbody tr:last-of-type {
+    border-bottom: 2px solid #344955;
+  }
+
+  .iconsAdmin{
+    display: none;
+   
+  }
+  tr:hover .iconsAdmin{
+    display: inline-block;
+    position: absolute;
+  
+   
+    
+    
+ 
+  }
+.iconsAdmin :nth-child(1){
+    color: hsl(0, 100%, 43%);
+    font-size: clamp(1rem, -2.5rem + 8vw, 2rem);
+    margin-right: 5px;
+}
+.iconsAdmin :nth-child(2){
+   
+    font-size: clamp(1rem, -2.5rem + 8vw, 2rem);
+    margin-left: 5px;
+}
+
+.middle{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+ 

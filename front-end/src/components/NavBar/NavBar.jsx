@@ -76,7 +76,7 @@ function NavBar() {
               </Link>
             </button>
           </div>
-          <div className="flexStart  nav-option">
+          {user.role != "Admin" && <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">show_chart</span>
             <button className={activePage === "/Stat" ? "activeBtn" : ""}>
               <Link to="/Stat">
@@ -90,7 +90,7 @@ function NavBar() {
                 </div>
               </Link>
             </button>
-          </div>
+          </div>}
 
           <div className="flexStart  nav-option">
             <span className="material-symbols-outlined">person</span>

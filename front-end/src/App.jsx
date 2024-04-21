@@ -7,7 +7,8 @@ import Home from "./pages/Home";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "../src/hooks/useAuthContext";
 import HomeChef from "./pages/HomeChef";
-import.meta.hot;
+import ErrorPage from "./pages/ErrorPage";
+
 
 function App() {
   const { user } = useAuthContext();
@@ -28,7 +29,7 @@ function App() {
       {/* Route for the /SignUp path */}
       <Route path="/SignUp" element={!user ? <SignUp /> : <Navigate to="/" />} />
       
-      
+      <Route path="*" element={<ErrorPage/>} />
     </Routes>
   );
 }

@@ -10,6 +10,7 @@ import EditTask from "../components/EditTask/EditTask";
 import TaskCard from "../components/TaskCard/TaskCard";
 import { AuthContext } from "../context/AuthContext";
 // import UserTable from "../components/UserTable/UserTable";
+import AdminPage from "./AdminPage";
 function Home() {
   const [addTask, setAddTask] = useState(false);
   const [editReport, setEditReport] = useState(false);
@@ -86,6 +87,7 @@ function Home() {
           <Footer />
         </div>
       </div>
+      <AdminPage />
     </>
   );
 }

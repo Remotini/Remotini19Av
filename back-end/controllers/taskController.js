@@ -1,6 +1,17 @@
 const Task = require("../models/taskModel");
 const Report = require("../models/reportModel");
 const Project = require("../models/projectModel");
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 /**
  * POST /tasks - Create a new task.
@@ -17,7 +28,7 @@ const createTask = async (req, res) => {
     }
 
     // Create a new task
-    const newTask = new Task({ name, description, project });
+    const newTask = new Task({ name, description, project, rapportId});
     const savedTask = await newTask.save();
 
     // Find the rapport by ID and push the new task to their tasks array

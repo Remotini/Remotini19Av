@@ -10,6 +10,8 @@ const taskRoutes = require("./Routes/tasks.js");
 const projectRoutes = require("./Routes/projects.js");
 const chefRoutes = require("./Routes/chef.js");
 const profileRoutes = require("./Routes/profile.js");
+const multer = require("multer");
+const path = require("path");
 const mongoose = require("mongoose"); // Import the mongoose package
 //middleware
 app.use(express.json());
@@ -21,6 +23,20 @@ app.use(express.json());
 //   })
 // );
 app.use(cors());
+//uploading images with multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+app.post("/upload", upload.single("file"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
 //routes
 app.use("/api/user", userRoutes);
 app.use("/api/reports", reportRoutes);
