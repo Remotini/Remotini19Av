@@ -3,8 +3,7 @@ import UserRapportTable from "../UserRapportTable/UserRapportTable";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import.meta.hot;
-const UserTable = () => {
+const UserTable = ({setTask,openTaskCard}) => {
   // const [hoveredRow, setHoveredRow] = useState(null);
   // const [openOptions, setOpenOptions] = useState(null);
   const [clickedUser, setClickedUser] = useState(false);
@@ -112,6 +111,8 @@ const UserTable = () => {
           setClickedUser={setClickedUser}
           setEmployeeId={setUserClickedId}
           userFullName={userFullName}
+          setTask={setTask}
+          openTaskCard={openTaskCard}
           
         />
       )}

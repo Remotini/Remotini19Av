@@ -9,6 +9,8 @@ const UserRapportTable = ({
   setClickedUser,
   setEmployeeId,
   userFullName,
+  setTask,
+  openTaskCard,
 }) => {
   // State to store user rapports array
   const [userRapportsArray, setUserRapportsArray] = useState([]);
@@ -134,6 +136,8 @@ const UserRapportTable = ({
           setRapportId={setRapportId}
           rapportNom={rapportNom}
           setRapportNom={setRapportNom}
+          setTask={setTask}
+          openTaskCard={openTaskCard}
         />
       )}
     </>

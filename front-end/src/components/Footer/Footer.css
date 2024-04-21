@@ -1,9 +1,21 @@
-.footer{
-    background-color: var(--blue);
-    height: 3rem;
-    
-    color: white;
-    width: 100%;
- 
-}    
- 
+.line {
+  color: #3e4676bf;
+  border: 1px solid transparent !important;
+  background-color: rgba(255, 255, 255, 0.78) !important;
+  /* background-color: transparent !important; */
+  height: 4rem;
+  width: auto;
+  display: flex;
+  z-index: -1;
+  gap:12rem
+  
+  
+  
+}
+.line-one {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+/* .line-two {
+ } */

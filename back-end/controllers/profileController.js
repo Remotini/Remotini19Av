@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const updateAccount = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log("user Id ", userId);
+
     if (!userId) {
       return res
         .status(400)
@@ -15,8 +15,9 @@ const updateAccount = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const { firstName, lastName, picturePath } = req.body;
-
+    const { firstName, lastName } = req.body;
+    const picturePath= req.file;  
+    console.log("picturePath", picturePath);
     if (!firstName && !lastName && !picturePath) {
       return res.status(400).json({
         message: "Cant update if everything is empty",
@@ -24,7 +25,7 @@ const updateAccount = async (req, res) => {
     }
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
-    if (picturePath) user.picturePath = picturePath;
+    if (picturePath) user.picturePath = picturePath.filename;
 
     await user.save();
 

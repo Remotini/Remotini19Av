@@ -1,7 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import "./TaskCard.css";
 import CommentsUser from "../CommentsUser/CommentsUser";
 const TaskCard = ({ task, onClose }) => {
+  console.log("task", task);
+  const [voir, getVoir] = useState(false);
   const comments = [
     {
       id: 1,
@@ -38,10 +40,30 @@ const TaskCard = ({ task, onClose }) => {
           <div className="task-wrap-name">
             <span class="material-symbols-outlined">task</span>
             <h3>{task.name}</h3>
+            <p
+            style={{
+              color:
+                task.status === "En cours"
+                  ? "#d8b339"
+                  : task.status === "Validé"
+                  ? "#00a36d"
+                  : task.status === "Refusé"
+                  ? "#db3434"
+                  : "transparent",
+            }}
+          >
+            {task.status}
+          </p>
           </div>
         </div>
         <div className="close-icon">
-          <span onClick={onClose} class="material-symbols-outlined">
+          <span
+            onClick={() => {
+              onClose && onClose();
+              getVoir(true);
+            }}
+            class="material-symbols-outlined"
+          >
             close
           </span>
         </div>
@@ -62,24 +84,48 @@ const TaskCard = ({ task, onClose }) => {
           {new Date(task.createdAt).toLocaleString()}
         </p>
         <p className="task-status">
-          <strong>Status:</strong>{" "}
-          <h3
-            style={{
-              color:
-                task.status === "En cours"
-                  ? "#d8b339"
-                  : task.status === "Validé"
-                  ? "#00a36d"
-                  : task.status === "Refusé"
-                  ? "#db3434"
-                  : "transparent",
-            }}
-          >
-            {task.status}
-          </h3>
+          {!task.file&&<>
+          <strong>Fichier: </strong>
+          <p>Il n'ya aucun fichier importé</p>
+          </>
+          }
         </p>
+        {task.file && (
+          <div className="file-display">
+            <div className="file-title">
+            
+              <strong>Fichier:</strong>
+            </div>
+            <br />
+
+            {voir && (
+              <div className="aperçu">
+                <a
+                  href={`http://localhost:5001/images/${task.file}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={`http://localhost:5001/images/${task.file}`}
+                    alt="file"
+                  />
+                </a>
+                <span
+                  onClick={() => getVoir(false)}
+                  class="material-symbols-outlined"
+                >
+                  close
+                </span>
+              </div>
+            )}
+            <div className="download-button">
+              <a onClick={() => getVoir(!voir)}>Voir Aperçu</a>
+            </div>
+          </div>
+        )}
       </div>
       <CommentsUser />
+      <div className="footer-taskCard"></div>
     </div>
   );
 };

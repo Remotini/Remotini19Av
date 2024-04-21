@@ -17,6 +17,9 @@ const TaskSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    file: {
+      type: String,
+    },
     status: {
       type: String,
       enum: ["Validé", "En cours", "Refusé"],

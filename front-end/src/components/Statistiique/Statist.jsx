@@ -154,30 +154,13 @@ const Statistique = ({ tasksData, reportsData }) => {
   };
 
   const lineChardata = {
-    labels: [""],
-    datasets: [
-      {
-        label: "En cours",
-        data: [statusCounts.enCours],
-        backgroundColor: ["rgba(0, 0, 255, 0.8)"],
-        borderRadius: 10,
-        barPercentage: 0.5,
-      },
-      {
-        label: "Validé",
-        data: [statusCounts.valide],
-        backgroundColor: ["rgba(0, 255, 0, 0.8)"],
-        borderRadius: 10,
-        barPercentage: 0.5,
-      },
-      {
-        label: "Refusé",
-        data: [statusCounts.refused],
-        backgroundColor: ["rgba(255, 0, 0, 0.8)"],
-        borderRadius: 10,
-        barPercentage: 0.5,
-      },
-    ],
+    labels: ["Refusé","En Cours","Validé"],
+    datasets: [{
+      label: "Tâches",
+     data:[ statusCounts.refused, statusCounts.enCours, statusCounts.valide],
+     backgroundColor: ["#FF416C", " royalblue", " #a8e063"],
+    }],
+     
   };
 
   

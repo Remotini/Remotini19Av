@@ -5,6 +5,7 @@ import { FaChartLine } from "react-icons/fa";
 import { IoPersonOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
+import unknown from "../../assets/unknown-user.png";
 import { useLogout } from "../../hooks/useLogOut";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -45,8 +46,13 @@ function NavBar() {
         <div className="userdata">
           <div className="img-wrapp">
             {/* el taswira bech tji source mel bara  */}
+            {user.picturePath ? ( //if user has a picture
+              <img src={`http://localhost:5001/images/${user.picturePath}`} alt="user" />
+            ) : (
+              <img src={unknown} alt="user" />
+            )}
 
-            <img src="me&dog.jpg" alt="" />
+            
           </div>
           <div className="name-wrapp">
             <span className="name primaryText">

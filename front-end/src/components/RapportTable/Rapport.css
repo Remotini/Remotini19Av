@@ -208,7 +208,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3e4676 !important;
+  background-color: royalblue !important;
   color: white !important;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -216,7 +216,7 @@ button {
   cursor: pointer;
 }
 .add-button:hover {
-  background-color: #5965a8 !important;
+  opacity:0.7;
 }
 .cancel-button{
   background-color: rgb(163, 158, 158) !important;

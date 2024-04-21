@@ -25,7 +25,8 @@ function Stat() {
   // }, []);
   const [tasksData, setTasksData] = useState([]);
   const rapports = useReportContext();
-  const allReportIds = rapports.map((report) => report._id);
+  // console.log("les rapports",rapports); ;
+  const allReportIds = [rapports.map((report) => report._id)];
   useEffect(() => {
     const fetchTasksData = async () => {
       try {

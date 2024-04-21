@@ -218,29 +218,7 @@ function Rapport({
   }, [triggerScroll]);
   const handleSearch = (e) => {
     setNomRapRecherche(e.target.value);
-    // if (e.target.value) {
-    //   const filteredRapports = rapports.filter((rapport) =>
-    //     rapport.name.toLowerCase().includes(e.target.value.toLowerCase())
-    //   );
-    //   setRapports(filteredRapports);
-    // } else {
-    //   const fetchReports = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //     `http://localhost:5001/api/reports?userId=${user.id}`
-    //     );
-    //     if (response.data) {
-    //     setRapports(response.data);
-    //     console.log("Reports fetched successfully:", response.data);
-    //     } else {
-    //     console.log("Error fetching reports");
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching reports:", error);
-    //   }
-    //   };
-    //   fetchReports();
-    // }
+   
   };
   return (
     <>

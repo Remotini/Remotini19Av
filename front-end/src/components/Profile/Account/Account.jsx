@@ -9,57 +9,62 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const Account = () => {
   const { user } = useContext(AuthContext);
+  const [file, setFile] = useState(null);
   const [info, setNewInfo] = useState({
-    id : user.id,
-    email : user.email,
-    token : user.token,
+    id: user.id,
+    email: user.email,
+    token: user.token,
     firstName: user.firstName,
     lastName: user.lastName,
     photo: user.picturePath,
     cin: user.cin,
     role: user.role,
-
   });
-
+  
   const handleEditAccount = async (e) => {
     e.preventDefault();
+    const formdata = new FormData();
     
+    formdata.append("file", file);
+    
+    formdata.append("firstName", info.firstName);
+    formdata.append("lastName", info.lastName);
+
     try {
       const response = await axios.post(
         `http://localhost:5001/api/profile/updateInfos/${user.id}`,
-        {
-          firstName: info.firstNmae,
-          lastName: info.lastName,
-          picturePath: info.photo,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        formdata
       );
 
       if (response.status === 200) {
         const data = response.data;
+        console.log("info picturePath", data.picturePath);
         console.log("Info updated successfully:", data);
         setNewInfo({
           lastName: "",
           firstName: "",
+          photo: "",
         });
-        const responseUser = await axios.get( `http://localhost:5001/api/user/${user.id}`);
-        const dataUser = responseUser.data;
-        const updatedUser = { ...user, firstName: info.firstName, lastName: info.lastName };
+        const responseUser = await axios.get(
+          `http://localhost:5001/api/user/${user.id}`
+        );
+        const updatedUser = {
+          ...user,
+          firstName: info.firstName,
+          lastName: info.lastName,
+          picturePath: data.picturePath,
+        };
         console.log("updated user:", updatedUser);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
+        localStorage.setItem("user", JSON.stringify(updatedUser));
 
-    // Update the state with the new information
-    setNewInfo(updatedUser);
-        
-        Swal.fire({ icon: "success", title: "info modifiée avec succès" })
-        .then(()=>{
-          window.location.reload();
-        });
-        
+        // Update the state with the new information
+        setNewInfo(updatedUser);
+
+        Swal.fire({ icon: "success", title: "info modifiée avec succès" }).then(
+          () => {
+            window.location.reload();
+          }
+        );
       }
     } catch (error) {
       console.error("Error updating user info", error);
@@ -70,45 +75,9 @@ const Account = () => {
       });
     }
   };
-  
+
   return (
     <div className="account">
-      {/* <div className="first-div">
-        <div className="left-first-div">
-          <h5 className="public-info">Public Info</h5>
-          <span className="info-u">
-            <label>Nom d'utilisateur</label>
-            <input
-              className="username"
-              type="text"
-              placeholder="Nom d'utilisateur"
-            ></input>
-          </span>
-          <span className="info-b">
-            <label>Biographie</label>
-            <input
-              className="biography"
-              type="text"
-              placeholder="Tell me something about yourself"
-            ></input>
-          </span>
-          <button type="submit" className="save-changes">
-            Sauvegarder aaslema ya hmema
-          </button>
-        </div>
-        <div className="right-first-div">
-          <div className="icons">
-            <BsThreeDotsVertical className="icon1" />
-          </div>
-          <img src={unknown} alt="user-photo" />
-          <div className="upload-btn">
-            <span className="upload">
-              <FaUpload className="icon2" />
-              Importer
-            </span>
-          </div>
-        </div>
-      </div> */}
       <form onSubmit={handleEditAccount}>
         <div className="second-div">
           <div className="left-second-div">
@@ -145,28 +114,51 @@ const Account = () => {
                   </div>
                 </div>
                 <div className="right-first-div">
-                  <img src={unknown} alt="user-photo" />
-                  <div className="upload-btn">
-                    <span className="upload">
-                      <FaUpload className="icon2" />
-                      Importer
-                    </span>
+                  {!file ? (
+                    info.photo ? (
+                      <img
+                        src={`http://localhost:5001/images/${info.photo}`}
+                        alt="user-photo"
+                      />
+                    ) : (
+                      <img src={unknown} alt="user-photo" />
+                    )
+                  ) : (
+                    <img
+                      src={URL.createObjectURL(file)}
+                      alt="user-photo"
+                    />
+                  )}
+
+                  <div className="label-screenshot">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="input-file"
+                      id="profile-picture"
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                    <label htmlFor="profile-picture" className="file-label">
+                      <FaUpload /> Importer
+                    </label>
                   </div>
                 </div>
               </div>
               <span className="e-mail">
                 <label className="mail-label">E-mail</label>
                 <div className="e-mail-input">
-                  <input type="text" placeholder={user.email}  disabled/>
+                  <input type="text" placeholder={user.email} disabled />
                 </div>
               </span>
               <span className="CIN">
-                <label className="cin-label">Carte d'identité nationale</label>
+                <label className="cin-label">
+                  Carte d'identité nationale
+                </label>
                 <div className="cin-input">
                   <input type="text" placeholder={user.cin} disabled />
                 </div>
               </span>
-              <button type="submit" className="save-changes"   >
+              <button type="submit" className="save-changes">
                 Sauvegarder
               </button>
             </div>

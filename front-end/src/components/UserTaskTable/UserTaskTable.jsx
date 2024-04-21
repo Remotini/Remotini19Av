@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import "./UserTaskTable.css";
 import Swal from "sweetalert2";
 
+
 const UserTaskTable = ({
   taskClicked,
   setTaskClicked,
   rapportId,
   setRapportId,
+  setTask,
+  openTaskCard,
 }) => {
   const [Tasks, setTasks] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
@@ -58,6 +61,12 @@ const UserTaskTable = ({
       }
     }
   };
+
+  const handlTaskCard = (task) => {
+    setTask(task);
+    openTaskCard();
+  };
+
   return (
     <>
       <div className="wrapperTable">
@@ -114,15 +123,15 @@ const UserTaskTable = ({
                   onMouseLeave={() => setHoveredRow(null)}
                   className="user-row"
                 >
-                  <td >{task.project}</td>
-                  <td >{task.name}</td>
+                  <td onClick={()=>handlTaskCard(task)}>{task.project}</td>
+                  <td onClick={()=>handlTaskCard(task)}>{task.name}</td>
 
-                  <td >
+                  <td onClick={()=>handlTaskCard(task)}>
                     {new Date(task.createdAt).toLocaleDateString()}
                   </td>
 
                   {/* //change to date later */}
-                  <td>
+                  <td onClick={()=>handlTaskCard(task)}>
                     <div className="btn-edit-user">
                       <div
                         className="button-container"

@@ -1,17 +1,6 @@
 const Task = require("../models/taskModel");
 const Report = require("../models/reportModel");
 const Project = require("../models/projectModel");
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, './uploads/');
-  },
-  filename: function(req, file, cb) {
-    cb(null, new Date().toISOString() + file.originalname);
-  }
-});
-
-const upload = multer({ storage: storage });
 
 /**
  * POST /tasks - Create a new task.
@@ -19,7 +8,8 @@ const upload = multer({ storage: storage });
 const createTask = async (req, res) => {
   try {
     const { name, description, project, rapportId } = req.body;
-
+    const file = req.file; // Access uploaded file from req.file
+    
     if (!name || !description || !project || !rapportId) {
       return res.status(400).json({
         message:
@@ -28,7 +18,14 @@ const createTask = async (req, res) => {
     }
 
     // Create a new task
-    const newTask = new Task({ name, description, project, rapportId});
+    const newTask = new Task({ name, description, project });
+    
+    // Check if a file was uploaded
+    if (file) {
+      // Assuming you want to store the file path in the database
+      newTask.file = file.filename; // Adjust property name as needed
+    }
+
     const savedTask = await newTask.save();
 
     // Find the rapport by ID and push the new task to their tasks array
@@ -38,10 +35,11 @@ const createTask = async (req, res) => {
     }
     rapport.tasks.push(savedTask._id);
     await rapport.save();
-    //  Find the project by ID and push the new task to their tasks array
+
+    // Find the project by ID and push the new task to their tasks array
     const project1 = await Project.findOne({ name: project });
     if (!project1) {
-      return res.status(404).json({ message: "project not found" });
+      return res.status(404).json({ message: "Project not found" });
     }
     project1.tasks.push(savedTask._id);
     await project1.save();
@@ -52,6 +50,7 @@ const createTask = async (req, res) => {
     res.status(500).json({ error: "Failed to create task" });
   }
 };
+
 
 /**
  * GET /tasks - Get task details by taskId.

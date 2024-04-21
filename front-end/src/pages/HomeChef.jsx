@@ -1,30 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
-import PieChart from '../components/PieChart/PieChart';
+import PieChart from "../components/PieChart/PieChart";
 import Footer from "../components/Footer/Footer";
 import UserTable from "../components/UserTable/UserTable";
+import TaskCard from "../components/TaskCard/TaskCard";
 
 const HomeChef = () => {
-  console.log("HomeChef");
+  const [task, setTask] = useState(null);
+  const [taskCard, setTaskCard] = useState(false);
+  
   return (
-    <div className="All">
-      <div className="App" />
-      <Header />
-      <div className="center">
-        <div className="the-nav">
-          <NavBar />
+    <>
+      {taskCard ? (
+        <div className="TaskCard">
+          <TaskCard task={task} onClose={() => setTaskCard(false)} />
         </div>
-        <div className="profile_pagedes">
-          <UserTable />
-          {/* <PieChart /> */}
+      ) : null}
+      <div className="All">
+        <div className="App" />
+        <Header />
+        <div className="center">
+          <div className="the-nav">
+            <NavBar />
+          </div>
+          <div className="profile_pagedes">
+            <UserTable
+              openTaskCard={() => setTaskCard(true)}
+              setTask={setTask}
+            />
+            {/* <PieChart /> */}
+          </div>
         </div>
-      </div>
-      <div className="ft">
-        <Footer />
+        <div className="ft">
+          <Footer />
+        </div>
+        {taskCard && <div className="All-b"></div>}
       </div>
       
-    </div>
+    </>
   );
 };
 

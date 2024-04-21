@@ -14,6 +14,8 @@ const AddTasks = ({
 }) => {
   const { user } = useAuthContext();
   const [project, setProject] = useState([]);
+  const [file, setFile] = useState(null);
+  const [importName, setImportName] = useState("Importer");
   const date = new Date();
 
   const [newTask, setNewTask] = useState({
@@ -45,9 +47,15 @@ const AddTasks = ({
 
   const handleAddTask = async (e) => {
     e.preventDefault();
+    const formdata = new FormData();
+    formdata.append("file", file);
+
+    for (const key in newTask) {
+      formdata.append(key, newTask[key]);
+    }
 
     try {
-      await axios.post("http://localhost:5001/api/tasks", newTask);
+      await axios.post("http://localhost:5001/api/tasks", formdata);
 
       setUpdatedTask(!updatedTask); // Trigger update after adding task
       setAddTask(false); // Close the AddTask modal
@@ -68,7 +76,7 @@ const AddTasks = ({
     <div className="add-task-container">
       <form className="form" onSubmit={handleAddTask}>
         <div className="heading">
-          <p className="title">Ajouter une tâche</p>
+          <p className="title">Ajouter une tâche </p>
           <button className="Btnn" onClick={() => setAddTask(false)}>
             <span className="material-symbols-outlined">close</span>
           </button>
@@ -121,10 +129,31 @@ const AddTasks = ({
             accept="image/*"
             className="input-file"
             id="screenshot"
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+              setImportName("Changer");
+            }}
           />
+
           <label htmlFor="screenshot" className="file-label">
-            <FaUpload /> Importer
+            <FaUpload /> {importName}
           </label>
+
+          {/* <div className="screenshot-preview">
+              <img src={URL.createObjectURL(file)} alt="Screenshot" />
+            </div> */}
+        </div>
+        <div className="wrapped-import">
+          {file && (
+            <a
+            href={URL.createObjectURL(file)}
+            target="_blank"
+            rel="noreferrer"
+            title={file.name}
+          >
+            {file.name.length > 30 ? `${file.name.substring(0, 30)}...` : file.name}
+          </a>
+          )}
         </div>
         <label htmlFor="description" className="label">
           <span>Description</span>
@@ -153,7 +182,7 @@ const AddTasks = ({
             readOnly
           />
         </label>
-        <button className="submit" type="submit">
+        <button className="submit1" type="submit">
           Ajouter
         </button>
       </form>

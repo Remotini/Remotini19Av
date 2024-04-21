@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Mcard.css";
 import CountUp from "react-countup";
 import { Bar } from "react-chartjs-2";
+import videoSrc from '../../assets/Statistique-animation.mp4';
 
 function Mcard({ color, data, label, per, icon, currentMonth }) {
   // const [rapport, setRapport] = useState([]);
@@ -24,7 +25,7 @@ function Mcard({ color, data, label, per, icon, currentMonth }) {
   const [reportData, setReportData] = useState([]);
 
   // useEffect(() => {
-  //   fetchData();
+  //   fetchData();zc
   // }, []);
 
   // const fetchData = async () => {
@@ -57,10 +58,10 @@ function Mcard({ color, data, label, per, icon, currentMonth }) {
   return (
     <div className="card-container" style={{ backgroundColor: color }}>
       <div className="Title ">
-        
-        <div className="card-icon right-card" > {icon}</div>
+        <div className="card-icon right-card"> {icon}</div>
         <div className="Left-card">
-          <span className="titleCard"> {label} </span> <button className="btn-title">/ {per}</button>
+          <span className="titleCard"> {label} </span>{" "}
+          <button className="btn-title">/ {per}</button>
         </div>
       </div>
 
@@ -80,10 +81,17 @@ function Mcard({ color, data, label, per, icon, currentMonth }) {
                       },
                     },
                   ],
-                },
+                },C:\Users\ahmed\OneDrive\Documents\GitHub\Remotini19Av\front-end\src\assets\Statistique-animation.mp4
               }}
             />
           </div> */}
+          <video src={videoSrc}
+          autoPlay
+          loop
+          style={{width:'3rem'}}
+          >
+
+          </video>
           <h3>
             <CountUp start={0} end={data.length} duration={4} />
           </h3>{" "}

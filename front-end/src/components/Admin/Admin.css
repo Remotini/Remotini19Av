@@ -1,135 +1,112 @@
-/* .Adminwrapper {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .adminTable {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.9em;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .adminTable thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-  }
-  
-  .adminTable th,
-  .adminTable td {
-    padding: 12px 15px;
-  }
-  
-  .adminTable tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  .adminTable tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .adminTable tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  } */
-
-
-
-  .Adminwrapper {
-
-  }
-  .AdminTablewrapp{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .selRole{
-  
-    width: 15%;
-  }
-  .selRole select{
-    width: 200px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: hsl(202, 24%, 47%);
-    
-  }
-  .titleAdmin{
-    color: #dddddd;
-    padding: 1rem;
-  }
-  
-  .adminTable {
-    border-collapse: collapse;
-    border: 5px solid;
-    font-size: 0.9em;
-
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    width: clamp(300px,90%,1200px);
-    margin: 100px  auto;
-    
-    
-  }
- 
-  .adminTable thead tr {
-    background-color: #344955;
-    color: #ffffff;
-    text-align: left;
-  }
-  
-  .adminTable th,
-  .adminTable td {
-    padding: 20px;
-    word-break: break-word;
-    text-align: center;
-    position: relative;
-    
-    
-  }
-  
-  .adminTable tbody tr {
-    border-bottom: thin solid #dddddd;
-  }
-  
-  .adminTable tbody tr:hover {
-    background-color: #f3f3f3;
-  }
-  
-  .adminTable tbody tr:last-of-type {
-    border-bottom: 2px solid #344955;
-  }
-
-  .iconsAdmin{
-    display: none;
-   
-  }
-  tr:hover .iconsAdmin{
-    display: inline-block;
-    position: absolute;
-  
-   
-    
-    
- 
-  }
-.iconsAdmin :nth-child(1){
-    color: hsl(0, 100%, 43%);
-    font-size: clamp(1rem, -2.5rem + 8vw, 2rem);
-    margin-right: 5px;
-}
-.iconsAdmin :nth-child(2){
-   
-    font-size: clamp(1rem, -2.5rem + 8vw, 2rem);
-    margin-left: 5px;
-}
-
-.middle{
-  
+.tableContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: nowrap;
+  padding: 20px 50px 20px 50px;
+  background-color: #f5f5f5;
+  
+   
+ /* overflow-y: auto;
+ height: 500px; */
+
+}
+
+.tableContainer input {
+  /* margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 500px; */
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  border: 1px solid rgb(12, 12, 109);
+  width: clamp(100px,97%,450px);
+}
+
+/* In your CSS file */
+.edit-button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-button:hover {
+  background-color: #c62d2d;
+}
+.wrapButtons{
+  display: flex;
 }
  
+.AdminTableHead{
+  display: flex;
+  align-items: center;
+ 
+  gap: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+.AdminTableHead select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  border: 1px solid rgb(12, 12, 109);
+  width: 150px;
+  text-align: center;
+}
+
+.adduserform input{
+  width: 200px;
+  margin-right: 0.8rem;
+  margin-top: 2rem;
+}
+.adduser{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+.adduser button{
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 1rem;
+}

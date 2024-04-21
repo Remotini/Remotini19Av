@@ -1,6 +1,6 @@
 .card {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 20px;
   height: auto;
   width: auto;
@@ -62,8 +62,8 @@
   border-radius: 10px;
   transition: width 0.5 ease-out;
 }
-.material-symbols-outlined {
-  color: black !important;
+.arrows span {
+  color: black;
 }
 .arrows {
   display: flex;

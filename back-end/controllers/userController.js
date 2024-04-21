@@ -21,7 +21,8 @@ const loginUser = async (req, res) => {
     const role = user.role;
     const chefId=user.ChefId;
     const cin=user.cin;
-    res.status(200).json({ id, email, token, firstName, lastName ,role ,chefId,cin});
+    const picturePath=user.picturePath;
+    res.status(200).json({ id, email, token, firstName, lastName ,role ,chefId,cin,picturePath});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
