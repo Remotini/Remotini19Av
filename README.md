@@ -1,1 +1,1 @@
-code jdid nfas ajad 
+run yarn for package installation ( front-end ) 
